@@ -1,26 +1,134 @@
+@import url("https://fonts.googleapis.com/css2?family=Abyssinica+SIL&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --font-bebas: "Bebas Neue", sans-serif;
+  --font-texta: "Texta Alt", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@font-face {
+  font-family: "Texta Alt";
+  src: url("/fonts/TextaAlt-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* reset */
+* {
+  box-sizing: border-box;
+}
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto,
+    "Helvetica Neue", Arial;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-image: url("/assets/paper.svg");
+  background-repeat: repeat; /* texture tiles naturally */
+  background-size: 400px; /* adjust based on real texture */
+  background-position: center;
+}
+
+/* top nav */
+
+.logo {
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+.nav-actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+/* wrapper for pinned animation */
+.animation-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  min-height: 200vh; /* scroll space for pin+scrub */
+}
+
+/* sections - only layout */
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+/* background color only */
+.home {
+  background: var(--bg-1);
+}
+.about {
+  background: var(--bg-1);
+}
+
+/* 🐶 dog */
+.dog {
+  position: absolute;
+  width: 2900px;
+  max-width: 65vw;
+  pointer-events: none;
+  z-index: 50;
+  transform-origin: 50% 90%;
+  will-change: transform, left, top;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* frame look — use frames as-is; no white label */
+.frame-card {
+  border-radius: 8px;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.14);
+  overflow: visible;
+  background: transparent;
+}
+
+/* remove the label we added earlier — DO NOT include ::after */
+
+/* smooth 3D transforms and hide backface */
+.frame-card img,
+img[alt="elephant"] {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+/* Elephant wrapper perspective helper */
+div[style*="perspective"] {
+  /* nothing required here, perspective is inline for reliability */
+}
+
+/* responsive tweaks */
+@media (max-width: 900px) {
+  .frame-card {
+    width: 220px;
+    height: 260px;
+  }
+  .grid.grid-cols-2 {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  } /* stack on small screens */
+  img[alt="elephant"] {
+    width: 220px;
+  }
+}
+
+.loop-border {
+  background-image: url("/loop.svg");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-size: 60px 16px; /* adjust to your taste */
+  border-bottom: none;
+  padding-bottom: 20px; /* so loops don’t overlap content */
 }
