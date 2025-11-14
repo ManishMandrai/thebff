@@ -12,6 +12,20 @@ import React from "react";
 export default function Awards() {
     return (
         <main className="relative w-full min-h-[200vh] bg-[#F4921F]">
+            {/* Partition line before awards section */}
+            <img
+                src="/assets/partition line.png"
+                alt=""
+                aria-hidden="true"
+                className="absolute pointer-events-none z-50"
+                style={{
+                    top: "0",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                    width: "100%",
+                    height: "auto",
+                }}
+            />
             {/* BIG CHARACTER: placed in root so it can overlap both viewports */}
 
             {/* BG CIRCLE behind the movie character */}
@@ -51,11 +65,11 @@ export default function Awards() {
                 >
                     {/* Award board centered inside the right block */}
                     <div className="flex justify-center">
-                        <div className="w-[24vw] mt-36 mr-40 ">
+                        <div className="w-[24vw] mt-36 mr-40 relative">
                             <img
                                 src="/assets/awardboard.png"
                                 alt="Awards and categories title"
-                                className="w-full h-auto block pointer-events-none"
+                                className="w-full h-auto block pointer-events-none relative z-30"
                             />
                         </div>
                     </div>
@@ -72,9 +86,9 @@ export default function Awards() {
                         />
 
                         {/* Category List */}
-                        <ul className="space-y-10 pt-2 grid gap-13">
-                            {["CATEGORY 1", "CATEGORY 2", "CATEGORY 3", "CATEGORY 4"].map((label) => (
-                                <li key={label} className="text-[#111] font-bold text-lg leading-tight">
+                        <ul className="flex flex-col" style={{ paddingTop: "8px", gap: "calc(3.25rem - 2px)" }}>
+                            {["CATEGORY 1", "CATEGORY 2", "CATEGORY 3", "CATEGORY 4"].map((label, index) => (
+                                <li key={label} className="text-[#111] font-bold text-lg leading-tight flex items-center" style={{ marginBottom: index < 3 ? "calc(2.5rem - 2px)" : "0", marginTop: index === 3 ? "-8px" : "0", lineHeight: "1.2" }}>
                                     {label}
                                 </li>
                             ))}
@@ -88,34 +102,42 @@ export default function Awards() {
             {/* ---------- PAGE 2 ---------- */}
             <section className="relative h-screen w-full overflow-hidden">
                 {/* small decorative awards on the right of page2 */}
-                <img
-                    src="/assets/award.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="pointer-events-none absolute z-30"
+                <div
+                    className="absolute z-30"
                     style={{
                         left: "45vw",
                         top: "14vh",
                         width: "25vw",
                         maxWidth: 250,
-                        height: "auto",
-                        objectFit: "contain",
                     }}
-                />
-                <img
-                    src="/assets/award.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="pointer-events-none absolute z-30"
+                >
+                    <div className="relative w-full" style={{ aspectRatio: "1/1.2" }}>
+                        <img
+                            src="/assets/award.png"
+                            alt=""
+                            aria-hidden="true"
+                            className="pointer-events-none w-full h-full object-contain relative z-30"
+                        />
+                    </div>
+                </div>
+                <div
+                    className="absolute z-30"
                     style={{
                         left: "70vw",
                         top: "14vh",
                         width: "25vw",
                         maxWidth: 250,
-                        height: "auto",
-                        objectFit: "contain",
                     }}
-                />
+                >
+                    <div className="relative w-full" style={{ aspectRatio: "1/1.2" }}>
+                        <img
+                            src="/assets/award.png"
+                            alt=""
+                            aria-hidden="true"
+                            className="pointer-events-none w-full h-full object-contain relative z-30"
+                        />
+                    </div>
+                </div>
 
                 {/* Bottom wide small-halves that visually overlap */}
                 <div className="absolute left-0 bottom-0 w-full z-10">

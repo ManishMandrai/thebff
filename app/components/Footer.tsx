@@ -21,7 +21,7 @@ export default function Footer() {
               alt="Bhopal Film Festival"
               width={110}
               height={120}
-              className="object-contain"
+              className="object-contain brightness-0 invert"
             />
             <h2 className="text-xl font-semibold">Bhopal Film Festival</h2>
           </div>
@@ -34,7 +34,7 @@ export default function Footer() {
         </div>
 
         {/* Middle - Links */}
-        <div className="flex flex-col md:items-center space-y-3">
+        <div className="flex flex-col space-y-3">
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
           <Link href="#submit" className="text-white/90 hover:text-white transition">
             Submit Film
@@ -42,7 +42,7 @@ export default function Footer() {
           <Link href="#about" className="text-white/90 hover:text-white transition">
             About
           </Link>
-          <Link href="#passes" className="text-white/90 hover:text-white transition">
+          <Link href="/passes" className="text-white/90 hover:text-white transition">
             Get Passes
           </Link>
           <Link href="mailto:info@bhopalfilmfestival.com" className="text-white/90 hover:text-white transition">
@@ -88,11 +88,11 @@ export default function Footer() {
         <p>
           Built with ❤️ by{" "}
           <Link
-            href="https://www.devmanish.com/"
+            href="https://www.ETWOT.com/"
             target="_blank"
             className="underline hover:text-white"
           >
-            Manish
+            ETWOT
           </Link>
         </p>
       </div>

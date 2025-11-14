@@ -29,12 +29,7 @@ body {
     "Helvetica Neue", Arial;
 }
 
-body {
-  background-image: url("/assets/paper.svg");
-  background-repeat: repeat; /* texture tiles naturally */
-  background-size: 400px; /* adjust based on real texture */
-  background-position: center;
-}
+/* Paper texture now handled by layout.tsx overlay */
 
 /* top nav */
 
@@ -55,6 +50,8 @@ body {
   overflow: hidden;
   min-height: 200vh; /* scroll space for pin+scrub */
 }
+
+/* Texture is now applied globally via layout.tsx overlay - no need for duplicate here */
 
 /* sections - only layout */
 .section {
@@ -77,7 +74,7 @@ body {
 .dog {
   position: absolute;
   width: 2900px;
-  max-width: 65vw;
+  max-width: 60vw;
   pointer-events: none;
   z-index: 50;
   transform-origin: 50% 90%;

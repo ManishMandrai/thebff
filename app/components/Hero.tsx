@@ -86,7 +86,7 @@ export default function Hero({ scrollProgress }: Props) {
 
           <div className="mt-8 flex gap-4">
             <a
-              href="#tickets"
+              href="/passes"
               className="inline-flex items-center justify-center px-6 py-3 bg-[#091529] text-white rounded-md shadow-sm text-sm"
             >
               Book Tickets

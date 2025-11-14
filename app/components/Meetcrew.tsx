@@ -32,7 +32,7 @@ export default function MeetCrew() {
             Math.min(W * 0.82 - eleRect.width * 0.5, W - eleRect.width - 32)
         );
         const finalTop = Math.round(
-            sec2Rect.top - wrapperRect.top + (sec2Rect.height - eleRect.height) * 0.7
+            sec2Rect.top - wrapperRect.top + (sec2Rect.height - eleRect.height) * 0.5 - 40 // moved up to prevent leg cutoff
         );
 
         const midLeft = Math.round(startLeft + (finalLeft - startLeft) * 0.45);
@@ -136,8 +136,8 @@ export default function MeetCrew() {
                 eleWrap,
                 {
                     duration: zoomDur,
-                    y: dyFinal + 170, // move downward smoothly
-                    scale: 1.4,       // zoom to 1.4x
+                    y: dyFinal + 100, // reduced downward movement to keep legs visible
+                    scale: 1.2,       // zoom to 1.2x (reduced to prevent leg cutoff)
                     ease: "power1.out",
                 },
                 ">"
@@ -187,9 +187,59 @@ export default function MeetCrew() {
                     ref={g1Ref}
                     className="frames1 absolute top-96 right-12 grid grid-cols-3 gap-6 justify-end z-10"
                 >
-                    <Image src="/assets/frame.png" alt="" width={300} height={340} />
-                    <Image src="/assets/frame.png" alt="" width={300} height={340} />
-                    <Image src="/assets/frame.png" alt="" width={300} height={340} />
+                    {/* Frame 1 */}
+                    <div className="relative">
+                        <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10" />
+                        <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
+                            <Image 
+                                src="/assets/jurry1.png" 
+                                alt="Jury member" 
+                                width={400} 
+                                height={480} 
+                                className="object-cover"
+                                style={{ objectPosition: "center 20%", transform: "scale(1.0) translateY(18px)" }}
+                            />
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-4 py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
+                            <p className="text-black font-bold text-center" style={{ fontSize: "14px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
+                        </div>
+                    </div>
+
+                    {/* Frame 2 */}
+                    <div className="relative">
+                        <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10" />
+                        <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
+                            <Image 
+                                src="/assets/jurry2.png" 
+                                alt="Jury member" 
+                                width={400} 
+                                height={480} 
+                                className="object-cover"
+                                style={{ objectPosition: "center 20%", transform: "scale(1.3)" }}
+                            />
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-4 py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
+                            <p className="text-black font-bold text-center" style={{ fontSize: "14px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
+                        </div>
+                    </div>
+
+                    {/* Frame 3 */}
+                    <div className="relative">
+                        <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10" />
+                        <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
+                            <Image 
+                                src="/assets/jurry 3.png" 
+                                alt="Jury member" 
+                                width={400} 
+                                height={480} 
+                                className="object-cover"
+                                style={{ objectPosition: "center 20%", transform: "scale(1.0)" }}
+                            />
+                        </div>
+                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-4 py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
+                            <p className="text-black font-bold text-center" style={{ fontSize: "14px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
+                        </div>
+                    </div>
                 </div>
                 {/* ELEPHANT BACKGROUND LEAF-PATH */}
                 <img
@@ -198,9 +248,10 @@ export default function MeetCrew() {
                     className="absolute pointer-events-none"
                     style={{
                         left: "0vw",
-                        top: "35vh",
+                        top: "25vh", // moved up from 35vh
                         width: "80vw",
                         zIndex: 1, // behind elephant
+                        filter: "hue-rotate(120deg) saturate(0.8) brightness(0.7) contrast(1.2)", // convert red/orange to dark green
                     }}
                 />
 
@@ -210,9 +261,10 @@ export default function MeetCrew() {
                     className="absolute pointer-events-none"
                     style={{
                         right: "-12vw",
-                        top: "100vh",
+                        top: "90vh", // moved up from 100vh
                         width: "45vw",
                         zIndex: 1,
+                        filter: "hue-rotate(120deg) saturate(0.8) brightness(0.7) contrast(1.2)", // convert red/orange to dark green
                     }}
                 />
 
@@ -223,7 +275,7 @@ export default function MeetCrew() {
                         ref={eleImgRef}
                         src="/assets/elephant.png"
                         alt=""
-                        className="block h-[100vh] w-auto pointer-events-none"
+                        className="block h-[85vh] w-auto pointer-events-none"
                         draggable="false"
                     />
                 </div>
@@ -233,37 +285,37 @@ export default function MeetCrew() {
             <section className="meet2 top-50 h-screen relative">
                 {/* LEFT STITCH STRIP */}
 
-                {/* STRIP */}
-                <img
-                    src="/assets/strip.png"
-                    alt=""
-                    className="absolute pointer-events-none"
-                    style={{
-                        left: "7vw",
-                        top: "40vh",
-                        height: "45vh",
-                        zIndex: 2,
-                    }}
-                />
-
                 {/* TEXT CONTENT */}
-                <div className="absolute left-[10vw] top-[32vh] max-w-[600px] z-10">
+                <div className="absolute left-[10vw] top-[42vh] max-w-[600px] z-10">
                     <h2 className="text-4xl font-extrabold mb-8">EVENT OFFERINGS</h2>
 
-                    <ul className="flex flex-col gap-15 text-[#111] leading-relaxed">
-                        <li>
+                    {/* STRIP - positioned relative to content */}
+                    <img
+                        src="/assets/strip.png"
+                        alt=""
+                        className="absolute pointer-events-none"
+                        style={{
+                            left: "0px",
+                            top: "65px", // Below title, moved down 5px
+                            height: "45vh",
+                            zIndex: 1,
+                        }}
+                    />
+
+                    <ul className="flex flex-col text-[#111] leading-relaxed list-none relative" style={{ paddingLeft: "40px", zIndex: 2, gap: "calc(3.75rem - 4px)" }}>
+                        <li className="relative">
                             <strong>Screenings:</strong> A curated showcase of regional gems and fresh voices.
                         </li>
 
-                        <li>
+                        <li className="relative">
                             <strong>Workshops:</strong> Immersive, practical, and playful sessions—hands-on learning at its best.
                         </li>
 
-                        <li>
+                        <li className="relative">
                             <strong>Skill Development Initiatives:</strong> From editing to story labs, we equip creators for the world stage.
                         </li>
 
-                        <li>
+                        <li className="relative" style={{ marginTop: "-15px" }}>
                             <strong>Panels and Discussions:</strong> Where audiences meet artists, ideas, and culture.
                         </li>
                     </ul>

@@ -44,10 +44,10 @@ export default function DogScroller() {
         const finalLeft = Math.round(
             Math.min(W * 0.82 - dogRect.width * 0.5, W * 0.75)
         );
+        // Position character so it's half in section 2 (about) and half in section 3 (MeetCrew)
+        // Position moved up
         const finalTop = Math.round(
-            aboutRect.top -
-            wrapperRect.top +
-            (aboutRect.height - dogRect.height) * 0.62
+            aboutRect.top - wrapperRect.top + aboutRect.height - (dogRect.height * 0.35) - 170 // Moved up by 170px
         );
 
         const midLeft = Math.round(startLeft + (finalLeft - startLeft) * 0.45);
@@ -150,7 +150,7 @@ export default function DogScroller() {
                     duration: moveDuration,
                     x: dxFinal,
                     y: dyFinal,
-                    scale: 1.2,
+                    scale: 1.0,
                     ease: "power2.inOut",
                     force3D: true,
                 },
@@ -168,7 +168,7 @@ export default function DogScroller() {
 
                 // offset values you can tweak — negative offsetY moves the circle UP
                 const offsetX = 0;      // move right (+) / left (-)
-                const offsetY = -120;   // move down (+) / up (-) — change this number as needed
+                const offsetY = -220;   // move down (+) / up (-) — moved up more
 
                 // ensure we measure the dog's final size (dogRect was measured earlier)
                 // compute an anchor point relative to dog's final bounding box
@@ -211,7 +211,7 @@ export default function DogScroller() {
             if (circle3) {
 
                 const offsetX = 250;
-                const offsetY = 150;
+                const offsetY = 50; // moved up more
 
                 circle3.style.position = "absolute";
                 circle3.style.left = `${finalLeft + offsetX}px`;
@@ -267,7 +267,14 @@ export default function DogScroller() {
     }, []);
 
     return (
-        <div ref={wrapperRef} className="animation-wrapper  loop-border" style={{ background: "#FFCE21" }}>
+        <div 
+            ref={wrapperRef} 
+            className="animation-wrapper  loop-border" 
+            style={{ 
+                backgroundColor: "#FFCE21",
+                overflow: "visible", // Allow character to extend into next section
+            }}
+        >
 
             {/* 🟡 HOME SECTION */}
             <section className="section home justify-end">
@@ -343,7 +350,8 @@ export default function DogScroller() {
                     ref={circleRef}
                     src="/assets/circle.png"
                     alt=""
-                    className="absolute left-0 bottom-0 w-[550px] h-auto z-10"
+                    className="absolute left-0 w-[550px] h-auto z-10"
+                    style={{ bottom: "-100px" }} // Moved up more
                     draggable="false"
                 />
             </section>
