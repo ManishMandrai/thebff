@@ -27,8 +27,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                     className="fixed inset-0 pointer-events-none z-[99]"
                     style={{
                         backgroundImage: 'url("/assets/pp.png")',
-                        backgroundRepeat: "repeat",
-                        backgroundSize: "120px 120px",
+                        backgroundRepeat: "no-repeat",
+                        backgroundSize: "cover",
                         opacity: 0.65,      // strong paper texture
                         mixBlendMode: "multiply", // creates authentic paper texture
                         filter: "contrast(1.1) brightness(0.98)", // enhances texture visibility

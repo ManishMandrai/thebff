@@ -10,7 +10,7 @@ export default function PassesPage() {
       <Navbar />
       
       {/* Decorative Circle Elements */}
-      <div className="absolute top-20 left-0 w-[400px] h-auto z-0 pointer-events-none opacity-30">
+      <div className="absolute top-20 left-0 w-[200px] md:w-[400px] h-auto z-0 pointer-events-none opacity-30 hidden sm:block">
         <Image
           src="/assets/circle.png"
           alt=""
@@ -20,7 +20,7 @@ export default function PassesPage() {
         />
       </div>
       
-      <div className="absolute top-40 right-10 w-[300px] h-auto z-0 pointer-events-none opacity-25">
+      <div className="absolute top-40 right-10 w-[150px] md:w-[300px] h-auto z-0 pointer-events-none opacity-25 hidden sm:block">
         <Image
           src="/assets/circlep.png"
           alt=""
@@ -45,11 +45,11 @@ export default function PassesPage() {
         />
       </div>
 
-      {/* Large Character - Elephant on Right Side (Upper Area) */}
+      {/* Large Character - Copy of 7-01 on Right Side (Upper Area) */}
       <div className="absolute right-0 top-[10%] z-20 pointer-events-none opacity-85 hidden md:block" style={{ transform: 'translate(15%, 0)' }}>
         <Image
-          src="/assets/elephant.png"
-          alt="Elephant character"
+          src="/assets/Copy of 7-01.png"
+          alt="Character"
           width={600}
           height={900}
           className="w-auto h-[75vh] max-h-[850px] object-contain"
@@ -166,9 +166,9 @@ export default function PassesPage() {
         {/* Main Yellow Content Area */}
         <div className="relative bg-[#FFCE21] px-4 md:px-8 lg:px-12 xl:px-16 pb-12 md:pb-16 pt-0 min-h-[calc(100vh-80px)]">
             {/* Content with padding to avoid large characters */}
-            <div className="relative z-30 pl-8 md:pl-16 lg:pl-24 pr-8 md:pr-16 lg:pr-24 pt-20 md:pt-24 flex flex-col items-center justify-center min-h-[70vh] max-w-5xl mx-auto">
+            <div className="relative z-30 pl-4 md:pl-8 lg:pl-16 xl:pl-24 pr-4 md:pr-8 lg:pr-16 xl:pr-24 pt-12 md:pt-20 lg:pt-24 flex flex-col items-center justify-center min-h-[70vh] max-w-5xl mx-auto">
               {/* Coming Soon Title */}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-[#091529] mb-6 md:mb-8 uppercase tracking-tight text-center">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#091529] mb-6 md:mb-8 uppercase tracking-tight text-center">
                 Coming Soon
               </h1>
               

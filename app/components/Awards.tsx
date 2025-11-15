@@ -33,10 +33,10 @@ export default function Awards() {
                 src="/assets/hhhh.png"
                 alt=""
                 aria-hidden="true"
-                className="pointer-events-none absolute select-none z-30"
+                className="pointer-events-none absolute select-none z-30 hidden md:block"
                 style={{
-                    top: "12vh",             // adjust vertically
-                    height: "160vh",        // size of circle (YOU can change anytime)
+                    top: "12vh",
+                    height: "160vh",
                     width: "auto",
                     objectFit: "contain",
                 }}
@@ -46,49 +46,56 @@ export default function Awards() {
                 src="/assets/movie.png"
                 alt="Large movie character holding clapperboard"
                 aria-hidden="true"
-                className="pointer-events-none absolute z-40 select-none"
+                className="pointer-events-none absolute z-40 select-none hidden md:block"
                 style={{
-                    left: "-10vw",    // tweak this to reveal more/less of the character
-                    top: "8vh",       // vertical start relative to viewport
-                    height: "150vh",  // tall so it visually towers into the 2nd viewport
+                    left: "-10vw",
+                    top: "8vh",
+                    height: "150vh",
                     width: "auto",
                     objectFit: "contain",
                 }}
             />
 
             {/* ---------- PAGE 1 ---------- */}
-            <section className="relative h-screen w-full">
+            <section className="relative h-screen w-full flex items-center justify-center">
 
-                {/* Right content block (awardboard + categories) */}
+                {/* Content block (awardboard + categories) - centered on mobile */}
                 <aside
-                    className="absolute right-[6vw] top-1/2 -translate-y-1/2 z-50 w-[48vw] max-w-[500px]"
+                    className="relative md:absolute md:right-4 md:right-[6vw] md:top-1/2 md:-translate-y-1/2 z-50 w-[calc(100%-2rem)] md:w-[48vw] max-w-[500px] px-4 md:px-0"
                 >
-                    {/* Award board centered inside the right block */}
+                    {/* Award board centered inside the block */}
                     <div className="flex justify-center">
-                        <div className="w-[24vw] mt-36 mr-40 relative">
+                        <div className="w-full max-w-[240px] sm:max-w-[280px] md:w-[24vw] md:max-w-none mt-8 md:mt-36 mr-0 md:mr-40 relative overflow-hidden">
                             <img
                                 src="/assets/awardboard.png"
                                 alt="Awards and categories title"
                                 className="w-full h-auto block pointer-events-none relative z-30"
                             />
+                            {/* Yellow background inside the box */}
+                            <div className="absolute bg-[#FFCE21] z-20" style={{ 
+                                top: "14%", 
+                                bottom: "14%", 
+                                left: "14%", 
+                                right: "14%"
+                            }}></div>
                         </div>
                     </div>
 
                     {/* Categories + vertical strip */}
-                    <div className="relative flex items-start gap-10">
+                    <div className="relative flex items-start gap-4 md:gap-10 mt-6 md:mt-12 justify-center md:justify-start pl-0 md:pl-4">
 
                         {/* Strip */}
                         <img
                             src="/assets/strip.png"
                             alt=""
                             aria-hidden="true"
-                            className="pointer-events-none h-[50vh] w-auto object-contain"
+                            className="pointer-events-none h-[40vh] md:h-[50vh] w-auto object-contain hidden md:block"
                         />
 
                         {/* Category List */}
-                        <ul className="flex flex-col" style={{ paddingTop: "8px", gap: "calc(3.25rem - 2px)" }}>
+                        <ul className="flex flex-col items-center md:items-start" style={{ paddingTop: "8px", gap: "1.5rem" }}>
                             {["CATEGORY 1", "CATEGORY 2", "CATEGORY 3", "CATEGORY 4"].map((label, index) => (
-                                <li key={label} className="text-[#111] font-bold text-lg leading-tight flex items-center" style={{ marginBottom: index < 3 ? "calc(2.5rem - 2px)" : "0", marginTop: index === 3 ? "-8px" : "0", lineHeight: "1.2" }}>
+                                <li key={label} className="text-[#111] font-bold text-sm sm:text-base md:text-lg leading-tight flex items-center" style={{ lineHeight: "1.2", paddingLeft: "8px" }}>
                                     {label}
                                 </li>
                             ))}
@@ -101,46 +108,62 @@ export default function Awards() {
 
             {/* ---------- PAGE 2 ---------- */}
             <section className="relative h-screen w-full overflow-hidden">
-                {/* small decorative awards on the right of page2 */}
+                {/* small decorative awards on the right of page2 - hidden on mobile */}
                 <div
-                    className="absolute z-30"
+                    className="absolute z-30 hidden md:block"
                     style={{
                         left: "45vw",
-                        top: "14vh",
+                        top: "calc(14vh + 8px)",
                         width: "25vw",
                         maxWidth: 250,
                     }}
                 >
-                    <div className="relative w-full" style={{ aspectRatio: "1/1.2" }}>
+                    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
                         <img
                             src="/assets/award.png"
                             alt=""
                             aria-hidden="true"
                             className="pointer-events-none w-full h-full object-contain relative z-30"
                         />
+                        {/* Yellow background inside the frame - positioned behind the frame image */}
+                        <div className="absolute bg-[#FFCE21] z-20" style={{ 
+                            top: "12%", 
+                            bottom: "12%", 
+                            left: "12%", 
+                            right: "12%",
+                            transform: "translateY(10px)"
+                        }}></div>
                     </div>
                 </div>
                 <div
-                    className="absolute z-30"
+                    className="absolute z-30 hidden md:block"
                     style={{
                         left: "70vw",
-                        top: "14vh",
+                        top: "calc(14vh + 8px)",
                         width: "25vw",
                         maxWidth: 250,
                     }}
                 >
-                    <div className="relative w-full" style={{ aspectRatio: "1/1.2" }}>
+                    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
                         <img
                             src="/assets/award.png"
                             alt=""
                             aria-hidden="true"
                             className="pointer-events-none w-full h-full object-contain relative z-30"
                         />
+                        {/* Yellow background inside the frame - positioned behind the frame image */}
+                        <div className="absolute bg-[#FFCE21] z-20" style={{ 
+                            top: "12%", 
+                            bottom: "12%", 
+                            left: "12%", 
+                            right: "12%",
+                            transform: "translateY(10px)"
+                        }}></div>
                     </div>
                 </div>
 
                 {/* Bottom wide small-halves that visually overlap */}
-                <div className="absolute left-0 bottom-0 w-full z-10">
+                <div className="absolute left-0 bottom-0 w-full z-10 hidden md:block">
                     <div className="relative w-full h-[40vh] overflow-hidden">
                         <img
                             src="/assets/smallalfr.png"

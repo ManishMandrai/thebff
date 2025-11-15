@@ -11,17 +11,21 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 bg-[#091529]">
       <div className="mx-auto px-6 lg:px-12">
-        <div className="flex items-center justify-between py-[30px]">
-          <Link href="/" aria-label="Home" className="flex items-center">
+        <div className="flex items-center justify-between py-4 md:py-[30px]">
+          <Link href="/" aria-label="Home" className="flex items-center gap-2 md:gap-0">
             <Image
               src="/assets/logo.svg"
               alt="Bhopal Film Festival Logo"
               width={50}
               height={50}
               priority
-              className="object-contain h-12 w-auto"
+              className="object-contain h-10 md:h-12 w-auto"
               style={{ filter: 'brightness(0) saturate(100%) invert(73%) sepia(98%) saturate(1352%) hue-rotate(0deg) brightness(102%) contrast(101%)' }}
             />
+            <div className="md:hidden flex flex-col text-[#FFCE21] leading-tight">
+              <span className="text-sm font-bold">THE BHOPAL</span>
+              <span className="text-xs font-normal">FILM FESTIVAL</span>
+            </div>
           </Link>
 
           {/* DESKTOP MENU */}
@@ -37,7 +41,7 @@ export default function Navbar() {
               </li>
               <li>
                 <Link
-                  href="/submit"
+                  href="/submit-film"
                   className="bg-[#FFCE21] text-[#500E1E] font-bold text-sm uppercase px-4 py-2 rounded-md hover:opacity-90 transition"
                 >
                   Submit Film
@@ -73,9 +77,6 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* YELLOW BAR UNDER HEADER */}
-      <div className="w-full h-3 bg-[#FFCE21]"></div>
-
       {open && (
         <div className="fixed inset-0 z-50 flex">
           <div
@@ -99,7 +100,7 @@ export default function Navbar() {
             </Link>
 
             <Link
-              href="/submit"
+              href="/submit-film"
               className="bg-[#FFCE21] text-[#500E1E] font-bold text-lg uppercase px-6 py-3 rounded-md hover:opacity-90 transition w-48 text-center"
               onClick={() => setOpen(false)}
             >

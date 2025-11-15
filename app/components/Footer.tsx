@@ -7,7 +7,51 @@ import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa6"
 
 export default function Footer() {
   const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [message, setMessage] = useState("");
   const year = new Date().getFullYear();
+
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes('@')) {
+      setStatus("error");
+      setMessage("Please enter a valid email address");
+      return;
+    }
+
+    setStatus("loading");
+    setMessage("");
+
+    try {
+      const response = await fetch('/api/subscribe', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus("success");
+        setMessage(data.message || "Successfully subscribed!");
+        setEmail("");
+        // Reset message after 5 seconds
+        setTimeout(() => {
+          setStatus("idle");
+          setMessage("");
+        }, 5000);
+      } else {
+        setStatus("error");
+        setMessage(data.error || "Failed to subscribe. Please try again.");
+      }
+    } catch (error) {
+      setStatus("error");
+      setMessage("Network error. Please try again later.");
+    }
+  };
 
   return (
     <footer className="bg-[#500E1E] text-white pt-16 pb-8 px-6 md:px-12">
@@ -36,10 +80,10 @@ export default function Footer() {
         {/* Middle - Links */}
         <div className="flex flex-col space-y-3">
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
-          <Link href="#submit" className="text-white/90 hover:text-white transition">
+          <Link href="/submit-film" className="text-white/90 hover:text-white transition">
             Submit Film
           </Link>
-          <Link href="#about" className="text-white/90 hover:text-white transition">
+          <Link href="/about" className="text-white/90 hover:text-white transition">
             About
           </Link>
           <Link href="/passes" className="text-white/90 hover:text-white transition">
@@ -53,18 +97,33 @@ export default function Footer() {
         {/* Right - Subscribe */}
         <div className="space-y-4">
           <h3 className="text-lg font-semibold">Stay Updated</h3>
-          <div className="flex items-center">
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Your email"
-              className="w-full px-3 py-2 rounded-l-md bg-gray-200 text-black placeholder-gray-600 outline-none"
-            />
-            <button className="bg-white text-black px-4 py-2 rounded-r-md font-medium hover:bg-gray-100 transition">
-              Subscribe
-            </button>
-          </div>
+          <form onSubmit={handleSubscribe} className="space-y-2">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Your email"
+                required
+                disabled={status === "loading"}
+                className="w-full px-3 py-2 rounded-t-md sm:rounded-l-md sm:rounded-t-none bg-gray-200 text-black placeholder-gray-600 outline-none text-sm disabled:opacity-50"
+              />
+              <button 
+                type="submit"
+                disabled={status === "loading"}
+                className="bg-white text-black px-4 py-2 rounded-b-md sm:rounded-r-md sm:rounded-b-none font-medium hover:bg-gray-100 transition text-sm whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {status === "loading" ? "Subscribing..." : "Subscribe"}
+              </button>
+            </div>
+            {message && (
+              <p className={`text-xs ${
+                status === "success" ? "text-green-300" : "text-red-300"
+              }`}>
+                {message}
+              </p>
+            )}
+          </form>
           <div className="flex gap-4 mt-4">
             <a href="#" aria-label="Facebook" className="hover:text-gray-300 transition">
               <FaFacebookF size={20} />

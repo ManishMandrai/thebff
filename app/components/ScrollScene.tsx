@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useAnimation, useInView } from "framer-motion";
@@ -277,40 +278,49 @@ export default function DogScroller() {
         >
 
             {/* 🟡 HOME SECTION */}
-            <section className="section home justify-end">
+            <section className="section home relative" style={{ alignItems: "flex-start", justifyContent: "center" }}>
+                {/* Content Container - Centered on mobile, right-aligned on desktop */}
                 <motion.div
                     ref={homeRef}
                     initial={{ y: 60, opacity: 0 }}
                     animate={homeControls}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="content flex flex-col gap-4 text-left ml-auto pr-[8vw] max-w-[700px]"
+                    className="content flex flex-col gap-4 md:gap-4 text-center md:text-left md:ml-auto px-6 md:pr-[8vw] max-w-full md:max-w-[700px] z-50 relative w-full md:w-auto"
+                    style={{ marginTop: "80px" }}
                 >
-                    <h1 className="font-bebas text-[80px] text-base leading-[82px]">
+                    {/* Main Headline */}
+                    <h1 className="font-bebas text-[40px] sm:text-[48px] md:text-[60px] lg:text-[80px] leading-[1.1] md:leading-[82px] text-[#091529] font-bold">
                         CELEBRATING CINEMA <br />
                         THAT SPEAKS, SINGS, <br />
                         AND REMEMBERS.
                     </h1>
 
-
-                    <p className="font-abyssinica text-[20px] opacity-90">
+                    {/* Description */}
+                    <p className="font-abyssinica text-base sm:text-base md:text-[20px] text-[#091529] mt-3 md:mt-2 leading-relaxed">
                         A day of celebrating films, voices, and live experiences -<br />
                         <strong>1st February 2026, Bhopal</strong>
                     </p>
 
-
-                    <div className="flex justify-start gap-3 mt-2">
-                        <button className="px-4 py-2 bg-[#111] text-white rounded-md font-semibold">
+                    {/* Buttons - Side by Side, Centered */}
+                    <div className="flex flex-row justify-center md:justify-start gap-3 md:gap-3 mt-6 md:mt-4 w-full md:w-auto">
+                        <Link 
+                            href="/passes" 
+                            className="px-5 py-2.5 bg-[#091529] text-white rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
+                        >
                             Book Tickets
-                        </button>
-                        <button className="px-4 py-2 border-2 border-[#111] text-[#111] rounded-md font-semibold bg-transparent">
+                        </Link>
+                        <Link 
+                            href="/submit-film" 
+                            className="px-5 py-2.5 border-2 border-[#091529] bg-[#FFCE21] text-[#091529] rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
+                        >
                             Submit Film
-                        </button>
+                        </Link>
                     </div>
                 </motion.div>
 
                 <div
                     ref={dogWrapRef}
-                    className="absolute"
+                    className="absolute hidden md:block"
                     style={{ left: 0, top: 0, zIndex: 30, willChange: "transform" }}
                 >
                     <img
@@ -322,12 +332,23 @@ export default function DogScroller() {
                         style={{ display: "block", willChange: "transform" }}
                     />
                 </div>
+                
+                {/* Mobile Character - Bottom Right Corner */}
+                <div className="absolute bottom-0 right-0 md:hidden pointer-events-none z-10" style={{ width: "50%", height: "70vh" }}>
+                    <img
+                        src="/assets/dog.png"
+                        alt="character holding megaphone"
+                        className="absolute bottom-0 right-0 w-auto h-[60vh] max-w-full object-contain object-bottom"
+                        draggable="false"
+                        style={{ zIndex: 20 }}
+                    />
+                </div>
 
                 {/* ✅ CIRCLE-2 element (no manual left/top here; GSAP sets it) */}
                 <img
                     ref={circle2Ref}
                     src="/assets/circlep.png"
-                    className="absolute w={[420]} h-auto pointer-events-none mix-blend-luminosity"
+                    className="absolute w-[420px] h-auto pointer-events-none mix-blend-luminosity hidden md:block"
                     style={{ zIndex: 8, opacity: 0 }}
                     alt="circle behind dog"
                     draggable="false"
@@ -337,9 +358,7 @@ export default function DogScroller() {
                 <img
                     ref={circle3Ref}
                     src="/assets/circlepq.png"
-                    className="absolute w-[600px] h-auto pointer-events-none"
-
-
+                    className="absolute w-[600px] h-auto pointer-events-none hidden md:block"
                     style={{ zIndex: 1, opacity: 0 }}
                     alt="circle bottom-right"
                     draggable="false"
@@ -350,37 +369,28 @@ export default function DogScroller() {
                     ref={circleRef}
                     src="/assets/circle.png"
                     alt=""
-                    className="absolute left-0 w-[550px] h-auto z-10"
+                    className="absolute left-0 w-[550px] h-auto z-10 hidden md:block"
                     style={{ bottom: "-100px" }} // Moved up more
                     draggable="false"
                 />
             </section>
 
             {/* 🟡 ABOUT SECTION */}
-            <section className="section about justify-start">
+            <section className="section about justify-start md:justify-start">
                 <motion.div
                     ref={aboutRef}
                     initial={{ y: 60, opacity: 0 }}
                     animate={aboutControls}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="content flex flex-col gap-4 text-left pl-[8vw] max-w-[700px]"
+                    className="content flex flex-col gap-4 text-left px-4 md:pl-[8vw] max-w-full md:max-w-[700px] z-50 relative"
                 >
-                    <h2 className="text-3xl md:text-4xl font-extrabold text-[#111]">
+                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#111]">
                         WHO WE ARE
                     </h2>
 
-                    <p className="opacity-90 leading-relaxed text-[#111]">
+                    <p className="opacity-90 leading-relaxed text-[#111] text-sm md:text-base">
                         We are a collective of dreamers, doers, and storytellers at the
-                        vibrant crossroads of Madhya Pradesh. We champion authentic
-                        narratives and connect them to the world—nurturing creative souls
-                        and building bridges between cinema, arts, literature, and people.
-                        Our festival thrives on real stories, laughter, creative ambition,
-                        and shared wisdom.
-                    </p>
-
-                    <p className="font-semibold text-[#111] leading-relaxed">
-                        Our heart beats for cinema that digs deep into roots and grows new
-                        ideas skyward.
+                        vibrant crossroads of Madhya Pradesh. Our heart beats for cinema that digs deep into roots and grows new ideas skyward.
                     </p>
                 </motion.div>
             </section>

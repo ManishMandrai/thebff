@@ -58,8 +58,19 @@ body {
   position: relative;
   width: 100%;
   height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .section {
+    min-height: 100vh;
+    padding: 0;
+    align-items: flex-start !important;
+    justify-content: center !important;
+  }
 }
 
 /* background color only */
@@ -81,6 +92,12 @@ body {
   will-change: transform, left, top;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
+}
+
+@media (max-width: 768px) {
+  .dog {
+    max-width: 80vw;
+  }
 }
 
 /* frame look — use frames as-is; no white label */

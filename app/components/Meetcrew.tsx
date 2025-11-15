@@ -179,17 +179,17 @@ export default function MeetCrew() {
             {/* PAGE 1 */}
             <section className="meet1 h-screen relative flex items-start justify-center">
 
-                <div className="absolute top-12 left-1/2 -translate-x-1/2 z-10">
-                    <Image src="/assets/jurymeet.png" alt="meet" width={240} height={80} />
+                <div className="absolute top-8 md:top-12 left-1/2 -translate-x-1/2 z-10">
+                    <Image src="/assets/jurymeet.png" alt="meet" width={240} height={80} className="w-[140px] sm:w-[180px] md:w-[240px] h-auto" />
                 </div>
 
                 <div
                     ref={g1Ref}
-                    className="frames1 absolute top-96 right-12 grid grid-cols-3 gap-6 justify-end z-10"
+                    className="frames1 absolute top-32 sm:top-40 md:top-96 left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 right-4 md:right-12 grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 justify-center md:justify-end z-10"
                 >
                     {/* Frame 1 */}
-                    <div className="relative">
-                        <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10" />
+                    <div className="relative w-[160px] sm:w-[200px] md:w-[300px] mx-auto">
+                        <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10 w-full h-auto" />
                         <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
                             <Image 
                                 src="/assets/jurry1.png" 
@@ -200,14 +200,14 @@ export default function MeetCrew() {
                                 style={{ objectPosition: "center 20%", transform: "scale(1.0) translateY(18px)" }}
                             />
                         </div>
-                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-4 py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
-                            <p className="text-black font-bold text-center" style={{ fontSize: "14px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
+                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-3 py-2 md:px-4 md:py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
+                            <p className="text-black font-bold text-center" style={{ fontSize: "11px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
                         </div>
                     </div>
 
                     {/* Frame 2 */}
-                    <div className="relative">
-                        <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10" />
+                    <div className="relative w-[160px] sm:w-[200px] md:w-[300px] mx-auto">
+                        <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10 w-full h-auto" />
                         <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
                             <Image 
                                 src="/assets/jurry2.png" 
@@ -218,14 +218,14 @@ export default function MeetCrew() {
                                 style={{ objectPosition: "center 20%", transform: "scale(1.3)" }}
                             />
                         </div>
-                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-4 py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
-                            <p className="text-black font-bold text-center" style={{ fontSize: "14px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
+                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-3 py-2 md:px-4 md:py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
+                            <p className="text-black font-bold text-center" style={{ fontSize: "11px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
                         </div>
                     </div>
 
                     {/* Frame 3 */}
-                    <div className="relative">
-                        <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10" />
+                    <div className="relative w-[160px] sm:w-[200px] md:w-[300px] mx-auto">
+                        <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10 w-full h-auto" />
                         <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
                             <Image 
                                 src="/assets/jurry 3.png" 
@@ -236,8 +236,8 @@ export default function MeetCrew() {
                                 style={{ objectPosition: "center 20%", transform: "scale(1.0)" }}
                             />
                         </div>
-                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-4 py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
-                            <p className="text-black font-bold text-center" style={{ fontSize: "14px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
+                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-3 py-2 md:px-4 md:py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
+                            <p className="text-black font-bold text-center" style={{ fontSize: "11px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
                         </div>
                     </div>
                 </div>
@@ -270,12 +270,22 @@ export default function MeetCrew() {
 
 
                 {/* Elephant */}
-                <div ref={eleWrapRef} className="absolute z-30 will-change-transform">
+                <div ref={eleWrapRef} className="absolute z-30 will-change-transform hidden md:block">
                     <img
                         ref={eleImgRef}
                         src="/assets/elephant.png"
                         alt=""
                         className="block h-[85vh] w-auto pointer-events-none"
+                        draggable="false"
+                    />
+                </div>
+                
+                {/* Mobile Elephant - Static positioned */}
+                <div className="absolute bottom-0 right-0 w-1/2 md:hidden pointer-events-none z-20 flex items-end justify-end" style={{ height: "60vh" }}>
+                    <img
+                        src="/assets/elephant.png"
+                        alt=""
+                        className="w-auto max-w-full h-[55vh] object-contain object-bottom"
                         draggable="false"
                     />
                 </div>
@@ -286,14 +296,14 @@ export default function MeetCrew() {
                 {/* LEFT STITCH STRIP */}
 
                 {/* TEXT CONTENT */}
-                <div className="absolute left-[10vw] top-[42vh] max-w-[600px] z-10">
-                    <h2 className="text-4xl font-extrabold mb-8">EVENT OFFERINGS</h2>
+                <div className="absolute left-4 md:left-[10vw] top-[20vh] md:top-[42vh] max-w-[90%] md:max-w-[600px] z-10 px-4 md:px-0">
+                    <h2 className="text-xl sm:text-2xl md:text-4xl font-extrabold mb-4 md:mb-8 text-[#111]">EVENT OFFERINGS</h2>
 
                     {/* STRIP - positioned relative to content */}
                     <img
                         src="/assets/strip.png"
                         alt=""
-                        className="absolute pointer-events-none"
+                        className="absolute pointer-events-none hidden md:block"
                         style={{
                             left: "0px",
                             top: "65px", // Below title, moved down 5px
@@ -302,7 +312,7 @@ export default function MeetCrew() {
                         }}
                     />
 
-                    <ul className="flex flex-col text-[#111] leading-relaxed list-none relative" style={{ paddingLeft: "40px", zIndex: 2, gap: "calc(3.75rem - 4px)" }}>
+                    <ul className="flex flex-col text-[#111] leading-relaxed list-none relative text-sm sm:text-base md:text-base" style={{ paddingLeft: "30px", zIndex: 2, gap: "1.5rem" }}>
                         <li className="relative">
                             <strong>Screenings:</strong> A curated showcase of regional gems and fresh voices.
                         </li>
@@ -315,7 +325,7 @@ export default function MeetCrew() {
                             <strong>Skill Development Initiatives:</strong> From editing to story labs, we equip creators for the world stage.
                         </li>
 
-                        <li className="relative" style={{ marginTop: "-15px" }}>
+                        <li className="relative">
                             <strong>Panels and Discussions:</strong> Where audiences meet artists, ideas, and culture.
                         </li>
                     </ul>

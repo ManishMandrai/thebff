@@ -8,40 +8,9 @@ export default function TermsPage() {
   return (
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
       <Navbar />
-      
-      {/* Decorative Circle Elements */}
-      <div className="absolute top-20 left-0 w-[400px] h-auto z-0 pointer-events-none opacity-30">
-        <Image
-          src="/assets/circle.png"
-          alt=""
-          width={400}
-          height={400}
-          className="w-full h-auto"
-        />
-      </div>
-      
-      <div className="absolute top-40 right-10 w-[300px] h-auto z-0 pointer-events-none opacity-25">
-        <Image
-          src="/assets/circlep.png"
-          alt=""
-          width={300}
-          height={300}
-          className="w-full h-auto mix-blend-luminosity"
-        />
-      </div>
 
-      <div className="absolute bottom-[70px] left-10 w-[350px] h-auto z-0 pointer-events-none opacity-30">
-        <Image
-          src="/assets/circlepq.png"
-          alt=""
-          width={350}
-          height={350}
-          className="w-full h-auto"
-        />
-      </div>
-      
       {/* Side Strips - Left - Starting exactly from navbar bottom */}
-      <div className="absolute left-0 w-6 md:w-10 z-30 pointer-events-none" style={{ top: '68px', bottom: '40vh', margin: '0', padding: '0' }}>
+      <div className="absolute left-0 w-4 md:w-6 lg:w-10 z-20 pointer-events-none hidden md:block" style={{ top: '108px', bottom: 'calc(40vh + 70px)', margin: '0', padding: '0' }}>
         <Image
           src="/assets/side strip.png"
           alt="Side strip decoration"
@@ -58,7 +27,7 @@ export default function TermsPage() {
       </div>
 
       {/* Side Strips - Right - Starting exactly from navbar bottom */}
-      <div className="absolute right-0 w-6 md:w-10 z-30 pointer-events-none" style={{ top: '68px', bottom: '40vh', margin: '0', padding: '0' }}>
+      <div className="absolute right-0 w-4 md:w-6 lg:w-10 z-20 pointer-events-none hidden md:block" style={{ top: '108px', bottom: 'calc(40vh + 70px)', margin: '0', padding: '0' }}>
         <Image
           src="/assets/side strip.png"
           alt="Side strip decoration"
@@ -80,9 +49,9 @@ export default function TermsPage() {
         {/* Main Yellow Content Area */}
         <div className="relative bg-[#FFCE21] px-4 md:px-8 lg:px-12 xl:px-16 pb-12 md:pb-16 pt-0 min-h-[calc(100vh-80px)]">
             {/* Content with padding to avoid side strips */}
-            <div className="relative z-20 pl-8 md:pl-12 pr-8 md:pr-12 pt-0">
+            <div className="relative z-20 pl-4 md:pl-8 lg:pl-12 pr-4 md:pr-8 lg:pr-12 pt-0">
               {/* Title */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#091529] mb-6 md:mb-8 uppercase tracking-tight">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-[#091529] mb-6 md:mb-8 uppercase tracking-tight mt-8 md:mt-12">
                 TERMS AND CONDITIONS
               </h1>
               
@@ -181,7 +150,10 @@ export default function TermsPage() {
               <section>
                 <h2 className="text-2xl md:text-3xl font-bold mb-4 uppercase">PARTICIPATION & CONDUCT</h2>
                 <p className="text-base md:text-lg leading-relaxed mb-4">
-                  If selected, the filmmaker/representative should maintain professional conduct. Any attempt to unduly influence jury members or the selection process will result in immediate disqualification. The festival aims to keep the process transparent and fair to all.
+                  If selected, the filmmaker/representative should maintain professional conduct.
+                </p>
+                <p className="text-base md:text-lg leading-relaxed mb-4">
+                  Any attempt to unduly influence jury members or the selection process will result in immediate disqualification. The festival aims to keep the process transparent and fair to all.
                 </p>
                 <p className="text-base md:text-lg leading-relaxed">
                   By adhering to these terms, a smooth festival experience is ensured for organizers, audiences, and filmmakers alike. These rules follow standards set by respected festivals, adapted to the local context.
@@ -200,7 +172,7 @@ export default function TermsPage() {
           alt=""
           width={800}
           height={400}
-          className="absolute left-0 bottom-[20px] w-[65%] h-[40vh] object-cover object-top pointer-events-none"
+          className="absolute left-0 bottom-0 w-[65%] h-[40vh] object-cover object-top pointer-events-none"
           aria-hidden="true"
         />
         <Image
@@ -208,13 +180,13 @@ export default function TermsPage() {
           alt=""
           width={800}
           height={400}
-          className="absolute right-0 bottom-[20px] w-[65%] h-[35vh] object-cover object-top pointer-events-none"
+          className="absolute right-0 bottom-0 w-[65%] h-[35vh] object-cover object-top pointer-events-none"
           aria-hidden="true"
         />
       </div>
 
-      {/* Footer at the end */}
-      <div className="relative z-10">
+      {/* Footer at the end - No gap */}
+      <div className="relative z-10 -mt-[1px]">
         <Footer />
       </div>
     </main>

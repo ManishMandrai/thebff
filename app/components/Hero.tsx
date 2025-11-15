@@ -2,6 +2,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { MotionValue, useReducedMotion, useTransform, motion } from "framer-motion";
 
 type Props = { scrollProgress: MotionValue<number> };
@@ -42,7 +43,7 @@ export default function Hero({ scrollProgress }: Props) {
       style={{ backgroundColor: "#FFCE21", perspective: 1200 }}
     >
       {/* Left: large director artwork (positioned absolute so it overflows like design) */}
-      <div className="absolute inset-y-0 left-0 w-1/2 pointer-events-none">
+      <div className="absolute inset-y-0 left-0 w-1/2 pointer-events-none hidden lg:block">
         <motion.div
           // animated container for director (use motion div + bind transforms)
           style={{
@@ -85,19 +86,19 @@ export default function Hero({ scrollProgress }: Props) {
           </p>
 
           <div className="mt-8 flex gap-4">
-            <a
+            <Link
               href="/passes"
               className="inline-flex items-center justify-center px-6 py-3 bg-[#091529] text-white rounded-md shadow-sm text-sm"
             >
               Book Tickets
-            </a>
+            </Link>
 
-            <a
-              href="#submit"
+            <Link
+              href="/submit-film"
               className="inline-flex items-center justify-center px-5 py-3 border-2 border-[#091529] text-[#091529] rounded-md text-sm"
             >
               Submit Film
-            </a>
+            </Link>
           </div>
         </div>
       </div>
