@@ -60,13 +60,13 @@ export default function AboutPage() {
             }}
             aria-hidden="true"
           />
-          {/* Desktop version - full size */}
+          {/* Desktop version - full size (hidden on tablet) */}
           <Image
             src="/assets/hhhh.png"
             alt=""
             width={400}
             height={1200}
-            className="hidden md:block absolute left-0 h-full w-auto object-contain"
+            className="hidden lg:block absolute left-0 h-full w-auto object-contain"
             style={{
               top: "50%",
               transform: "translateY(calc(-50% + 300px - 250px)) translateX(-30%) scaleY(-1)",
@@ -76,7 +76,7 @@ export default function AboutPage() {
         </div>
 
         {/* Side Semicircles - Left (hhhh.png duplicated) - Top - Green - Top Left Corner */}
-        <div className="absolute left-0 top-[108px] pointer-events-none z-[2] hidden md:block" style={{ overflow: 'visible' }}>
+        <div className="absolute left-0 top-[108px] pointer-events-none z-[2] hidden lg:block" style={{ overflow: 'visible' }}>
           <img
             src="/assets/hhhh.png"
             alt=""
@@ -94,7 +94,7 @@ export default function AboutPage() {
         </div>
 
         {/* Side Semicircles - Right (hhhh.png duplicated) - Top - Green - Top Right Corner */}
-        <div className="absolute right-0 top-[108px] pointer-events-none z-[2] hidden md:block" style={{ overflow: 'visible' }}>
+        <div className="absolute right-0 top-[108px] pointer-events-none z-[2] hidden lg:block" style={{ overflow: 'visible' }}>
           <img
             src="/assets/hhhh.png"
             alt=""
@@ -112,7 +112,7 @@ export default function AboutPage() {
         </div>
 
         {/* Side Semicircles - Right (hhhh.png duplicated) - Bottom - Flipped - Aligns with second paragraph */}
-        <div className="absolute right-0 top-0 h-full w-[500px] pointer-events-none z-[1] hidden md:block">
+        <div className="absolute right-0 top-0 h-full w-[500px] pointer-events-none z-[1] hidden lg:block">
           <Image
             src="/assets/hhhh.png"
             alt=""
@@ -130,13 +130,13 @@ export default function AboutPage() {
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-0" style={{ paddingBottom: '0', marginTop: '30px' }}>
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 md:px-6 lg:px-12 xl:px-16 flex flex-col pt-8 sm:pt-12 md:pt-14 lg:pt-20 xl:pt-24 pb-0" style={{ paddingBottom: '0', marginTop: '30px' }}>
           {/* About Us Section */}
-          <div className="flex flex-row lg:flex-row gap-3 sm:gap-4 md:gap-6 lg:gap-6 xl:gap-8 items-start w-full mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
+          <div className="flex flex-row lg:flex-row gap-3 sm:gap-4 md:gap-5 lg:gap-6 xl:gap-8 items-start w-full mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
             
             {/* Left Side - Character with Spotlight Illustration */}
-            <div className="relative flex flex-col items-start justify-start w-[35%] sm:w-[40%] lg:w-[45%] xl:w-[48%] h-full z-30 overflow-visible -ml-8 sm:-ml-12 md:-ml-16 lg:-ml-32 xl:-ml-48 2xl:-ml-60">
-              <div className="relative w-full max-w-[200px] sm:max-w-[300px] md:max-w-[400px] lg:max-w-[2400px] xl:max-w-[3300px] 2xl:max-w-[3900px] z-40">
+            <div className="relative flex flex-col items-start justify-start w-[35%] sm:w-[40%] md:w-[38%] lg:w-[45%] xl:w-[48%] h-full z-30 overflow-visible -ml-8 sm:-ml-12 md:-ml-12 lg:-ml-32 xl:-ml-48 2xl:-ml-60">
+              <div className="relative w-full max-w-[200px] sm:max-w-[300px] md:max-w-[350px] lg:max-w-[2400px] xl:max-w-[3300px] 2xl:max-w-[3900px] z-40">
                 <Image
                   src="/assets/Copy of 5-01.png"
                   alt="Film spotlight character"
@@ -172,10 +172,10 @@ export default function AboutPage() {
             </div>
 
             {/* Right Side - ABOUT US Text - Split into 2 sections */}
-            <div className="relative z-20 w-[65%] sm:w-[60%] lg:w-[55%] xl:w-[52%] flex flex-col justify-center items-start text-left px-2 sm:px-4 md:px-6 lg:items-center lg:text-center lg:px-0 lg:-ml-[140px]">
+            <div className="relative z-20 w-[65%] sm:w-[60%] md:w-[62%] lg:w-[55%] xl:w-[52%] flex flex-col justify-center items-start text-left px-2 sm:px-4 md:px-4 lg:items-center lg:text-center lg:px-0 lg:-ml-[140px]">
               {/* hhhh.png beside About Us content */}
               <div 
-                className="absolute pointer-events-none z-10 hidden md:block"
+                className="absolute pointer-events-none z-10 hidden lg:block"
                 style={{
                   top: '200px',
                   left: '-500px',
@@ -251,7 +251,7 @@ export default function AboutPage() {
                 <div className="absolute inset-0 w-full h-full" style={{ pointerEvents: 'none', top: 0, left: 0, right: 0, bottom: 0 }}>
                   {/* Character 1 - Copy of 9-01 */}
                   <div 
-                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[10%] left-[2%] w-[60%] max-w-[300px] md:top-[12%] md:left-[5%] md:w-[76%] md:max-w-[1100px]"
+                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[10%] left-0 w-[60%] max-w-[300px] md:top-[12%] md:left-0 md:-ml-[50px] md:w-[76%] md:max-w-[1100px]"
                   >
                     <div className="character-flip-card-inner">
                       <div className="character-flip-card-front">
@@ -277,7 +277,7 @@ export default function AboutPage() {
 
                   {/* Character 2 - Copy of 10-01 */}
                   <div 
-                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[25%] right-[2%] w-[60%] max-w-[300px] md:top-[28%] md:right-[3%] md:w-[76%] md:max-w-[1100px]"
+                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[25%] right-0 w-[60%] max-w-[300px] md:top-[28%] md:right-0 md:-mr-[50px] md:w-[76%] md:max-w-[1100px]"
                   >
                     <div className="character-flip-card-inner">
                       <div className="character-flip-card-front">
@@ -303,7 +303,7 @@ export default function AboutPage() {
 
                   {/* Character 3 - dog.png */}
                   <div 
-                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[45%] left-[2%] w-[55%] max-w-[270px] md:top-[48%] md:left-[5%] md:w-[50%] md:max-w-[700px]"
+                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[45%] left-0 w-[55%] max-w-[270px] md:top-[48%] md:left-0 md:w-[50%] md:max-w-[700px]"
                     style={{ marginLeft: '-30px' }}
                   >
                     <div className="character-flip-card-inner">
@@ -330,7 +330,7 @@ export default function AboutPage() {
 
                   {/* Character 4 - Copy of 1-01 */}
                   <div 
-                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[65%] right-[2%] w-[65%] max-w-[320px] md:top-[70%] md:right-[3%] md:w-[90%] md:max-w-[1300px]"
+                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[65%] right-0 w-[65%] max-w-[320px] md:top-[70%] md:right-0 md:w-[90%] md:max-w-[1300px]"
                   >
                     <div className="character-flip-card-inner">
                       <div className="character-flip-card-front">

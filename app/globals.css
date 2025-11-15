@@ -220,3 +220,10 @@ div[style*="perspective"] {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* Passes page - Move dog left on tablet view */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .passes-dog-character {
+    transform: translateX(calc(-30% + 15px - 30px - 50px)) !important;
+  }
+}
