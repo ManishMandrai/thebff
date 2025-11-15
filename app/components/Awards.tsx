@@ -82,20 +82,41 @@ export default function Awards() {
                     </div>
 
                     {/* Categories + vertical strip */}
-                    <div className="relative flex items-start gap-4 md:gap-10 mt-6 md:mt-12 justify-center md:justify-start pl-0 md:pl-4">
+                    <div className="relative flex items-start gap-4 md:gap-6 mt-6 md:mt-12 justify-center md:justify-start pl-0 md:pl-4">
 
-                        {/* Strip */}
-                        <img
-                            src="/assets/strip.png"
-                            alt=""
-                            aria-hidden="true"
-                            className="pointer-events-none h-[40vh] md:h-[50vh] w-auto object-contain hidden md:block"
-                        />
+                        {/* hhhh.png image on the right - flipped vertically */}
+                        <div className="absolute top-1/2 w-[300px] md:w-[400px] lg:w-[500px] h-[300px] md:h-[400px] lg:h-[500px] z-10 pointer-events-none" style={{ 
+                            right: '-300px',
+                            transform: 'translateY(-50%)'
+                        }}>
+                            <img
+                                src="/assets/hhhh.png"
+                                alt=""
+                                aria-hidden="true"
+                                className="w-full h-full object-contain pointer-events-none"
+                                style={{ 
+                                    transform: 'scaleX(-1)'
+                                }}
+                            />
+                        </div>
+
+                        {/* Strip - positioned to align symbols with text */}
+                        <div className="relative hidden md:block flex-shrink-0" style={{ paddingTop: "8px" }}>
+                            <img
+                                src="/assets/strip.png"
+                                alt=""
+                                aria-hidden="true"
+                                className="pointer-events-none w-auto object-contain"
+                                style={{ 
+                                    height: "calc(1.2em + 40px + 1.2em + 40px + 1.2em + 40px + 1.2em)"
+                                }}
+                            />
+                        </div>
 
                         {/* Category List */}
-                        <ul className="flex flex-col items-center md:items-start" style={{ paddingTop: "8px", gap: "1.5rem" }}>
+                        <ul className="flex flex-col items-center md:items-start flex-shrink-0 relative z-20" style={{ paddingTop: "8px", gap: "40px" }}>
                             {["CATEGORY 1", "CATEGORY 2", "CATEGORY 3", "CATEGORY 4"].map((label, index) => (
-                                <li key={label} className="text-[#111] font-bold text-sm sm:text-base md:text-lg leading-tight flex items-center" style={{ lineHeight: "1.2", paddingLeft: "8px" }}>
+                                <li key={label} className="font-bebas text-[#111] font-bold text-sm sm:text-base md:text-lg leading-tight flex items-center" style={{ lineHeight: "1.2", height: "1.2em" }}>
                                     {label}
                                 </li>
                             ))}
@@ -164,7 +185,7 @@ export default function Awards() {
 
                 {/* Bottom wide small-halves that visually overlap */}
                 <div className="absolute left-0 bottom-0 w-full z-10 hidden md:block">
-                    <div className="relative w-full h-[40vh] overflow-hidden">
+                    <div className="relative w-full h-[40vh] overflow-hidden pb-8 sm:pb-12 md:pb-16">
                         <img
                             src="/assets/smallalfr.png"
                             alt=""

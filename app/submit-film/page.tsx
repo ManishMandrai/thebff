@@ -7,46 +7,66 @@ import { useState } from "react";
 
 export default function SubmitFilmPage() {
   const [formData, setFormData] = useState({
-    filmmakerName: "",
-    email: "",
-    phone: "",
+    fullName: "",
+    age: "",
+    city: "",
+    phoneNumber: "",
+    emailAddress: "",
+    description: "",
     filmTitle: "",
-    directorName: "",
-    genre: "",
-    duration: "",
-    yearOfProduction: "",
-    youtubeLink: "",
     synopsis: "",
+    crewDetails: "",
+    filmLink: "",
+    cbfcCertification: "",
+    declaration: "",
+    termsAccepted: false,
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value, type } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [name]: type === "checkbox" ? (e.target as HTMLInputElement).checked : value,
     });
   };
 
-  const validateYouTubeUrl = (url: string) => {
-    const youtubeRegex = /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/.+$/;
-    return youtubeRegex.test(url);
+  const handleRadioChange = (value: string) => {
+    setFormData({
+      ...formData,
+      cbfcCertification: value,
+    });
+  };
+
+  const validateFilmLink = (url: string) => {
+    // Accept Google Drive, Vimeo, YouTube, Dropbox links
+    const linkRegex = /^(https?:\/\/)?(www\.)?(drive\.google\.com|vimeo\.com|youtube\.com|youtu\.be|dropbox\.com|docs\.google\.com).+$/;
+    return linkRegex.test(url);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validation
-    if (!formData.filmmakerName || !formData.email || !formData.filmTitle || !formData.youtubeLink) {
+    if (!formData.fullName || !formData.age || !formData.city || !formData.phoneNumber || 
+        !formData.emailAddress || !formData.filmTitle || !formData.synopsis || 
+        !formData.crewDetails || !formData.filmLink || !formData.termsAccepted) {
       setSubmitStatus("error");
-      alert("Please fill in all required fields.");
+      alert("Please fill in all required fields marked with *.");
       return;
     }
 
-    if (!validateYouTubeUrl(formData.youtubeLink)) {
+    if (!validateFilmLink(formData.filmLink)) {
       setSubmitStatus("error");
-      alert("Please enter a valid YouTube URL.");
+      alert("Please enter a valid Google Drive, Vimeo, or YouTube link.");
+      return;
+    }
+
+    if (formData.synopsis.split(/\s+/).length > 200) {
+      setSubmitStatus("error");
+      alert("Synopsis must be 200 words or less.");
       return;
     }
 
@@ -62,16 +82,19 @@ export default function SubmitFilmPage() {
       
       setSubmitStatus("success");
       setFormData({
-        filmmakerName: "",
-        email: "",
-        phone: "",
+        fullName: "",
+        age: "",
+        city: "",
+        phoneNumber: "",
+        emailAddress: "",
+        description: "",
         filmTitle: "",
-        directorName: "",
-        genre: "",
-        duration: "",
-        yearOfProduction: "",
-        youtubeLink: "",
         synopsis: "",
+        crewDetails: "",
+        filmLink: "",
+        cbfcCertification: "",
+        declaration: "",
+        termsAccepted: false,
       });
 
       // Reset success message after 5 seconds
@@ -87,307 +110,352 @@ export default function SubmitFilmPage() {
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
       <Navbar />
       
-
-      {/* Decorative Circle Elements */}
-      <div className="absolute top-32 left-0 w-[180px] md:w-[320px] h-auto z-5 pointer-events-none opacity-20 hidden sm:block">
-        <Image
-          src="/assets/circlepq.png"
-          alt=""
-          width={320}
-          height={320}
-          className="w-full h-auto"
-          style={{ filter: "hue-rotate(90deg) saturate(1.3)" }}
-        />
-      </div>
-      
-      <div className="absolute bottom-32 right-0 w-[160px] md:w-[260px] h-auto z-5 pointer-events-none opacity-18 hidden sm:block">
-        <Image
-          src="/assets/circlep.png"
-          alt=""
-          width={260}
-          height={260}
-          className="w-full h-auto"
-          style={{ filter: "hue-rotate(15deg) saturate(1.4)" }}
-        />
-      </div>
-
-      {/* Character - Copy of 10-01.png on Left Side */}
-      <div className="absolute left-0 top-[12%] z-20 pointer-events-none opacity-75 hidden lg:block" style={{ transform: 'translateX(-18%)' }}>
-        <Image
-          src="/assets/Copy of 10-01.png"
-          alt="Character"
-          width={650}
-          height={950}
-          className="w-auto h-[70vh] max-h-[850px] object-contain"
-          style={{ 
-            filter: "drop-shadow(10px 10px 20px rgba(0,0,0,0.25))",
-          }}
-        />
-      </div>
-
-      {/* Character - Copy of 11-01.png on Right Side */}
-      <div className="absolute right-0 top-[10%] z-20 pointer-events-none opacity-75 hidden lg:block" style={{ transform: 'translate(10%, 0) scaleX(-1)' }}>
-        <Image
-          src="/assets/Copy of 11-01.png"
-          alt="Character"
-          width={650}
-          height={950}
-          className="w-auto h-[72vh] max-h-[880px] object-contain"
-          style={{ 
-            filter: "drop-shadow(10px 10px 20px rgba(0,0,0,0.25))",
-          }}
-        />
-      </div>
-
-      {/* Green Decorative Elements */}
-      <div className="absolute top-[28%] right-[5%] z-15 pointer-events-none opacity-55 hidden xl:block">
-        <Image
-          src="/assets/leaf1.png"
-          alt="Leaf decoration"
-          width={150}
-          height={150}
-          className="w-32 h-32 object-contain"
-          style={{ 
-            transform: "rotate(-25deg)",
-            filter: "hue-rotate(90deg) saturate(1.5) brightness(0.8) drop-shadow(4px 4px 8px rgba(0,0,0,0.2))",
-          }}
-        />
-      </div>
-
-      <div className="absolute top-[52%] left-[8%] z-15 pointer-events-none opacity-50 hidden xl:block">
-        <Image
-          src="/assets/leaf2.png"
-          alt="Leaf decoration"
-          width={130}
-          height={130}
-          className="w-28 h-28 object-contain"
-          style={{ 
-            transform: "rotate(35deg)",
-            filter: "hue-rotate(95deg) saturate(1.6) brightness(0.85) drop-shadow(4px 4px 8px rgba(0,0,0,0.2))",
-          }}
-        />
-      </div>
-
-      {/* Orange Decorative Texture Elements */}
-      <div className="absolute top-[38%] left-[2%] z-15 pointer-events-none opacity-45 hidden 2xl:block">
-        <Image
-          src="/assets/Texture image.png"
-          alt="Texture"
+      {/* Side Strips - Left - Starting exactly from navbar bottom */}
+      <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 'calc(1rem + 2.5rem + 1rem)', bottom: 'calc(40vh + 400px)', margin: '0', padding: '0' }}>
+          <Image
+          src="/assets/side strip.png"
+          alt="Side strip decoration"
           width={200}
-          height={250}
-          className="w-[200px] h-[250px] object-cover"
-          style={{
-            filter: "hue-rotate(15deg) saturate(1.7) brightness(0.9) contrast(1.3)",
-            transform: "rotate(-28deg)",
-            clipPath: "polygon(0 18%, 100% 0, 100% 100%, 0 100%)",
-          }}
-        />
-      </div>
+          height={2000}
+          className="w-full h-full object-cover opacity-90"
+            style={{ 
+            objectFit: "cover", 
+            height: "100%",
+            display: "block",
+            filter: "hue-rotate(15deg) saturate(1.8) brightness(0.7) contrast(1.3)"
+            }}
+          />
+        </div>
 
-      <div className="absolute top-[58%] right-[12%] z-15 pointer-events-none opacity-40 hidden 2xl:block">
-        <Image
-          src="/assets/Texture image.png"
-          alt="Texture"
-          width={180}
-          height={220}
-          className="w-[180px] h-[220px] object-cover"
-          style={{
-            filter: "hue-rotate(350deg) saturate(1.6) brightness(0.88) contrast(1.3)",
-            transform: "rotate(20deg)",
-            clipPath: "polygon(100% 0, 100% 100%, 0 100%, 22% 48%)",
-          }}
-        />
-      </div>
+      {/* Side Strips - Right - Starting exactly from navbar bottom */}
+      <div className="absolute right-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none md:top-[108px]" style={{ top: 'calc(1rem + 2.5rem + 1rem)', bottom: 'calc(40vh + 400px)', margin: '0', padding: '0' }}>
+          <Image
+          src="/assets/side strip.png"
+          alt="Side strip decoration"
+          width={200}
+          height={2000}
+          className="w-full h-full object-cover opacity-90"
+            style={{ 
+            objectFit: "cover", 
+            height: "100%", 
+            display: "block",
+            transform: "scaleX(-1)",
+            filter: "hue-rotate(-10deg) saturate(1.8) brightness(0.7) contrast(1.3)"
+            }}
+          />
+        </div>
 
-      {/* Small Decorative Film Frames */}
-      <div className="absolute top-[35%] right-[8%] z-15 pointer-events-none opacity-35 hidden 2xl:block">
-        <Image
-          src="/assets/frame.png"
-          alt="Film frame"
-          width={90}
-          height={65}
-          className="w-22 h-16 object-contain"
-          style={{ 
-            transform: "rotate(15deg)",
-            filter: "drop-shadow(4px 4px 8px rgba(0,0,0,0.15)) hue-rotate(90deg)",
-          }}
-        />
-      </div>
+      {/* Content Wrapper */}
+      <div className="relative w-full">
+        {/* Yellow Content Section */}
+        <div className="relative w-full">
+        {/* Main Yellow Content Area */}
+        <div className="relative bg-[#FFCE21] px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pb-0 pt-0 min-h-[calc(100vh-80px)]" style={{ marginLeft: '8px' }}>
+          {/* Content with padding to avoid side strips - full width */}
+          <div className="relative z-20 pl-6 sm:pl-8 md:pl-12 lg:pl-16 xl:pl-20 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 pt-0 w-full">
+            {/* Title */}
+            <h1 className="font-bebas text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#091529] mb-4 sm:mb-5 md:mb-6 lg:mb-8 uppercase tracking-tight mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+              SUBMISSION GUIDELINES & ENTRY FORM
+            </h1>
 
-      <div className="absolute top-[54%] left-[12%] z-15 pointer-events-none opacity-30 hidden 2xl:block">
-        <Image
-          src="/assets/frame.png"
-          alt="Film frame"
-          width={80}
-          height={58}
-          className="w-20 h-14 object-contain"
-          style={{ 
-            transform: "rotate(-25deg)",
-            filter: "drop-shadow(4px 4px 8px rgba(0,0,0,0.15)) hue-rotate(15deg)",
-          }}
-        />
-      </div>
+            <p className="font-texta text-[#091529] text-sm sm:text-base md:text-lg mb-6 sm:mb-8 md:mb-10 lg:mb-12 leading-relaxed">
+              Before submitting, please read the Festival Details & Submission Guidelines carefully.
+            </p>
 
-      {/* Main Content Section */}
-      <div className="relative w-full pt-10 md:pt-16 pb-20 min-h-[calc(100vh-108px)]">
-        <div className="relative z-30 px-4 md:px-8 lg:px-12 xl:px-20 max-w-6xl mx-auto">
-          
-          {/* Page Title Section */}
-          <div className="text-center mb-12 md:mb-16 relative">
-            {/* Decorative background for title */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="w-32 md:w-48 h-32 md:h-48 bg-gradient-to-br from-[#6A9139]/10 to-[#F4921F]/10 rounded-full blur-3xl"></div>
-            </div>
-            
-            <div className="relative z-10">
-              {/* Accent lines */}
-              <div className="flex items-center justify-center gap-4 mb-4">
-                <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-[#6A9139] to-transparent"></div>
-                <Image
-                  src="/assets/frame.png"
-                  alt=""
-                  width={50}
-                  height={35}
-                  className="w-10 md:w-12 h-7 md:h-9 object-contain opacity-60"
-                />
-                <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-[#F4921F] to-transparent"></div>
-              </div>
+            {/* Content Sections */}
+            <div className="font-texta space-y-6 sm:space-y-7 md:space-y-8 lg:space-y-10 text-[#091529] pb-0 mb-0">
               
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#091529] uppercase tracking-tight mb-4 leading-[0.9]">
-                Submit Your
-                <br />
-                <span className="relative inline-block">
-                  <span className="relative z-10">Film</span>
-                  <span className="absolute bottom-2 left-0 w-full h-3 bg-gradient-to-r from-[#6A9139]/30 via-[#F4921F]/30 to-[#6A9139]/30 -z-10"></span>
-                </span>
-              </h1>
-              
-              <div className="flex items-center justify-center gap-4 mt-4">
-                <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-[#F4921F] to-transparent"></div>
-                <Image
-                  src="/assets/frame.png"
-                  alt=""
-                  width={50}
-                  height={35}
-                  className="w-10 md:w-12 h-7 md:h-9 object-contain opacity-60"
-                />
-                <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-transparent via-[#6A9139] to-transparent"></div>
-              </div>
-              
-              <p className="text-[#091529] text-base md:text-lg lg:text-xl max-w-3xl mx-auto leading-relaxed mt-8 md:mt-10 font-medium">
-                Share your story with us. Submit your film for consideration at the Bhopal Film Festival.
-              </p>
+              {/* INTRODUCTION & FESTIVAL OVERVIEW */}
+              <section className="mb-0 last:mb-0">
+                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">INTRODUCTION & FESTIVAL OVERVIEW</h2>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed">
+                  The Bhopal Film Festival (TBFF) is a new independent short film competition taking place on <strong>21 February 2026</strong> at <strong>Ravindra Bhawan Auditorium, Bhopal</strong>, with the support of Madhya Pradesh Tourism (MPT). The festival celebrates the unique culture of Central India and provides a platform for <strong>emerging filmmakers</strong> to share local stories with pride and reach a wider audience.
+                </p>
+              </section>
+
+              {/* KEY DETAILS */}
+              <section className="mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">KEY DETAILS</h2>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>No Entry Fee:</strong> Participation is <strong>free</strong> for this first edition to encourage maximum entries.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed">
+                  <strong>Event Format:</strong> A <strong>one-day event</strong> featuring selected short films across <strong>four categories</strong>, followed by the <strong>award ceremony</strong>. All styles and genres are welcome – what matters most is originality and storytelling.
+                </p>
+              </section>
+
+              {/* CATEGORIES OF ENTRY */}
+              <section>
+                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">CATEGORIES OF ENTRY</h2>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  You can submit your short film in one of the following four categories, based on theme and duration:
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Fiction (Under 10 Minutes):</strong> Narrative live-action or animated short films up to 10 minutes long (including credits). Any genre or topic is welcome, as long as it's a work of fiction.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Non-Fiction (Under 10 Minutes):</strong> Documentary or factual short films up to 10 minutes. This includes documentaries, observational films, or any non-fiction storytelling.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Women's Voices (Under 5 Minutes):</strong> Short films (up to 5 minutes) made by women filmmakers that focus on women's stories, issues, or viewpoints. These can be fiction or non-fiction.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Heart of India (Under 5 Minutes):</strong> Short films (up to 5 minutes) that show the culture, heritage, people, or stories of <strong>Madhya Pradesh (the Heart of India)</strong>. These can also be fiction or non-fiction.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed">
+                  <strong>Note:</strong> The duration includes all opening and closing credits. For example, a "5-minute film" must be 5:00 or less in total. Each film can only be submitted in one category, but you may submit multiple films separately if you wish.
+                </p>
+              </section>
+
+              {/* ELIGIBILITY CRITERIA FOR FILMS & FILMMAKERS */}
+              <section>
+                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">ELIGIBILITY CRITERIA FOR FILMS & FILMMAKERS</h2>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  To be eligible, please follow these requirements:
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Short Film Duration:</strong> Films must follow the time limits of their category (either 10 minutes or 5 minutes). There's no minimum length, but even very short films should fit meaningfully within a category.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Completion Date:</strong> Films must have been completed between <strong>January 1, 2024, and December 30, 2025</strong>. Only finished films are accepted; works in progress are not eligible.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Production:</strong> The festival focuses on <strong>independent cinema</strong>. Your film should be made independently, not as a commercial studio production. Sponsors or grants are fine, but the creative control must remain with the filmmaker.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Originality:</strong> Films must be your <strong>own creative work</strong> with original storytelling. Do not use copyrighted material (music, clips, etc.) without permission.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Language & Subtitles:</strong> Films in any language are accepted. If your film isn't in English, please include <strong>English subtitles</strong>. Even if it's in Hindi or a regional language, English subtitles are strongly encouraged for wider understanding. Subtitles are your responsibility to prepare.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Geographical Focus:</strong> The festival is open to everyone, but we especially encourage entries from <strong>filmmakers from Madhya Pradesh</strong> or films connected to <strong>Madhya Pradesh/Central India</strong> – whether through story, setting, or production. This includes films based in or shot in Madhya Pradesh or made by filmmakers from the state. Highlighting your MP connection can strengthen your submission.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Prior Screenings:</strong> Films don't need to be premieres. You can submit films that have screened elsewhere or are online. However, showing something new or lesser known to local audiences adds excitement. If your film has won awards or been shown before, mention it in the form – it won't affect your eligibility.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Format & Technical Requirements:</strong> Films shot on any device (camera, DSLR, or phone) are accepted. Submit your film as a <strong>digital file or link</strong>. It must be in <strong>HD quality (720p or 1080p)</strong> and in a common format like <strong>MP4 or MOV (H.264)</strong>. If selected, we may ask for a higher-quality version for screening.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Age Limit:</strong> Filmmakers aged <strong>16 to 35 years</strong> can submit entries.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Submission Limit:</strong> There's no limit on how many films you can submit, but each film must have its <strong>own entry form</strong> and fit only <strong>one category</strong>.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed">
+                  <strong>Submission Fee:</strong> <strong>No fee</strong> will be charged. The festival is free to enter but beware of fake messages or websites asking for money. Only follow the official submission process.
+                </p>
+              </section>
+
+              {/* SUBMISSION PROCESS & REQUIREMENTS */}
+              <section>
+                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">SUBMISSION PROCESS & REQUIREMENTS</h2>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>1. Fill Out the Entry Form:</strong> Complete the official "Bhopal Film Festival Submission Form" (attached below). The link will be available on the festival's website and social media pages. All required details about the submitter and film must be filled in. Incomplete forms will not be accepted.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>2. Provide a Screening Link:</strong> Share a URL link for film viewing; physical copies (DVDs, drives) are not accepted. Recommended platforms: Vimeo (preferred), YouTube unlisted, or Google Drive/Dropbox. The link must be viewable or downloadable without login requests. If password-protected (e.g., on Vimeo), the password must be included in the form.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>3. Keep the Link Active:</strong> The film link must remain active until <strong>February 2026</strong>. Avoid using links that expire (like WeTransfer). Google Drive or Vimeo are recommended. File size recommendations: under <strong>2GB for 10-minute films</strong> and under <strong>1GB for 5-minute films</strong> for easier viewing. The link will only be used by the jury. If the film is selected, a better-quality version and permission to use short clips for festival promotion may be requested.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>4. Submit Before the Deadline:</strong> The last date for submission is <strong>December 25, 2026 (11:59 PM IST)</strong>. Late or incomplete entries may not be accepted. A confirmation message or email will be received upon submission. Contact the festival team before the deadline if any issues arise.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>5. Avoid Duplicate Submissions:</strong> Submit each film only once. If submitting multiple films, a separate form must be filled out for each.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed">
+                  <strong>6. Queries and Support:</strong> For help or questions, contact the "official festival email" (to be shared on the website). The team will assist with submission or technical issues. There is no entry fee – your only effort is to make a great film and submit it correctly.
+                </p>
+              </section>
+
+              {/* SELECTION PROCESS & JURY DELIBERATION */}
+              <section className="mb-0">
+                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">SELECTION PROCESS & JURY DELIBERATION</h2>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Jury Panel:</strong> A panel of respected filmmakers and artists from Madhya Pradesh will review all entries. Their names will be announced on the festival website once confirmed.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Selection Criteria:</strong> Films will be judged on <strong>originality, creativity, technical quality, storytelling</strong>, and how well they fit their category and the festival's vision.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Limited Screenings:</strong> This is a one-day event, so only a <strong>limited number of films</strong> can be screened. A shortlist of finalists will be chosen in each category.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Notification of Selection:</strong> Official selections will be announced by <strong>January 30, 2026</strong>, approximately two weeks before the event. Filmmakers will be informed via email or phone, and the list will be posted online.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Materials from Selected Films:</strong> Selected filmmakers must quickly confirm participation and share high-resolution stills, a poster, a short director bio, a synopsis, and credits. They may also be asked to send a higher-quality film file. Delays could result in replacement by another film.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>No Changes or Withdrawal:</strong> Once participation is confirmed, films cannot be withdrawn. Submit only if ready to screen.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Screenings:</strong> Selected films will be shown at <strong>Ravindra Bhawan</strong> before a live audience. A screening schedule will be shared in advance. Filmmakers are encouraged (but not required) to attend for networking opportunities.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
+                  <strong>Jury Decision & Awards:</strong> The jury will decide the winners after watching all selected films. Their decisions are final and cannot be challenged.
+                </p>
+                <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-0">
+                  <strong>Feedback:</strong> Due to time limits, the festival cannot provide individual feedback. If a film isn't selected, it doesn't mean it wasn't good; sometimes it's about fitting the schedule or theme. Filmmakers are encouraged to keep creating and try again in future editions.
+                </p>
+              </section>
+
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Submission Form Section */}
-          <div className="relative">
-            {/* Large decorative background */}
-            <div className="absolute -inset-4 md:-inset-6 bg-gradient-to-br from-[#6A9139]/15 via-white/30 to-[#F4921F]/15 rounded-2xl blur-2xl"></div>
-            
-            <div className="relative bg-white/80 backdrop-blur-lg rounded-2xl shadow-[0_20px_60px_rgba(9,21,41,0.15)] p-8 md:p-12 lg:p-16 border-2 border-[#091529]/10">
-              
-              {/* Status Messages */}
-              {submitStatus === "success" && (
-                <div className="mb-8 p-6 bg-gradient-to-r from-[#6A9139]/25 to-[#6A9139]/10 border-l-4 border-[#6A9139] text-[#091529] rounded-lg shadow-lg">
-                  <div className="flex items-start gap-3">
-                    <div className="text-3xl">✓</div>
-                    <div>
-                      <p className="font-bold text-xl mb-1">Thank you! Your submission has been received successfully.</p>
-                      <p className="text-base mt-2 opacity-90">We'll review your film and get back to you soon via email.</p>
-                    </div>
+      {/* Form Section */}
+      <div className="relative bg-[#FFCE21] pb-20 sm:pb-24 md:pb-28 lg:pb-32 pt-0" style={{ marginTop: '-4px', marginLeft: '8px' }}>
+        {/* Submission Form Image - Full Width Above Heading */}
+        <div className="w-full -mx-4 sm:-mx-6 md:-mx-8 lg:-mx-12 xl:-mx-16 mb-6 sm:mb-8 md:mb-10 mt-8 sm:mt-10 md:mt-12 lg:mt-16" style={{ transform: 'translateX(13px)' }}>
+          <Image
+            src="/assets/submission form upside down.png"
+            alt="Submission Form"
+            width={1200}
+            height={600}
+            className="w-full h-auto object-cover"
+          />
+        </div>
+
+        <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+          <div className="relative z-20 pl-6 sm:pl-8 md:pl-12 lg:pl-16 xl:pl-20 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 w-full">
+            {/* Form Title */}
+            <h2 className="font-bebas text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#091529] mb-6 sm:mb-7 md:mb-8 lg:mb-10 mt-8 sm:mt-10 md:mt-12 lg:mt-16 uppercase tracking-tight text-center md:text-left">
+              TBFF 2025 SUBMISSION FORM
+            </h2>
+
+          {/* Main Form Container */}
+          <div className="relative w-full">
+            {/* Status Messages */}
+            {submitStatus === "success" && (
+              <div className="mb-6 p-4 bg-green-50 border-2 border-green-400 text-green-800 rounded-lg font-texta">
+                <p className="font-bold">Submission Successful!</p>
+                <p className="text-sm mt-1">We've received your film submission. Our team will review it and get back to you via email.</p>
+              </div>
+            )}
+
+            {submitStatus === "error" && (
+              <div className="mb-6 p-4 bg-red-50 border-2 border-red-400 text-red-800 rounded-lg font-texta">
+                <p className="font-bold">Submission Failed</p>
+                <p className="text-sm mt-1">Please check all required fields and try again.</p>
+              </div>
+            )}
+
+            <form onSubmit={handleSubmit} className="font-texta space-y-4 sm:space-y-5 md:space-y-6">
+              {/* Personal Information Section */}
+              <div className="space-y-3 sm:space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                  {/* Full Name */}
+                  <div className="space-y-1">
+                    <label htmlFor="fullName" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                      Full Name<span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="text"
+                      id="fullName"
+                      name="fullName"
+                      value={formData.fullName}
+                      onChange={handleChange}
+                      required
+                      className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
+                    />
                   </div>
-                </div>
-              )}
 
-              {submitStatus === "error" && (
-                <div className="mb-8 p-6 bg-gradient-to-r from-red-100 to-red-50 border-l-4 border-red-500 text-red-800 rounded-lg shadow-lg">
-                  <div className="flex items-start gap-3">
-                    <div className="text-3xl">✗</div>
-                    <div>
-                      <p className="font-bold text-xl mb-1">There was an error submitting your form.</p>
-                      <p className="text-base mt-2">Please check all fields and try again.</p>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              <form onSubmit={handleSubmit} className="space-y-10">
-                {/* Section 1: Contact Information */}
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3 mb-6 pb-3 border-b-2 border-[#091529]/20">
-                    <div className="w-2 h-8 bg-gradient-to-b from-[#6A9139] to-[#6A9139]/60 rounded-full"></div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#091529] uppercase tracking-wide">Contact Information</h2>
+                  {/* Age */}
+                  <div className="space-y-1">
+                    <label htmlFor="age" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                      Age<span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      type="number"
+                      id="age"
+                      name="age"
+                      value={formData.age}
+                      onChange={handleChange}
+                      required
+                      min="16"
+                      max="35"
+                      className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
+                    />
                   </div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Filmmaker Name */}
-                    <div className="space-y-2">
-                      <label htmlFor="filmmakerName" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                        <span className="w-2 h-6 bg-[#6A9139] rounded-full"></span>
-                        Filmmaker Name <span className="text-red-600 text-xl">*</span>
+                  {/* City */}
+                  <div className="space-y-1">
+                    <label htmlFor="city" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                      City<span className="text-red-500">*</span>
                       </label>
                       <input
                         type="text"
-                        id="filmmakerName"
-                        name="filmmakerName"
-                        value={formData.filmmakerName}
+                      id="city"
+                      name="city"
+                      value={formData.city}
                         onChange={handleChange}
                         required
-                        className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] placeholder:text-[#091529]/40 focus:border-[#6A9139] focus:outline-none focus:ring-4 focus:ring-[#6A9139]/25 transition-all duration-300 text-base shadow-sm hover:border-[#091529]/30"
-                        placeholder="Enter your full name"
+                      className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
                       />
                     </div>
 
-                    {/* Email */}
-                    <div className="space-y-2">
-                      <label htmlFor="email" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                        <span className="w-2 h-6 bg-[#F4921F] rounded-full"></span>
-                        Email Address <span className="text-red-600 text-xl">*</span>
+                  {/* Phone Number */}
+                  <div className="space-y-1">
+                    <label htmlFor="phoneNumber" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                      Phone Number<span className="text-red-500">*</span>
                       </label>
                       <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
+                      type="tel"
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      value={formData.phoneNumber}
                         onChange={handleChange}
                         required
-                        className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] placeholder:text-[#091529]/40 focus:border-[#F4921F] focus:outline-none focus:ring-4 focus:ring-[#F4921F]/25 transition-all duration-300 text-base shadow-sm hover:border-[#091529]/30"
-                        placeholder="your.email@example.com"
+                      className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
                       />
                     </div>
                   </div>
 
-                  {/* Phone */}
-                  <div className="space-y-2">
-                    <label htmlFor="phone" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                      <span className="w-2 h-6 bg-[#6A9139] rounded-full"></span>
-                      Phone Number <span className="text-[#091529]/50 text-sm font-normal">(optional)</span>
+                {/* Email Address */}
+                <div className="space-y-1">
+                  <label htmlFor="emailAddress" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                    Email Address<span className="text-red-500">*</span>
                     </label>
                     <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
+                    type="email"
+                    id="emailAddress"
+                    name="emailAddress"
+                    value={formData.emailAddress}
                       onChange={handleChange}
-                      className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] placeholder:text-[#091529]/40 focus:border-[#091529] focus:outline-none focus:ring-4 focus:ring-[#091529]/20 transition-all duration-300 text-base shadow-sm hover:border-[#091529]/30"
-                      placeholder="+91 1234567890"
+                    required
+                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
                     />
-                  </div>
                 </div>
-
-                {/* Section 2: Film Details */}
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3 mb-6 pt-6 pb-3 border-t-2 border-b-2 border-[#091529]/20">
-                    <div className="w-2 h-8 bg-gradient-to-b from-[#F4921F] to-[#F4921F]/60 rounded-full"></div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#091529] uppercase tracking-wide">Film Details</h2>
                   </div>
 
-                  {/* Film Title */}
-                  <div className="space-y-2">
-                    <label htmlFor="filmTitle" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                      <span className="w-2 h-6 bg-[#F4921F] rounded-full"></span>
-                      Film Title <span className="text-red-600 text-xl">*</span>
+              {/* Film Details Section */}
+              <div className="space-y-4 pt-4 border-t border-[#091529]/30">
+                <h3 className="font-bebas text-base md:text-lg font-bold text-[#091529] mb-4">Film Details</h3>
+                
+                {/* Description (Optional) */}
+                <div className="space-y-1">
+                  <label htmlFor="description" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                    Description <span className="text-[#091529]/60 text-xs font-normal">(Optional)</span>
+                  </label>
+                  <textarea
+                    id="description"
+                    name="description"
+                    value={formData.description}
+                    onChange={handleChange}
+                    rows={3}
+                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none resize-none text-sm md:text-base"
+                  />
+                  </div>
+
+                {/* Title of the Film */}
+                <div className="space-y-1">
+                  <label htmlFor="filmTitle" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                    Title of the Film<span className="text-red-500">*</span>
                     </label>
                     <input
                       type="text"
@@ -396,213 +464,188 @@ export default function SubmitFilmPage() {
                       value={formData.filmTitle}
                       onChange={handleChange}
                       required
-                      className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] placeholder:text-[#091529]/40 focus:border-[#091529] focus:outline-none focus:ring-4 focus:ring-[#091529]/20 transition-all duration-300 text-base shadow-sm hover:border-[#091529]/30"
-                      placeholder="Enter the title of your film"
+                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
                     />
                   </div>
 
-                  {/* Director Name */}
-                  <div className="space-y-2">
-                    <label htmlFor="directorName" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                      <span className="w-2 h-6 bg-[#6A9139] rounded-full"></span>
-                      Director Name <span className="text-[#091529]/50 text-sm font-normal">(optional)</span>
+                {/* Synopsis */}
+                <div className="space-y-1">
+                  <label htmlFor="synopsis" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                    Synopsis of the Film (max 200 words)<span className="text-red-500">*</span>
                     </label>
-                    <input
-                      type="text"
-                      id="directorName"
-                      name="directorName"
-                      value={formData.directorName}
+                  <p className="font-texta text-xs md:text-sm text-[#091529]/70 mb-1.5">Briefly describe your story, theme, and key message.</p>
+                  <textarea
+                    id="synopsis"
+                    name="synopsis"
+                    value={formData.synopsis}
                       onChange={handleChange}
-                      className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] placeholder:text-[#091529]/40 focus:border-[#091529] focus:outline-none focus:ring-4 focus:ring-[#091529]/20 transition-all duration-300 text-base shadow-sm hover:border-[#091529]/30"
-                      placeholder="Enter director's name"
-                    />
+                    required
+                    rows={4}
+                    maxLength={1500}
+                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none resize-none text-sm md:text-base"
+                  />
+                  <p className="font-texta text-xs text-[#091529]/60">
+                    {formData.synopsis.split(/\s+/).filter(word => word.length > 0).length} / 200 words
+                  </p>
                   </div>
 
-                  {/* Genre, Duration, Year */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {/* Genre */}
-                    <div className="space-y-2">
-                      <label htmlFor="genre" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                        <span className="w-2 h-6 bg-[#F4921F] rounded-full"></span>
-                        Genre
+                {/* Crew Details */}
+                <div className="space-y-1">
+                  <label htmlFor="crewDetails" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                    Crew Details<span className="text-red-500">*</span>
                       </label>
-                      <select
-                        id="genre"
-                        name="genre"
-                        value={formData.genre}
+                  <p className="font-texta text-xs md:text-sm text-[#091529]/70 mb-1.5">List key members like Director, Writes, DOP, etc.</p>
+                  <textarea
+                    id="crewDetails"
+                    name="crewDetails"
+                    value={formData.crewDetails}
                         onChange={handleChange}
-                        className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] focus:border-[#091529] focus:outline-none focus:ring-4 focus:ring-[#091529]/20 transition-all duration-300 text-base shadow-sm hover:border-[#091529]/30 appearance-none cursor-pointer"
-                      >
-                        <option value="">Select genre</option>
-                        <option value="drama">Drama</option>
-                        <option value="comedy">Comedy</option>
-                        <option value="thriller">Thriller</option>
-                        <option value="documentary">Documentary</option>
-                        <option value="short-film">Short Film</option>
-                        <option value="animation">Animation</option>
-                        <option value="horror">Horror</option>
-                        <option value="romance">Romance</option>
-                        <option value="action">Action</option>
-                        <option value="other">Other</option>
-                      </select>
+                    required
+                    rows={3}
+                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none resize-none text-sm md:text-base"
+                  />
+                </div>
                     </div>
 
-                    {/* Duration */}
-                    <div className="space-y-2">
-                      <label htmlFor="duration" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                        <span className="w-2 h-6 bg-[#6A9139] rounded-full"></span>
-                        Duration (min)
+              {/* Film Link Section */}
+              <div className="space-y-4 pt-4 border-t border-[#091529]/30">
+                <div className="space-y-1">
+                  <label htmlFor="filmLink" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                    Link to the Film<span className="text-red-500">*</span>
                       </label>
+                  <p className="font-texta text-xs md:text-sm text-[#091529]/70 mb-1.5">Submit a Google Drive/ Vimeo/ YouTube link with proper viewing access.</p>
                       <input
-                        type="number"
-                        id="duration"
-                        name="duration"
-                        value={formData.duration}
+                    type="url"
+                    id="filmLink"
+                    name="filmLink"
+                    value={formData.filmLink}
                         onChange={handleChange}
-                        min="1"
-                        className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] placeholder:text-[#091529]/40 focus:border-[#091529] focus:outline-none focus:ring-4 focus:ring-[#091529]/20 transition-all duration-300 text-base shadow-sm hover:border-[#091529]/30"
-                        placeholder="e.g., 120"
-                      />
-                    </div>
-
-                    {/* Year of Production */}
-                    <div className="space-y-2">
-                      <label htmlFor="yearOfProduction" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                        <span className="w-2 h-6 bg-[#F4921F] rounded-full"></span>
-                        Year
-                      </label>
-                      <input
-                        type="number"
-                        id="yearOfProduction"
-                        name="yearOfProduction"
-                        value={formData.yearOfProduction}
-                        onChange={handleChange}
-                        min="1900"
-                        max={new Date().getFullYear() + 1}
-                        className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] placeholder:text-[#091529]/40 focus:border-[#091529] focus:outline-none focus:ring-4 focus:ring-[#091529]/20 transition-all duration-300 text-base shadow-sm hover:border-[#091529]/30"
-                        placeholder="e.g., 2024"
+                    required
+                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
                       />
                     </div>
                   </div>
-                </div>
 
-                {/* Section 3: Film Submission */}
-                <div className="space-y-6">
-                  <div className="flex items-center gap-3 mb-6 pt-6 pb-3 border-t-2 border-b-2 border-[#091529]/20">
-                    <div className="w-2 h-8 bg-gradient-to-b from-[#6A9139] via-[#F4921F] to-[#6A9139] rounded-full"></div>
-                    <h2 className="text-2xl md:text-3xl font-bold text-[#091529] uppercase tracking-wide">Film Submission</h2>
-                  </div>
-
-                  {/* YouTube Link */}
-                  <div className="space-y-2">
-                    <label htmlFor="youtubeLink" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                      <span className="w-2 h-6 bg-[#6A9139] rounded-full"></span>
-                      YouTube Link <span className="text-red-600 text-xl">*</span>
-                    </label>
+              {/* CBFC Certification */}
+              <div className="space-y-4 pt-4 border-t border-[#091529]/30">
+                <label className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-2">
+                  Do you have CBFC certification for your film?
+                </label>
+                <div className="flex gap-4">
+                  <label className="font-texta flex items-center gap-2 cursor-pointer">
                     <input
-                      type="url"
-                      id="youtubeLink"
-                      name="youtubeLink"
-                      value={formData.youtubeLink}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] placeholder:text-[#091529]/40 focus:border-[#091529] focus:outline-none focus:ring-4 focus:ring-[#091529]/20 transition-all duration-300 text-base shadow-sm hover:border-[#091529]/30"
-                      placeholder="https://www.youtube.com/watch?v=..."
+                      type="radio"
+                      name="cbfcCertification"
+                      value="yes"
+                      checked={formData.cbfcCertification === "yes"}
+                      onChange={() => handleRadioChange("yes")}
+                      className="w-4 h-4 text-[#091529] focus:ring-[#091529] border-2 border-[#091529]/40"
                     />
-                    <p className="mt-3 text-sm text-[#091529]/70 flex items-center gap-2 px-2">
-                      <span className="text-[#6A9139] font-bold">→</span>
-                      Please provide a link to your film uploaded on YouTube
-                    </p>
-                  </div>
-
-                  {/* Synopsis */}
-                  <div className="space-y-2">
-                    <label htmlFor="synopsis" className="block text-[#091529] font-bold text-base md:text-lg flex items-center gap-2">
-                      <span className="w-2 h-6 bg-[#F4921F] rounded-full"></span>
-                      Film Synopsis <span className="text-[#091529]/50 text-sm font-normal">(optional)</span>
-                    </label>
-                    <textarea
-                      id="synopsis"
-                      name="synopsis"
-                      value={formData.synopsis}
-                      onChange={handleChange}
-                      rows={7}
-                      className="w-full px-6 py-4 rounded-xl border-2 border-[#091529]/20 bg-white/95 text-[#091529] placeholder:text-[#091529]/40 focus:border-[#091529] focus:outline-none focus:ring-4 focus:ring-[#091529]/20 transition-all duration-300 resize-none text-base shadow-sm hover:border-[#091529]/30"
-                      placeholder="Write a brief description of your film, including plot, themes, and any relevant information..."
+                    <span className="text-[#091529] text-sm md:text-base">Yes</span>
+                  </label>
+                  <label className="font-texta flex items-center gap-2 cursor-pointer">
+                    <input
+                      type="radio"
+                      name="cbfcCertification"
+                      value="no"
+                      checked={formData.cbfcCertification === "no"}
+                      onChange={() => handleRadioChange("no")}
+                      className="w-4 h-4 text-[#091529] focus:ring-[#091529] border-2 border-[#091529]/40"
                     />
+                    <span className="text-[#091529] text-sm md:text-base">No</span>
+                  </label>
                   </div>
                 </div>
 
-                {/* Submit Button */}
-                <div className="pt-6 flex justify-center">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="group relative px-16 py-5 bg-gradient-to-r from-[#091529] via-[#0a1a35] to-[#091529] text-white rounded-xl shadow-[0_10px_30px_rgba(9,21,41,0.3)] text-xl font-bold uppercase tracking-wider hover:shadow-[0_15px_40px_rgba(9,21,41,0.4)] transition-all duration-300 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none overflow-hidden"
-                  >
-                    <span className="relative z-10 flex items-center gap-4">
-                      {isSubmitting ? (
-                        <>
-                          <svg className="animate-spin h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                          </svg>
-                          Submitting...
-                        </>
-                      ) : (
-                        <>
-                          Submit Film
-                          <span className="text-[#F4921F] text-2xl transition-transform group-hover:translate-x-1">→</span>
-                        </>
-                      )}
+              {/* Declaration */}
+              <div className="space-y-4 pt-4 border-t border-[#091529]/30">
+                <label htmlFor="declaration" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                  Declaration <span className="text-[#091529]/60 text-xs font-normal">(Optional)</span>
+                </label>
+                <textarea
+                  id="declaration"
+                  name="declaration"
+                  value={formData.declaration}
+                  onChange={handleChange}
+                  rows={3}
+                  className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none resize-none text-sm md:text-base"
+                />
+                  </div>
+
+              {/* Terms and Conditions */}
+              <div className="space-y-4 pt-4 border-t border-[#091529]/30">
+                <label className="font-texta flex items-start gap-2 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="termsAccepted"
+                    checked={formData.termsAccepted}
+                    onChange={handleChange}
+                    required
+                    className="mt-0.5 w-4 h-4 text-[#091529] focus:ring-[#091529] rounded border-2 border-[#091529]/40 flex-shrink-0"
+                  />
+                  <span className="text-sm md:text-base text-[#091529] leading-relaxed">
+                    I confirm that I have read and understood the TBFF Festival Details & Submission Guidelines and agree to all the terms and conditions<span className="text-red-500">*</span>
+                  </span>
+                </label>
+              </div>
+
+              {/* Submission Instructions */}
+              <div className="font-texta pt-4 space-y-1 text-sm md:text-base text-[#091529]/80 leading-relaxed">
+                <p>Please review your response before submitting, no edits will be allowed post submission.</p>
+                <p>When ready, click the button below to officially submit your film to TBFF 2025</p>
+              </div>
+
+              {/* Submit Button */}
+              <div className="pt-4">
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="font-texta w-full md:w-auto px-12 py-3 bg-[#091529] text-white rounded-md font-bold text-base md:text-lg uppercase tracking-wide hover:bg-[#0a1a35] transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isSubmitting ? (
+                    <span className="flex items-center justify-center gap-2">
+                      <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                      Submitting...
                     </span>
-                    {/* Animated gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-[#6A9139]/30 via-transparent to-[#F4921F]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  </button>
-                </div>
-              </form>
-            </div>
+                  ) : (
+                    "Submit Film"
+                  )}
+                </button>
+              </div>
+            </form>
           </div>
-
-          {/* Decorative Elements Below Form */}
-          <div className="mt-20 flex items-center justify-center gap-8 opacity-40">
-            <Image
-              src="/assets/frame.png"
-              alt="Film frame decoration"
-              width={70}
-              height={50}
-              className="w-14 h-10 object-contain"
-              style={{ 
-                transform: "rotate(-10deg)",
-                filter: "hue-rotate(90deg) saturate(1.3)",
-              }}
-            />
-            <Image
-              src="/assets/frame.png"
-              alt="Film frame decoration"
-              width={90}
-              height={65}
-              className="w-18 h-13 object-contain"
-              style={{
-                filter: "hue-rotate(15deg) saturate(1.4)",
-              }}
-            />
-            <Image
-              src="/assets/frame.png"
-              alt="Film frame decoration"
-              width={70}
-              height={50}
-              className="w-14 h-10 object-contain"
-              style={{ 
-                transform: "rotate(10deg)",
-                filter: "hue-rotate(90deg) saturate(1.3)",
-              }}
-            />
           </div>
         </div>
       </div>
+      </div>
 
+      {/* Decorative Elements - Hills Before Footer */}
+      <div className="relative w-full h-[40vh] overflow-hidden z-20 pb-0 sm:pb-12 md:pb-16 mt-8 sm:mt-12 md:mt-16 -mb-[50px] sm:mb-0" style={{ transform: 'translateY(-60px)' }}>
+        <Image
+          src="/assets/smallalfr.png"
+          alt=""
+          width={800}
+          height={400}
+          className="absolute left-0 bottom-0 w-[65%] h-[40vh] object-cover object-top pointer-events-none"
+          aria-hidden="true"
+        />
+        <Image
+          src="/assets/smallalfl.png"
+          alt=""
+          width={800}
+          height={400}
+          className="absolute right-0 bottom-0 w-[65%] h-[35vh] object-cover object-top pointer-events-none"
+          aria-hidden="true"
+        />
+      </div>
+
+      {/* Footer at the end - Moved down with spacing */}
+      <div className="relative z-10 -mt-[50px] sm:mt-12 md:mt-16">
       <Footer />
+      </div>
     </main>
   );
 }

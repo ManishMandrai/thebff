@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import SafeLink from "./SafeLink";
 import { MotionValue, useReducedMotion, useTransform, motion } from "framer-motion";
 
 type Props = { scrollProgress: MotionValue<number> };
@@ -86,19 +86,19 @@ export default function Hero({ scrollProgress }: Props) {
           </p>
 
           <div className="mt-8 flex gap-4">
-            <Link
+            <SafeLink
               href="/passes"
               className="inline-flex items-center justify-center px-6 py-3 bg-[#091529] text-white rounded-md shadow-sm text-sm"
             >
               Book Tickets
-            </Link>
+            </SafeLink>
 
-            <Link
+            <SafeLink
               href="/submit-film"
               className="inline-flex items-center justify-center px-5 py-3 border-2 border-[#091529] text-[#091529] rounded-md text-sm"
             >
               Submit Film
-            </Link>
+            </SafeLink>
           </div>
         </div>
       </div>

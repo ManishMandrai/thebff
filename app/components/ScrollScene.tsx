@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import Link from "next/link";
+import SafeLink from "./SafeLink";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useAnimation, useInView } from "framer-motion";
@@ -9,20 +9,20 @@ import { motion, useAnimation, useInView } from "framer-motion";
 gsap.registerPlugin(ScrollTrigger);
 
 export default function DogScroller() {
-    const wrapperRef = useRef(null);
-    const dogRef = useRef(null);
-    const tlRef = useRef(null);
-    const resizeRaf = useRef(null);
-    const circle2Ref = useRef(null);        // ✅ CIRCLE-2 ref
+    const wrapperRef = useRef<HTMLDivElement | null>(null);
+    const dogRef = useRef<HTMLImageElement | null>(null);
+    const tlRef = useRef<gsap.core.Timeline | null>(null);
+    const resizeRaf = useRef<number | null>(null);
+    const circle2Ref = useRef<HTMLImageElement | null>(null);        // ✅ CIRCLE-2 ref
     const homeControls = useAnimation();
     const aboutControls = useAnimation();
-    const homeRef = useRef(null);
-    const aboutRef = useRef(null);
+    const homeRef = useRef<HTMLDivElement | null>(null);
+    const aboutRef = useRef<HTMLDivElement | null>(null);
     const homeInView = useInView(homeRef, { once: true, margin: "-50px" });
     const aboutInView = useInView(aboutRef, { once: true, margin: "-50px" });
-    const circleRef = useRef(null);
+    const circleRef = useRef<HTMLImageElement | null>(null);
     const circle3Ref = useRef<HTMLImageElement | null>(null); // ✅ circle3
-    const dogWrapRef = useRef(null);
+    const dogWrapRef = useRef<HTMLDivElement | null>(null);
 
 
 
@@ -34,12 +34,12 @@ export default function DogScroller() {
         if (aboutInView) aboutControls.start({ y: 0, opacity: 1 });
     }, [aboutInView, aboutControls]);
 
-    function computePositions(wrapperRect, homeRect, aboutRect, dogRect) {
+    function computePositions(wrapperRect: DOMRect, homeRect: DOMRect, aboutRect: DOMRect, dogRect: DOMRect) {
         const W = wrapperRect.width;
 
         const startLeft = Math.round(W * -0.11);
         const startTop = Math.round(
-            homeRect.top - wrapperRect.top + (homeRect.height - dogRect.height) * 0.55
+            homeRect.top - wrapperRect.top + (homeRect.height - dogRect.height) * 0.55 + 15 // Moved down by 15px from navbar
         );
 
         const finalLeft = Math.round(
@@ -94,7 +94,9 @@ export default function DogScroller() {
             buildTimeline();
 
             function onResize() {
-                cancelAnimationFrame(resizeRaf.current);
+                if (resizeRaf.current !== null) {
+                    cancelAnimationFrame(resizeRaf.current);
+                }
                 resizeRaf.current = requestAnimationFrame(() => buildTimeline());
             }
             window.addEventListener("resize", onResize);
@@ -102,6 +104,7 @@ export default function DogScroller() {
         }
 
         function buildTimeline() {
+            if (!wrapper || !dog || !homeContent || !aboutContent) return;
             if (tlRef.current) {
                 tlRef.current.scrollTrigger && tlRef.current.scrollTrigger.kill();
                 tlRef.current.kill();
@@ -254,8 +257,13 @@ export default function DogScroller() {
             tlRef.current = tl;
         }
 
-        if (dog.complete) onLoaded();
-        else dog.addEventListener("load", onLoaded, { once: true });
+        if (dog && dog instanceof HTMLImageElement) {
+            if (dog.complete) {
+                onLoaded();
+            } else {
+                dog.addEventListener("load", onLoaded, { once: true });
+            }
+        }
 
         return () => {
             if (tlRef.current) {
@@ -296,25 +304,25 @@ export default function DogScroller() {
                     </h1>
 
                     {/* Description */}
-                    <p className="font-abyssinica text-base sm:text-base md:text-[20px] text-[#091529] mt-3 md:mt-2 leading-relaxed">
+                    <p className="font-texta text-base sm:text-base md:text-[20px] text-[#091529] mt-3 md:mt-2 leading-relaxed">
                         A day of celebrating films, voices, and live experiences -<br />
                         <strong>1st February 2026, Bhopal</strong>
                     </p>
 
                     {/* Buttons - Side by Side, Centered */}
                     <div className="flex flex-row justify-center md:justify-start gap-3 md:gap-3 mt-6 md:mt-4 w-full md:w-auto">
-                        <Link 
+                        <SafeLink 
                             href="/passes" 
-                            className="px-5 py-2.5 bg-[#091529] text-white rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
+                            className="font-texta px-5 py-2.5 bg-[#091529] text-white rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
                         >
                             Book Tickets
-                        </Link>
-                        <Link 
+                        </SafeLink>
+                        <SafeLink 
                             href="/submit-film" 
-                            className="px-5 py-2.5 border-2 border-[#091529] bg-[#FFCE21] text-[#091529] rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
+                            className="font-texta px-5 py-2.5 border-2 border-[#091529] bg-[#FFCE21] text-[#091529] rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
                         >
                             Submit Film
-                        </Link>
+                        </SafeLink>
                     </div>
                 </motion.div>
 
@@ -348,7 +356,7 @@ export default function DogScroller() {
                 <img
                     ref={circle2Ref}
                     src="/assets/circlep.png"
-                    className="absolute w-[420px] h-auto pointer-events-none mix-blend-luminosity hidden md:block"
+                    className="absolute w-[600px] h-auto pointer-events-none mix-blend-luminosity hidden md:block"
                     style={{ zIndex: 8, opacity: 0 }}
                     alt="circle behind dog"
                     draggable="false"
@@ -369,7 +377,7 @@ export default function DogScroller() {
                     ref={circleRef}
                     src="/assets/circle.png"
                     alt=""
-                    className="absolute left-0 w-[550px] h-auto z-10 hidden md:block"
+                    className="absolute left-0 w-[750px] h-auto z-10 hidden md:block"
                     style={{ bottom: "-100px" }} // Moved up more
                     draggable="false"
                 />
@@ -384,13 +392,12 @@ export default function DogScroller() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="content flex flex-col gap-4 text-left px-4 md:pl-[8vw] max-w-full md:max-w-[700px] z-50 relative"
                 >
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#111]">
+                    <h2 className="font-bebas text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#091529] uppercase tracking-tight">
                         WHO WE ARE
                     </h2>
 
-                    <p className="opacity-90 leading-relaxed text-[#111] text-sm md:text-base">
-                        We are a collective of dreamers, doers, and storytellers at the
-                        vibrant crossroads of Madhya Pradesh. Our heart beats for cinema that digs deep into roots and grows new ideas skyward.
+                    <p className="font-texta leading-relaxed text-[#091529] text-sm md:text-base lg:text-lg">
+                        We are a collective of dreamers, doers, and storytellers at the vibrant crossroads of Madhya Pradesh. We champion authentic narratives and connect them to the world—nurturing creative souls, building bridges between cinema, arts, literature, and people. Our festival thrives on real stories, shared laughter, creative ambition, and collective wisdom. <strong>Our heart beats for cinema that digs deep into roots and grows new ideas skyward.</strong>
                     </p>
                 </motion.div>
             </section>

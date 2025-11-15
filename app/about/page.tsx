@@ -1,15 +1,50 @@
 "use client";
 
 import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import Image from "next/image";
+import { useEffect, useRef } from "react";
 
 export default function AboutPage() {
+  // Scroll-based flip for mobile characters
+  useEffect(() => {
+    if (typeof window === 'undefined' || window.innerWidth > 767) return; // Only for mobile
+    
+    const flipCards = document.querySelectorAll('.character-flip-scroll');
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('flipped');
+          } else {
+            entry.target.classList.remove('flipped');
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Flip when 50% visible
+        rootMargin: '0px'
+      }
+    );
+    
+    flipCards.forEach((card) => {
+      observer.observe(card);
+    });
+    
+    return () => {
+      flipCards.forEach((card) => {
+        observer.unobserve(card);
+      });
+    };
+  }, []);
+
   return (
-    <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
+    <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden overflow-y-visible relative">
       <Navbar />
       
       {/* Main Content Section */}
-      <div className="relative w-full min-h-[calc(100vh-108px)] pt-8 md:pt-12 pb-16 overflow-hidden">
+      <div className="relative w-full overflow-x-hidden overflow-y-visible">
         {/* Side Semicircles - Left (hhhh.png) - Bulge facing right towards text */}
         <div className="absolute left-0 top-0 h-full w-[150px] md:w-[400px] pointer-events-none z-[1]">
           {/* Mobile version - smaller */}
@@ -21,7 +56,7 @@ export default function AboutPage() {
             className="md:hidden absolute left-0 h-full w-auto object-contain"
             style={{
               top: "50%",
-              transform: "translateY(calc(-50% + 300px)) translateX(-30%) scale(0.4) scaleY(-1)",
+              transform: "translateY(calc(-50% + 300px - 250px)) translateX(-30%) scale(0.4) scaleY(-1)",
             }}
             aria-hidden="true"
           />
@@ -34,47 +69,43 @@ export default function AboutPage() {
             className="hidden md:block absolute left-0 h-full w-auto object-contain"
             style={{
               top: "50%",
-              transform: "translateY(calc(-50% + 300px)) translateX(-30%) scaleY(-1)",
+              transform: "translateY(calc(-50% + 300px - 250px)) translateX(-30%) scaleY(-1)",
             }}
             aria-hidden="true"
           />
         </div>
 
-        {/* Side Semicircles - Right (hhhh.png duplicated) - Top - Color #CCA000 - Flipped and Tilted Opposite */}
-        <div className="absolute right-0 top-0 h-full w-[500px] pointer-events-none z-[2] hidden md:block">
-          <Image
+        {/* Side Semicircles - Left (hhhh.png duplicated) - Top - Green - Top Left Corner */}
+        <div className="absolute left-0 top-[108px] pointer-events-none z-[2] hidden md:block" style={{ overflow: 'visible' }}>
+          <img
             src="/assets/hhhh.png"
             alt=""
-            width={500}
-            height={1500}
-            className="absolute right-0 h-auto object-contain"
+            className="absolute left-0"
             style={{
-              top: "58px",
-              height: "85vh",
-              transform: "translateX(0%) scaleX(-1) scale(1.3) rotate(35deg)",
-              transformOrigin: "center center",
-              filter: "sepia(100%) saturate(200%) hue-rotate(25deg) brightness(0.8)",
+              width: '2000px',
+              height: 'auto',
+              transform: "rotate(-35deg) scale(4)",
+              transformOrigin: "top left",
+              filter: "hue-rotate(80deg) saturate(1.5) brightness(1.1)",
               opacity: 1
             }}
             aria-hidden="true"
           />
-          <div 
-            className="absolute right-0 h-auto"
+        </div>
+
+        {/* Side Semicircles - Right (hhhh.png duplicated) - Top - Green - Top Right Corner */}
+        <div className="absolute right-0 top-[108px] pointer-events-none z-[2] hidden md:block" style={{ overflow: 'visible' }}>
+          <img
+            src="/assets/hhhh.png"
+            alt=""
+            className="absolute right-0"
             style={{
-              top: "58px",
-              height: "85vh",
-              width: "100%",
-              backgroundColor: "#CCA000",
-              mixBlendMode: "multiply",
-              opacity: 0.85,
-              pointerEvents: "none",
-              transform: "translateX(0%) scaleX(-1) scale(1.3) rotate(35deg)",
-              transformOrigin: "center center",
-              maskImage: "url('/assets/hhhh.png')",
-              WebkitMaskImage: "url('/assets/hhhh.png')",
-              maskSize: "contain",
-              maskRepeat: "no-repeat",
-              maskPosition: "right center"
+              width: '2000px',
+              height: 'auto',
+              transform: "scaleX(-1) rotate(35deg) scale(4)",
+              transformOrigin: "top right",
+              filter: "hue-rotate(80deg) saturate(1.5) brightness(1.1)",
+              opacity: 1
             }}
             aria-hidden="true"
           />
@@ -89,61 +120,248 @@ export default function AboutPage() {
             height={1500}
             className="absolute right-0 h-auto object-contain"
             style={{
-              top: "calc(108px + 100px + 30vh)",
+              top: "calc(108px + 100px + 25vh)",
               height: "80vh",
               width: "auto",
-              transform: "translateX(30%) scaleX(-1) scale(1.5)"
+              transform: "translateX(0%) scaleX(-1) scale(1.5)"
             }}
             aria-hidden="true"
           />
         </div>
 
         {/* Content Container */}
-        <div className="relative z-10 max-w-[1600px] mx-auto px-4 md:px-8 lg:px-12 xl:px-16">
-          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 xl:gap-12 items-start">
+        <div className="relative z-10 max-w-[1600px] mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 flex flex-col pt-8 sm:pt-12 md:pt-16 lg:pt-20 xl:pt-24 pb-0" style={{ paddingBottom: '0', marginTop: '30px' }}>
+          {/* About Us Section */}
+          <div className="flex flex-row lg:flex-row gap-3 sm:gap-4 md:gap-6 lg:gap-6 xl:gap-8 items-start w-full mb-4 sm:mb-6 md:mb-8 lg:mb-10 xl:mb-12">
             
             {/* Left Side - Character with Spotlight Illustration */}
-            <div className="relative flex items-start justify-start w-full lg:w-[45%] xl:w-[48%] min-h-[500px] md:min-h-[600px] lg:min-h-[700px] z-30 overflow-visible -ml-12 md:-ml-24 lg:-ml-32 xl:-ml-40">
-              <div className="relative w-full max-w-[2400px] lg:max-w-[3300px] xl:max-w-[3900px]">
+            <div className="relative flex flex-col items-start justify-start w-[35%] sm:w-[40%] lg:w-[45%] xl:w-[48%] h-full z-30 overflow-visible -ml-8 sm:-ml-12 md:-ml-16 lg:-ml-32 xl:-ml-48 2xl:-ml-60">
+              <div className="relative w-full max-w-[200px] sm:max-w-[300px] md:max-w-[400px] lg:max-w-[2400px] xl:max-w-[3300px] 2xl:max-w-[3900px] z-40">
                 <Image
                   src="/assets/Copy of 5-01.png"
                   alt="Film spotlight character"
                   width={3900}
                   height={5850}
-                  className="w-full h-auto object-contain"
+                  className="w-full h-auto object-contain about-character-img"
                   priority
                   style={{
-                    transform: "translateX(calc(-40% + 270px)) translateY(-10%) scaleX(-1) scale(3)",
-                    transformOrigin: "center top"
+                    transform: "translateX(0%) translateY(0%) scaleX(-1) scale(15)",
+                    transformOrigin: "center top",
+                    position: 'relative',
+                    zIndex: 40
                   }}
+                />
+              </div>
+              {/* hhhh.png below character */}
+              <div className="relative w-full mt-4 pointer-events-none z-10" style={{ zIndex: 10 }}>
+                <Image
+                  src="/assets/hhhh.png"
+                  alt=""
+                  width={400}
+                  height={1200}
+                  className="w-full h-auto object-contain"
+                  style={{
+                    maxWidth: '300px',
+                    transform: 'scaleY(-1)',
+                    position: 'relative',
+                    zIndex: 10
+                  }}
+                  aria-hidden="true"
                 />
               </div>
             </div>
 
             {/* Right Side - ABOUT US Text - Split into 2 sections */}
-            <div className="relative z-20 w-full lg:w-[55%] xl:w-[52%] py-4 lg:py-0 flex flex-col justify-start items-center text-center" style={{ marginLeft: '-140px', marginTop: '100px' }}>
+            <div className="relative z-20 w-[65%] sm:w-[60%] lg:w-[55%] xl:w-[52%] flex flex-col justify-center items-start text-left px-2 sm:px-4 md:px-6 lg:items-center lg:text-center lg:px-0 lg:-ml-[140px]">
+              {/* hhhh.png beside About Us content */}
+              <div 
+                className="absolute pointer-events-none z-10 hidden md:block"
+                style={{
+                  top: '200px',
+                  left: '-500px',
+                  width: '300px',
+                  height: 'auto'
+                }}
+              >
+                <Image
+                  src="/assets/hhhh.png"
+                  alt=""
+                  width={400}
+                  height={1200}
+                  className="w-full h-auto object-contain"
+                  aria-hidden="true"
+                />
+              </div>
+              
               {/* Heading */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#091529] uppercase tracking-tight mb-6 md:mb-8 lg:mb-10 text-center">
+              <h1 className="font-bebas text-xl sm:text-2xl md:text-3xl lg:text-5xl xl:text-6xl font-extrabold text-[#091529] uppercase tracking-tight mb-3 sm:mb-4 md:mb-5 lg:mb-6 text-left lg:text-center">
                 ABOUT US
               </h1>
               
               {/* Section 1 - First Paragraph */}
-              <div className="relative z-20 mb-8 md:mb-12 lg:mb-16 max-w-2xl">
-                <p className="text-base md:text-lg lg:text-xl leading-relaxed text-center text-[#091529]">
+              <div className="relative z-20 mb-3 sm:mb-4 md:mb-5 lg:mb-6 max-w-2xl" style={{ marginBottom: '30px' }}>
+                <p className="font-texta text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-left lg:text-center text-[#091529] px-0">
                   This is a passionate collective of filmmakers, artists, and storytellers who believe in the power of cinema to build connections and spark dialogue. The Bhopal Film Festival was born from the desire to create a space where independent voices can be seen, heard, and celebrated, right here in the heart of Madhya Pradesh.
                 </p>
               </div>
 
               {/* Section 2 - Second Paragraph */}
-              <div className="relative z-20 max-w-2xl">
-                <p className="text-base md:text-lg lg:text-xl leading-relaxed text-center text-[#091529]">
+              <div className="relative z-20 max-w-2xl lg:mt-[30px]">
+                <p className="font-texta text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed text-left lg:text-center text-[#091529] px-0">
                   Our work grows from collaboration and curiosity. We come from different creative backgrounds, but share a commitment to stories that are honest, rooted, and imaginative. Together, we aim to nurture a community where cinema becomes more than an art form, it becomes a shared experience that brings people closer. We see this festival as a living, evolving platform, one that supports filmmakers, engages audiences, and places Bhopal firmly on the map for independent cinema and cultural dialogue.
                 </p>
               </div>
             </div>
           </div>
+
+          {/* Meet the Crew Section - Below About Us */}
+          <div className="relative z-30 w-screen mt-4 sm:mt-6 md:mt-8 lg:-mt-[200px] mb-0 pb-8 sm:pb-12 md:pb-16 lg:pb-20" style={{ marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)', marginBottom: '0' }}>
+            {/* MEET THE CREW Image - Above the section */}
+            <div className="relative w-full flex justify-center mb-4" style={{ marginTop: '0' }}>
+              <Image
+                src="/assets/jurymeet.png"
+                alt="Meet the Crew"
+                width={240}
+                height={80}
+                className="w-[200px] sm:w-[240px] md:w-[280px] h-auto"
+                priority
+              />
+            </div>
+            
+            {/* Background Image Container - Full width edge to edge, no padding */}
+            <div className="relative w-full overflow-hidden mt-4 sm:mt-6 md:mt-8 lg:mt-10" style={{ marginBottom: '0' }}>
+              <div className="relative w-full" style={{ position: 'relative', aspectRatio: 'auto' }}>
+                {/* Background Image - Full height to show all segments */}
+                <Image
+                  src="/assets/about us bg.png"
+                  alt="Meet the Crew Background"
+                  width={2000}
+                  height={2800}
+                  className="w-full h-auto"
+                  style={{
+                    display: 'block',
+                    width: '100%',
+                    height: 'auto',
+                    objectFit: 'contain'
+                  }}
+                  priority
+                />
+                
+                {/* Character Overlays - 4 characters in sequence: 9-01, 10-01, dog, 1-01 */}
+                <div className="absolute inset-0 w-full h-full" style={{ pointerEvents: 'none', top: 0, left: 0, right: 0, bottom: 0 }}>
+                  {/* Character 1 - Copy of 9-01 */}
+                  <div 
+                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[10%] left-[2%] w-[60%] max-w-[300px] md:top-[12%] md:left-[5%] md:w-[76%] md:max-w-[1100px]"
+                  >
+                    <div className="character-flip-card-inner">
+                      <div className="character-flip-card-front">
+                        <Image
+                          src="/assets/Copy of 9-01.png"
+                          alt="Character 1"
+                          width={400}
+                          height={750}
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
+                      <div className="character-flip-card-back" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
+                        <Image
+                          src="/assets/frame.png"
+                          alt="Frame"
+                          width={300}
+                          height={340}
+                          className="object-contain w-[120px] max-w-[120px] md:w-[250px] md:max-w-[250px] h-auto"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Character 2 - Copy of 10-01 */}
+                  <div 
+                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[25%] right-[2%] w-[60%] max-w-[300px] md:top-[28%] md:right-[3%] md:w-[76%] md:max-w-[1100px]"
+                  >
+                    <div className="character-flip-card-inner">
+                      <div className="character-flip-card-front">
+                        <Image
+                          src="/assets/Copy of 10-01.png"
+                          alt="Character 2"
+                          width={400}
+                          height={750}
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
+                      <div className="character-flip-card-back" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
+                        <Image
+                          src="/assets/frame.png"
+                          alt="Frame"
+                          width={300}
+                          height={340}
+                          className="object-contain w-[120px] max-w-[120px] md:w-[250px] md:max-w-[250px] h-auto"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Character 3 - dog.png */}
+                  <div 
+                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[45%] left-[2%] w-[55%] max-w-[270px] md:top-[48%] md:left-[5%] md:w-[50%] md:max-w-[700px]"
+                    style={{ marginLeft: '-30px' }}
+                  >
+                    <div className="character-flip-card-inner">
+                      <div className="character-flip-card-front">
+                        <Image
+                          src="/assets/dog.png"
+                          alt="Character 3"
+                          width={400}
+                          height={750}
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
+                      <div className="character-flip-card-back" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
+                        <Image
+                          src="/assets/frame.png"
+                          alt="Frame"
+                          width={300}
+                          height={340}
+                          className="object-contain w-[120px] max-w-[120px] md:w-[250px] md:max-w-[250px] h-auto"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Character 4 - Copy of 1-01 */}
+                  <div 
+                    className="absolute pointer-events-auto z-20 character-flip-card character-flip-scroll top-[65%] right-[2%] w-[65%] max-w-[320px] md:top-[70%] md:right-[3%] md:w-[90%] md:max-w-[1300px]"
+                  >
+                    <div className="character-flip-card-inner">
+                      <div className="character-flip-card-front">
+                        <Image
+                          src="/assets/Copy of 1-01.png"
+                          alt="Character 4"
+                          width={400}
+                          height={750}
+                          className="w-full h-auto object-contain"
+                        />
+                      </div>
+                      <div className="character-flip-card-back" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%' }}>
+                        <Image
+                          src="/assets/frame.png"
+                          alt="Frame"
+                          width={300}
+                          height={340}
+                          className="object-contain w-[120px] max-w-[120px] md:w-[250px] md:max-w-[250px] h-auto"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }

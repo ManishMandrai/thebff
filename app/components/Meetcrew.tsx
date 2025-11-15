@@ -54,6 +54,8 @@ export default function MeetCrew() {
         if (!sec1 || !sec2) return;
 
         function buildTimeline() {
+            if (!wrapper || !eleWrap || !eleImg || !sec1 || !sec2) return;
+            
             if (tlRef.current) {
                 tlRef.current.scrollTrigger?.kill();
                 tlRef.current.kill();
@@ -151,10 +153,15 @@ export default function MeetCrew() {
         } else {
             eleImg.onload = () => buildTimeline();
             // fallback build in case image load event doesn't fire reliably
-            setTimeout(() => buildTimeline(), 500);
+            setTimeout(() => {
+                if (wrapper && eleWrap && eleImg && sec1 && sec2) {
+                    buildTimeline();
+                }
+            }, 500);
         }
 
         const resizeHandler = () => {
+            if (!eleWrap || !eleImg) return;
             gsap.killTweensOf(eleWrap);
             gsap.killTweensOf(eleImg);
             ScrollTrigger.getAll().forEach((s) => s.kill());
@@ -190,6 +197,8 @@ export default function MeetCrew() {
                     {/* Frame 1 */}
                     <div className="relative w-[160px] sm:w-[200px] md:w-[300px] mx-auto">
                         <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10 w-full h-auto" />
+                        {/* Yellow background box inside the frame */}
+                        <div className="absolute bg-[#FFCE21] z-15" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}></div>
                         <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
                             <Image 
                                 src="/assets/jurry1.png" 
@@ -200,14 +209,17 @@ export default function MeetCrew() {
                                 style={{ objectPosition: "center 20%", transform: "scale(1.0) translateY(18px)" }}
                             />
                         </div>
-                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-3 py-2 md:px-4 md:py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
-                            <p className="text-black font-bold text-center" style={{ fontSize: "11px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
+                        <div className="absolute bg-[#F5E6D3] px-3 py-2 md:px-4 md:py-3 z-30 flex flex-col items-center justify-center" style={{ bottom: "8%", left: "8%", right: "8%", height: "17%" }}>
+                            <p className="font-bebas text-black font-bold text-center uppercase" style={{ fontSize: "12px", letterSpacing: "1px", lineHeight: "1.2" }}>NAME SURNAME</p>
+                            <p className="font-texta text-black text-center" style={{ fontSize: "9px", letterSpacing: "0.3px", marginTop: "2px" }}>Category / Role</p>
                         </div>
                     </div>
 
                     {/* Frame 2 */}
                     <div className="relative w-[160px] sm:w-[200px] md:w-[300px] mx-auto">
                         <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10 w-full h-auto" />
+                        {/* Yellow background box inside the frame */}
+                        <div className="absolute bg-[#FFCE21] z-15" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}></div>
                         <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
                             <Image 
                                 src="/assets/jurry2.png" 
@@ -215,17 +227,20 @@ export default function MeetCrew() {
                                 width={400} 
                                 height={480} 
                                 className="object-cover"
-                                style={{ objectPosition: "center 20%", transform: "scale(1.3)" }}
+                                style={{ objectPosition: "center 20%", transform: "scale(1.6)" }}
                             />
                         </div>
-                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-3 py-2 md:px-4 md:py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
-                            <p className="text-black font-bold text-center" style={{ fontSize: "11px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
+                        <div className="absolute bg-[#F5E6D3] px-3 py-2 md:px-4 md:py-3 z-30 flex flex-col items-center justify-center" style={{ bottom: "8%", left: "8%", right: "8%", height: "17%" }}>
+                            <p className="font-bebas text-black font-bold text-center uppercase" style={{ fontSize: "12px", letterSpacing: "1px", lineHeight: "1.2" }}>NAME SURNAME</p>
+                            <p className="font-texta text-black text-center" style={{ fontSize: "9px", letterSpacing: "0.3px", marginTop: "2px" }}>Category / Role</p>
                         </div>
                     </div>
 
                     {/* Frame 3 */}
                     <div className="relative w-[160px] sm:w-[200px] md:w-[300px] mx-auto">
                         <Image src="/assets/frame.png" alt="" width={300} height={340} className="relative z-10 w-full h-auto" />
+                        {/* Yellow background box inside the frame */}
+                        <div className="absolute bg-[#FFCE21] z-15" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}></div>
                         <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
                             <Image 
                                 src="/assets/jurry 3.png" 
@@ -236,8 +251,9 @@ export default function MeetCrew() {
                                 style={{ objectPosition: "center 20%", transform: "scale(1.0)" }}
                             />
                         </div>
-                        <div className="absolute bottom-0 left-0 right-0 bg-[#F5E6D3] px-3 py-2 md:px-4 md:py-3 z-30 flex items-center justify-center" style={{ height: "25%" }}>
-                            <p className="text-black font-bold text-center" style={{ fontSize: "11px", letterSpacing: "0.5px" }}>REVEALING SOON</p>
+                        <div className="absolute bg-[#F5E6D3] px-3 py-2 md:px-4 md:py-3 z-30 flex flex-col items-center justify-center" style={{ bottom: "8%", left: "8%", right: "8%", height: "17%" }}>
+                            <p className="font-bebas text-black font-bold text-center uppercase" style={{ fontSize: "12px", letterSpacing: "1px", lineHeight: "1.2" }}>NAME SURNAME</p>
+                            <p className="font-texta text-black text-center" style={{ fontSize: "9px", letterSpacing: "0.3px", marginTop: "2px" }}>Category / Role</p>
                         </div>
                     </div>
                 </div>
@@ -297,38 +313,40 @@ export default function MeetCrew() {
 
                 {/* TEXT CONTENT */}
                 <div className="absolute left-4 md:left-[10vw] top-[20vh] md:top-[42vh] max-w-[90%] md:max-w-[600px] z-10 px-4 md:px-0">
-                    <h2 className="text-xl sm:text-2xl md:text-4xl font-extrabold mb-4 md:mb-8 text-[#111]">EVENT OFFERINGS</h2>
+                    <h2 className="font-bebas text-xl sm:text-2xl md:text-4xl font-extrabold mb-4 md:mb-8 text-[#111]">EVENT OFFERINGS</h2>
 
-                    {/* STRIP - positioned relative to content */}
-                    <img
-                        src="/assets/strip.png"
-                        alt=""
-                        className="absolute pointer-events-none hidden md:block"
-                        style={{
-                            left: "0px",
-                            top: "65px", // Below title, moved down 5px
-                            height: "45vh",
-                            zIndex: 1,
-                        }}
-                    />
+                    {/* Container for strip and list */}
+                    <div className="relative flex items-start gap-4 md:gap-6">
+                        {/* STRIP - positioned to align symbols with text */}
+                        <div className="relative hidden md:block flex-shrink-0" style={{ alignSelf: "flex-start" }}>
+                            <img
+                                src="/assets/strip.png"
+                                alt=""
+                                className="pointer-events-none w-auto object-contain"
+                                style={{
+                                    height: "calc(1.5rem + 1.5rem + 1.5rem + 1.5rem + 1.5rem + 1.5rem + 1.5rem + 0.5rem)",
+                                }}
+                            />
+                        </div>
 
-                    <ul className="flex flex-col text-[#111] leading-relaxed list-none relative text-sm sm:text-base md:text-base" style={{ paddingLeft: "30px", zIndex: 2, gap: "1.5rem" }}>
-                        <li className="relative">
-                            <strong>Screenings:</strong> A curated showcase of regional gems and fresh voices.
-                        </li>
+                        <ul className="font-texta flex flex-col text-[#111] leading-relaxed list-none relative text-sm sm:text-base md:text-base flex-shrink-0" style={{ paddingLeft: "0px", zIndex: 2, gap: "1.5rem" }}>
+                            <li className="relative flex items-start">
+                                <strong>Screenings:</strong> <span className="ml-1">A curated showcase of regional gems and fresh voices.</span>
+                            </li>
 
-                        <li className="relative">
-                            <strong>Workshops:</strong> Immersive, practical, and playful sessions—hands-on learning at its best.
-                        </li>
+                            <li className="relative flex items-start">
+                                <strong>Workshops:</strong> <span className="ml-1">Immersive, practical, and playful sessions—hands-on learning at its best.</span>
+                            </li>
 
-                        <li className="relative">
-                            <strong>Skill Development Initiatives:</strong> From editing to story labs, we equip creators for the world stage.
-                        </li>
+                            <li className="relative flex items-start">
+                                <strong>Skill Development Initiatives:</strong> <span className="ml-1">From editing to story labs, we equip creators for the world stage.</span>
+                            </li>
 
-                        <li className="relative">
-                            <strong>Panels and Discussions:</strong> Where audiences meet artists, ideas, and culture.
-                        </li>
-                    </ul>
+                            <li className="relative flex items-start">
+                                <strong>Panels and Discussions:</strong> <span className="ml-1">Where audiences meet artists, ideas, and culture.</span>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
             </section>

@@ -2,7 +2,7 @@
 
 import Navbar from "../components/Navbar";
 import Image from "next/image";
-import Link from "next/link";
+import SafeLink from "../components/SafeLink";
 
 export default function PassesPage() {
   return (
@@ -10,7 +10,7 @@ export default function PassesPage() {
       <Navbar />
       
       {/* Decorative Circle Elements */}
-      <div className="absolute top-20 left-0 w-[200px] md:w-[400px] h-auto z-0 pointer-events-none opacity-30 hidden sm:block">
+      <div className="absolute top-20 left-0 w-[120px] sm:w-[200px] md:w-[400px] h-auto z-0 pointer-events-none opacity-30">
         <Image
           src="/assets/circle.png"
           alt=""
@@ -20,7 +20,7 @@ export default function PassesPage() {
         />
       </div>
       
-      <div className="absolute top-40 right-10 w-[150px] md:w-[300px] h-auto z-0 pointer-events-none opacity-25 hidden sm:block">
+      <div className="absolute top-40 right-4 sm:right-10 w-[100px] sm:w-[150px] md:w-[300px] h-auto z-0 pointer-events-none opacity-25">
         <Image
           src="/assets/circlep.png"
           alt=""
@@ -32,7 +32,9 @@ export default function PassesPage() {
 
       
       {/* Large Character - Dog on Left Side (Upper Area) */}
-      <div className="absolute left-0 top-[15%] z-20 pointer-events-none opacity-85 hidden md:block" style={{ transform: 'translateX(-25%)' }}>
+      {/* Mobile version - hidden */}
+      {/* Desktop version */}
+      <div className="absolute left-0 top-[15%] z-20 pointer-events-none opacity-85 hidden md:block" style={{ transform: 'translateX(calc(-30% + 15px - 30px))' }}>
         <Image
           src="/assets/dog.png"
           alt="Dog character"
@@ -40,13 +42,16 @@ export default function PassesPage() {
           height={900}
           className="w-auto h-[80vh] max-h-[900px] object-contain"
           style={{ 
-            filter: "drop-shadow(6px 6px 12px rgba(0,0,0,0.15))"
+            filter: "drop-shadow(6px 6px 12px rgba(0,0,0,0.15))",
+            transform: 'translateX(25%)'
           }}
         />
       </div>
 
       {/* Large Character - Copy of 7-01 on Right Side (Upper Area) */}
-      <div className="absolute right-0 top-[10%] z-20 pointer-events-none opacity-85 hidden md:block" style={{ transform: 'translate(15%, 0)' }}>
+      {/* Mobile version - hidden */}
+      {/* Desktop version */}
+      <div className="absolute right-0 top-[10%] z-20 pointer-events-none opacity-85 hidden md:block" style={{ transform: 'translate(20%, 0)' }}>
         <Image
           src="/assets/Copy of 7-01.png"
           alt="Character"
@@ -54,7 +59,8 @@ export default function PassesPage() {
           height={900}
           className="w-auto h-[75vh] max-h-[850px] object-contain"
           style={{ 
-            filter: "drop-shadow(6px 6px 12px rgba(0,0,0,0.15))"
+            filter: "drop-shadow(6px 6px 12px rgba(0,0,0,0.15))",
+            transform: 'translate(-5%, 0)'
           }}
         />
       </div>
@@ -166,37 +172,31 @@ export default function PassesPage() {
         {/* Main Yellow Content Area */}
         <div className="relative bg-[#FFCE21] px-4 md:px-8 lg:px-12 xl:px-16 pb-12 md:pb-16 pt-0 min-h-[calc(100vh-80px)]">
             {/* Content with padding to avoid large characters */}
-            <div className="relative z-30 pl-4 md:pl-8 lg:pl-16 xl:pl-24 pr-4 md:pr-8 lg:pr-16 xl:pr-24 pt-12 md:pt-20 lg:pt-24 flex flex-col items-center justify-center min-h-[70vh] max-w-5xl mx-auto">
+            <div className="relative z-30 pl-16 sm:pl-20 md:pl-8 lg:pl-16 xl:pl-24 pr-16 sm:pr-20 md:pr-8 lg:pr-16 xl:pr-24 pt-20 md:pt-20 lg:pt-24 flex flex-col items-center justify-center min-h-[70vh] max-w-5xl mx-auto">
               {/* Coming Soon Title */}
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#091529] mb-6 md:mb-8 uppercase tracking-tight text-center">
+              <h1 className="font-bebas text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-[#091529] mb-6 md:mb-8 uppercase tracking-tight text-center">
                 Coming Soon
               </h1>
               
               <div className="w-24 h-1 bg-[#091529] mb-8"></div>
               
-              <p className="text-[#091529] text-xl md:text-2xl mb-4 text-center max-w-2xl leading-relaxed">
+              <p className="font-texta text-[#091529] text-xl md:text-2xl mb-4 text-center max-w-2xl leading-relaxed">
                 Festival passes and tickets will be available soon!
               </p>
               
-              <p className="text-[#091529] text-base md:text-lg mb-12 text-center max-w-xl leading-relaxed opacity-90">
+              <p className="font-texta text-[#091529] text-base md:text-lg mb-12 text-center max-w-xl leading-relaxed opacity-90">
                 Stay tuned for updates on passes, ticket pricing, and early bird offers. 
                 Be the first to know when booking opens.
               </p>
 
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-4 mt-8">
-                <Link
+                <SafeLink
                   href="/"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-[#091529] text-white rounded-md shadow-lg text-base md:text-lg font-semibold hover:bg-[#0a1a35] transition transform hover:scale-105"
+                  className="font-texta inline-flex items-center justify-center px-8 py-4 bg-[#091529] text-white rounded-md shadow-lg text-base md:text-lg font-semibold hover:bg-[#0a1a35] transition transform hover:scale-105"
                 >
                   Back to Home
-                </Link>
-                <Link
-                  href="#"
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-[#091529] text-[#091529] rounded-md text-base md:text-lg font-semibold hover:bg-[#091529] hover:text-white transition"
-                >
-                  Notify Me
-                </Link>
+                </SafeLink>
               </div>
 
               {/* Small Decorative Elements Around Content */}

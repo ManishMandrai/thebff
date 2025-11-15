@@ -1,18 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
-import Link from "next/link";
+import SafeLink from "./SafeLink";
 import { Menu, X } from "lucide-react";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Ensure component is mounted before using portal
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Prevent body scroll when menu is open
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [open]);
 
   return (
     <header className="sticky top-0 z-50 bg-[#091529]">
       <div className="mx-auto px-6 lg:px-12">
         <div className="flex items-center justify-between py-4 md:py-[30px]">
-          <Link href="/" aria-label="Home" className="flex items-center gap-2 md:gap-0">
+          <SafeLink href="/" aria-label="Home" className="flex items-center gap-2 md:gap-0">
             <Image
               src="/assets/logo.svg"
               alt="Bhopal Film Festival Logo"
@@ -22,46 +41,42 @@ export default function Navbar() {
               className="object-contain h-10 md:h-12 w-auto"
               style={{ filter: 'brightness(0) saturate(100%) invert(73%) sepia(98%) saturate(1352%) hue-rotate(0deg) brightness(102%) contrast(101%)' }}
             />
-            <div className="md:hidden flex flex-col text-[#FFCE21] leading-tight">
-              <span className="text-sm font-bold">THE BHOPAL</span>
-              <span className="text-xs font-normal">FILM FESTIVAL</span>
-            </div>
-          </Link>
+          </SafeLink>
 
           {/* DESKTOP MENU */}
           <nav className="hidden md:block" aria-label="Main navigation">
             <ul className="flex items-center gap-3">
               <li>
-                <Link
+                <SafeLink
                   href="/about"
                   className="bg-[#FFCE21] text-[#500E1E] font-bold text-sm uppercase px-4 py-2 rounded-md hover:opacity-90 transition"
                 >
                   About
-                </Link>
+                </SafeLink>
               </li>
               <li>
-                <Link
+                <SafeLink
                   href="/submit-film"
                   className="bg-[#FFCE21] text-[#500E1E] font-bold text-sm uppercase px-4 py-2 rounded-md hover:opacity-90 transition"
                 >
                   Submit Film
-                </Link>
+                </SafeLink>
               </li>
               <li>
-                <Link
+                <SafeLink
                   href="/passes"
                   className="bg-[#FFCE21] text-[#500E1E] font-bold text-sm uppercase px-4 py-2 rounded-md hover:opacity-90 transition"
                 >
                   GET PASSES
-                </Link>
+                </SafeLink>
               </li>
               <li>
-                <Link
+                <SafeLink
                   href="/terms"
                   className="bg-[#FFCE21] text-[#500E1E] font-bold text-sm uppercase px-4 py-2 rounded-md hover:opacity-90 transition"
                 >
                   T&C
-                </Link>
+                </SafeLink>
               </li>
             </ul>
           </nav>
@@ -77,55 +92,63 @@ export default function Navbar() {
         </div>
       </div>
 
-      {open && (
-        <div className="fixed inset-0 z-50 flex">
+      {mounted && open && createPortal(
+        <>
+          {/* Backdrop - covers entire viewport */}
+          <div 
+            className="fixed inset-0 bg-black/50" 
+            onClick={() => setOpen(false)}
+            style={{ zIndex: 10000 }}
+          />
+          
+          {/* Menu Panel */}
           <div
             className="fixed right-0 top-0 h-full w-[80%] bg-[#091529] shadow-xl
             flex flex-col items-center justify-center gap-6 transition-transform duration-300"
+            style={{ zIndex: 10001 }}
           >
             <button
-              className="absolute top-4 right-4 text-[#FFCE21]"
+              className="absolute top-4 right-4 text-[#FFCE21] z-10"
               onClick={() => setOpen(false)}
               aria-label="Close menu"
             >
               <X size={30} />
             </button>
 
-            <Link
+            <SafeLink
               href="/about"
-              className="bg-[#FFCE21] text-[#500E1E] font-bold text-lg uppercase px-6 py-3 rounded-md hover:opacity-90 transition w-48 text-center"
+              className="bg-[#FFCE21] text-[#500E1E] font-bold text-lg uppercase px-6 py-3 rounded-md hover:opacity-90 transition w-48 text-center relative z-10"
               onClick={() => setOpen(false)}
             >
-              About
-            </Link>
+              ABOUT
+            </SafeLink>
 
-            <Link
+            <SafeLink
               href="/submit-film"
-              className="bg-[#FFCE21] text-[#500E1E] font-bold text-lg uppercase px-6 py-3 rounded-md hover:opacity-90 transition w-48 text-center"
+              className="bg-[#FFCE21] text-[#500E1E] font-bold text-lg uppercase px-6 py-3 rounded-md hover:opacity-90 transition w-48 text-center relative z-10"
               onClick={() => setOpen(false)}
             >
-              Submit Film
-            </Link>
+              SUBMIT FILM
+            </SafeLink>
 
-            <Link
+            <SafeLink
               href="/passes"
-              className="bg-[#FFCE21] text-[#500E1E] font-bold text-lg uppercase px-6 py-3 rounded-md hover:opacity-90 transition w-48 text-center"
+              className="bg-[#FFCE21] text-[#500E1E] font-bold text-lg uppercase px-6 py-3 rounded-md hover:opacity-90 transition w-48 text-center relative z-10"
               onClick={() => setOpen(false)}
             >
               GET PASSES
-            </Link>
+            </SafeLink>
 
-            <Link
+            <SafeLink
               href="/terms"
-              className="bg-[#FFCE21] text-[#500E1E] font-bold text-lg uppercase px-6 py-3 rounded-md hover:opacity-90 transition w-48 text-center"
+              className="bg-[#FFCE21] text-[#500E1E] font-bold text-lg uppercase px-6 py-3 rounded-md hover:opacity-90 transition w-48 text-center relative z-10"
               onClick={() => setOpen(false)}
             >
               T&C
-            </Link>
+            </SafeLink>
           </div>
-
-          <div className="flex-1 bg-black/50" onClick={() => setOpen(false)}></div>
-        </div>
+        </>,
+        document.body
       )}
     </header>
   );

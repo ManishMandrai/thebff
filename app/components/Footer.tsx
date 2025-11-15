@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import SafeLink from "./SafeLink";
 import { useState } from "react";
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from "react-icons/fa6";
 
@@ -54,7 +54,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-[#500E1E] text-white pt-16 pb-8 px-6 md:px-12">
+    <footer className="bg-[#500E1E] text-white pt-16 pb-8 px-6 md:px-12 relative z-40 -mt-[50px] md:-mt-[150px]">
       {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10 border-b border-white/20 pb-10">
         {/* Left - Logo & Info */}
@@ -80,18 +80,18 @@ export default function Footer() {
         {/* Middle - Links */}
         <div className="flex flex-col space-y-3">
           <h3 className="text-lg font-semibold mb-3">Quick Links</h3>
-          <Link href="/submit-film" className="text-white/90 hover:text-white transition">
+          <SafeLink href="/submit-film" className="text-white/90 hover:text-white transition">
             Submit Film
-          </Link>
-          <Link href="/about" className="text-white/90 hover:text-white transition">
+          </SafeLink>
+          <SafeLink href="/about" className="text-white/90 hover:text-white transition">
             About
-          </Link>
-          <Link href="/passes" className="text-white/90 hover:text-white transition">
+          </SafeLink>
+          <SafeLink href="/passes" className="text-white/90 hover:text-white transition">
             Get Passes
-          </Link>
-          <Link href="mailto:info@bhopalfilmfestival.com" className="text-white/90 hover:text-white transition">
+          </SafeLink>
+          <a href="mailto:info@bhopalfilmfestival.com" className="text-white/90 hover:text-white transition">
             Email
-          </Link>
+          </a>
         </div>
 
         {/* Right - Subscribe */}
@@ -146,13 +146,13 @@ export default function Footer() {
         <p>© {year} All rights reserved — Bhopal Film Festival</p>
         <p>
           Built with ❤️ by{" "}
-          <Link
+          <SafeLink
             href="https://www.ETWOT.com/"
             target="_blank"
             className="underline hover:text-white"
           >
             ETWOT
-          </Link>
+          </SafeLink>
         </p>
       </div>
     </footer>
