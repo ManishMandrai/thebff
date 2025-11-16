@@ -65,7 +65,7 @@ export default function Awards() {
                 >
                     {/* Award board centered inside the block */}
                     <div className="flex justify-center">
-                        <div className="w-full max-w-[240px] sm:max-w-[280px] md:w-[24vw] md:max-w-none mt-[-36] md:mt-36 mr-8 md:mr-40 relative overflow-hidden">
+                        <div className="w-full max-w-[240px] sm:max-w-[280px] md:w-[24vw] md:max-w-none mt-[-24] md:mt-36 mr-8 md:mr-40 relative overflow-hidden">
                             <img
                                 src="/assets/awardboard.png"
                                 alt="Awards and categories title"
