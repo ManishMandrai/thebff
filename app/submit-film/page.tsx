@@ -1,11 +1,11 @@
 "use client";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 import Image from "next/image";
 import { useState } from "react";
 
 export default function SubmitFilmPage() {
+  const scriptUrl = process.env.NEXT_PUBLIC_GOOGLE_SCRIPT_URL;
+
   const [formData, setFormData] = useState({
     fullName: "",
     age: "",
@@ -70,15 +70,28 @@ export default function SubmitFilmPage() {
       return;
     }
 
+    if (!scriptUrl) {
+      console.error("Missing NEXT_PUBLIC_GOOGLE_SCRIPT_URL env variable");
+      setSubmitStatus("error");
+      alert("Form is temporarily unavailable. Please try again later.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus("idle");
 
-    // Simulate form submission (replace with actual API call)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      
-      // Here you would typically send the data to your backend
-      console.log("Form submitted:", formData);
+      await fetch(scriptUrl, {
+        method: "POST",
+        mode: "no-cors",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...formData,
+          submittedAt: new Date().toISOString(),
+        }),
+      });
       
       setSubmitStatus("success");
       setFormData({
@@ -109,8 +122,8 @@ export default function SubmitFilmPage() {
   return (
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
       
-      {/* Side Strips - Left - Starting exactly from navbar bottom */}
-      <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 'calc(1rem + 2.5rem + 1rem)', bottom: 'calc(40vh + 400px)', margin: '0', padding: '0' }}>
+      {/* Side Strips - Left - Flush with navbar (no visible gap) */}
+      <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 'calc(40vh + 400px)', margin: 0, padding: 0 }}>
           <Image
           src="/assets/side strip.png"
           alt="Side strip decoration"
@@ -126,8 +139,8 @@ export default function SubmitFilmPage() {
           />
         </div>
 
-      {/* Side Strips - Right - Starting exactly from navbar bottom */}
-      <div className="absolute right-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none md:top-[108px]" style={{ top: 'calc(1rem + 2.5rem + 1rem)', bottom: 'calc(40vh + 400px)', margin: '0', padding: '0' }}>
+      {/* Side Strips - Right - Flush with navbar (no visible gap) */}
+      <div className="absolute right-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none md:top-[108px]" style={{ top: 0, bottom: 'calc(40vh + 400px)', margin: 0, padding: 0 }}>
           <Image
           src="/assets/side strip.png"
           alt="Side strip decoration"

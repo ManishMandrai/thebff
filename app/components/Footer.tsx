@@ -145,7 +145,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center mt-6 text-sm text-white/80">
         <p>© {year} All rights reserved — Bhopal Film Festival</p>
         <p>
-          Built with ❤️ by{" "}
+          Built by ETWOT and assisted by{" "}
           <SafeLink
             href="https://www.devmanish.com/"
             target="_blank"

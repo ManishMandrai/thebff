@@ -330,7 +330,7 @@ export default function MeetCrew() {
                                         style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}
                                     >
                                         <Image
-                                            src="/assets/jurry2.png"
+                                            src="/assets/jury char 2.png"
                                             alt="Jury member"
                                             width={400}
                                             height={480}
@@ -374,7 +374,7 @@ export default function MeetCrew() {
                                         style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}
                                     >
                                         <Image
-                                            src="/assets/jurry3.png"
+                                            src="/assets/jurry 3.png"
                                             alt="Jury member"
                                             width={400}
                                             height={480}
@@ -474,7 +474,7 @@ export default function MeetCrew() {
                             <div className="absolute bg-[#FFCE21] z-15" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}></div>
                             <div className="absolute inset-0 flex items-center justify-center z-20 overflow-hidden" style={{ top: "8%", bottom: "25%", left: "8%", right: "8%" }}>
                                 <Image
-                                    src="/assets/jurry2.png"
+                                    src="/assets/jury char 2.png"
                                     alt="Jury member"
                                     width={400}
                                     height={480}

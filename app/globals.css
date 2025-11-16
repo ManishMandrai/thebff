@@ -326,7 +326,7 @@ div[style*="perspective"] {
 
 @media (max-width: 768px) {
   .mobile-movie {
-    left: -12vh !important;
+    left: -17vh !important;
     height: 80vh !important; /* adjust as you need */
     top: 100vh !important;
     width: auto !important;
@@ -365,8 +365,8 @@ div[style*="perspective"] {
     width: 190vw !important; /* force large size */
     height: auto !important;
 
-    left: 80% !important;
-    bottom: -4vh !important;
+    left: calc(80% + 80px) !important; /* shifted a total of 80px to the right on mobile */
+    bottom: calc(-8vh + 60px) !important; /* moved a total of 60px up on mobile */
     transform: translateX(-50%) !important;
   }
 }
