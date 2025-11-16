@@ -11,21 +11,23 @@ import React from "react";
 
 export default function Awards() {
     return (
-        <main className="relative w-full  min-h-[200vh] bg-[#F4921F]">
+        <main className="relative w-full  min-h-[240vh] bg-[#F4921F]">
             {/* Partition line before awards section */}
             <img
                 src="/assets/partition line.png"
                 alt=""
                 aria-hidden="true"
-                className="absolute pointer-events-none z-50"
+                className="absolute pointer-events-none z-0"
                 style={{
                     top: "0",
                     left: "50%",
                     transform: "translateX(-50%)",
                     width: "100%",
                     height: "auto",
+                    filter: "brightness(0)" // 👈 turns white/colored PNG into black
                 }}
             />
+
             {/* BIG CHARACTER: placed in root so it can overlap both viewports */}
 
             {/* BG CIRCLE behind the movie character */}
@@ -67,7 +69,7 @@ export default function Awards() {
                 >
                     {/* Award board centered inside the block */}
                     <div className="flex justify-center">
-                        <div className="w-full max-w-[240px] sm:max-w-[280px] md:w-[24vw] md:max-w-none mt-[-24] md:mt-36 mr-8 md:mr-40 relative overflow-hidden">
+                        <div className="w-full max-w-[240px] md:right-25 sm:max-w-[280px] md:w-[24vw] md:max-w-none mt-[-24] md:mt-36 mr-8 md:mr-40 relative overflow-hidden">
                             <img
                                 src="/assets/awardboard.png"
                                 alt="Awards and categories title"
@@ -84,11 +86,11 @@ export default function Awards() {
                     </div>
 
                     {/* Categories + vertical strip */}
-                    <div className="relative flex items-start gap-4 md:gap-6 mt-6 md:mt-12 justify-center md:justify-start pl-0 md:pl-4">
+                    <div className="relative flex items-start gap-4 md:right-25 md:gap-6 mt-6 md:mt-12 justify-center md:justify-start pl-0 md:pl-4">
 
                         {/* hhhh.png image on the right - flipped vertically */}
-                        <div className="absolute top-1/2 w-[300px] md:w-[400px] lg:w-[500px] h-[300px] md:h-[400px] lg:h-[500px] z-10 pointer-events-none" style={{
-                            right: '-300px',
+                        <div className="absolute top-1/2 w-[300px] md:w-[600px] lg:w-[500px] h-[300px] md:h-[800px] lg:h-[500px] z-10 pointer-events-none" style={{
+                            right: '-350px',
                             transform: 'translateY(-50%)'
                         }}>
                             <img
@@ -175,7 +177,7 @@ export default function Awards() {
 
                     {/* Award 1 */}
                     <div
-                        className="award-item md:mt-20 md:m-4 mt-[-160] mr-8"
+                        className="award-item md:mt-20 md:m-4 mt-[-120] mr-8"
                         style={{
                             width: "230px",
                             maxWidth: "300px"
@@ -183,7 +185,7 @@ export default function Awards() {
                     >
                         <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
                             <img
-                                src="/assets/award.png"
+                                src="/assets/snn.png"
                                 className="pointer-events-none w-full h-full object-contain relative z-30"
                             />
                             <div className="absolute bg-[#FFCE21] z-20" style={{
@@ -198,7 +200,7 @@ export default function Awards() {
 
                     {/* Award 2 */}
                     <div
-                        className="award-item md:mt-20 md:m-4 mb-40 mr-8"
+                        className="award-item md:mt-20 md:m-4 mt-26 mr-8"
                         style={{
                             width: "230px",
                             maxWidth: "300px"
@@ -206,7 +208,7 @@ export default function Awards() {
                     >
                         <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
                             <img
-                                src="/assets/award.png"
+                                src="/assets/runner.png"
                                 className="pointer-events-none w-full h-full object-contain relative z-30"
                             />
                             <div className="absolute bg-[#FFCE21] z-20" style={{
@@ -223,8 +225,8 @@ export default function Awards() {
 
 
                 {/* Bottom wide small-halves that visually overlap */}
-                <div className="absolute left-0 bottom-0 w-full  z-10 md:block">
-                    <div className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden pb-8 sm:pb-12 md:pb-16">
+                <div className="absolute left-0 bottom-[-300] md:bottom-[-170] w-full  z-10 md:block">
+                    <div className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden">
                         <img
                             src="/assets/smallalfr.png"
                             alt=""

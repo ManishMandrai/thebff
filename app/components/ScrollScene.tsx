@@ -328,7 +328,7 @@ export default function DogScroller() {
     text-[#000] 
   ">
                         CELEBRATING CINEMA <br />
-                        THAT SPEAKS, SINGS, <br />
+                        THAT SPEAKS, SINGS <br />
                         AND REMEMBERS.
                     </h1>
 
@@ -339,7 +339,7 @@ export default function DogScroller() {
     mt-[-6] md:mt-[-16] 
     leading-[1.4]
   ">
-                        A day of celebrating films, voices, and live<br /> experiences
+                        A day of celebrating films, voices and live<br /> experiences
                         <strong> - 1st February 2026, Bhopal</strong>
                     </p>
 
@@ -443,14 +443,14 @@ export default function DogScroller() {
                     </h2>
 
                     <p className="about-text font-texta  text-[#091529] text-sm md:text-lg lg:text-xl">
-                        We are a collective of dreamers,<br /> doers, and storytellers at the<br /> vibrant
-                        crossroads of Madhya Pradesh. We champion <br /> authentic narratives and <br /> connect
+                        We are a collective of dreamers,<br /> doers and storytellers at the<br /> vibrant
+                        crossroads of Madhya Pradesh.<br/> We champion <br /> authentic narratives and <br /> connect
                         them to the
                         <span className="hidden md:inline">
                             {" "}
                             world—nurturing<br /> creative souls and building bridges between<br />
-                            cinema, arts, literature, and people.
-                            Our<br /> festival thrives on real stories, shared <br /> laughter, creative ambition,
+                            cinema, arts, literature and people.
+                            Our<br /> festival thrives on real stories, shared <br /> laughter, creative ambition
                             and <br /> collective wisdom. <strong>Our heart beats <br />for cinema that digs deep
                                 into roots <br />and grows new ideas skyward.</strong>
                         </span>

@@ -33,7 +33,7 @@ export default function PassesPage() {
       {/* Large Character - Dog on Left Side (Upper Area) */}
       {/* Mobile and Tablet version - hidden */}
       {/* Desktop version only */}
-      <div className="absolute left-0 top-[15%] z-20 pointer-events-none opacity-85 hidden lg:block passes-dog-character" style={{ transform: 'translateX(calc(-30% + 15px - 30px))' }}>
+      <div className="absolute left-[-170] top-[40] z-20 pointer-events-none opacity-85 hidden lg:block passes-dog-character" style={{ transform: 'translateX(calc(-30% + 15px - 30px))' }}>
         <Image
           src="/assets/dog.png"
           alt="Dog character"

@@ -240,14 +240,15 @@ export default function MeetCrew() {
                     aria-hidden="true"
                     className="absolute pointer-events-none z-0"
                     style={{
-                        
                         top: "0",
                         left: "50%",
                         transform: "translateX(-50%)",
                         width: "100%",
                         height: "auto",
+                        filter: "brightness(0)" // 👈 turns white/colored PNG into black
                     }}
                 />
+
                 {/* PAGE 1 */}
                 <section className="meet1 h-screen relative flex items-start justify-center">
 
@@ -595,19 +596,19 @@ export default function MeetCrew() {
                                     <li className="pb-8 sm:pb-0">
 
                                         <strong>Workshops:</strong>
-                                        <span> Immersive, practical, and <br /> playful sessions—hands-on learning.</span>
+                                        <span> Immersive, practical and <br /> playful sessions hands-on learning.</span>
                                     </li>
 
 
                                     <li className="pb-8 sm:pb-0">
 
-                                        <strong>Panels and Discussions:</strong>
-                                        <span> Where audiences meet artists, <br /> ideas, and culture.</span>
+                                        <strong> Discussions and Award</strong>
+                                        <span> Where audiences <br />meet artists, ideas and culture.</span>
                                     </li>
                                     <li className="pb-8 sm:pb-0">
 
-                                        <strong>Skill Development Initiatives:</strong><br />
-                                        <span> From editing to story labs…</span>
+                                        <strong>Skill Development Initiatives:</strong>
+                                        <span> From  <br /> editing to story labs…</span>
                                     </li>
 
                                 </ul>

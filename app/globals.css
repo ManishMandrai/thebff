@@ -328,7 +328,7 @@ div[style*="perspective"] {
   .mobile-movie {
     left: -17vh !important;
     height: 80vh !important; /* adjust as you need */
-    top: 100vh !important;
+    top:  110vh !important;
     width: auto !important;
   }
 }
@@ -377,4 +377,21 @@ div[style*="perspective"] {
     visibility: hidden;
     pointer-events: none;
   }
+}
+
+
+
+/* Remove default margins from headings and make all mb-2 */
+h1, h2, h3, h4, h5, h6 {
+    margin-bottom: 0.5rem !important; /* mb-2 */
+}
+
+/* Remove top margin on headings inside sections */
+section h1, section h2, section h3, section h4 {
+    margin-top: 0 !important;
+}
+
+/* Remove extra paragraph margin under headings */
+section p:first-of-type {
+    margin-top: 0 !important;
 }

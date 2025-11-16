@@ -9,36 +9,37 @@ export default function TermsPage() {
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
 
       {/* Side Strips - Left - Flush with navbar (no visible gap) */}
-      <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 'calc(40vh + 400px)', margin: 0, padding: 0 }}>
+      <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 'calc(20vh + 10px)', margin: 0, padding: 0 }}>
         <Image
-          src="/assets/side strip.png"
+          src="/assets/green.svg"
           alt="Side strip decoration"
           width={200}
           height={2000}
-          className="w-full h-full object-cover opacity-90"
+          className="w-full h-full object-cover opacity-40"
           style={{ 
             objectFit: "cover", 
             height: "100%",
             display: "block",
-            filter: "hue-rotate(28deg) saturate(1.6) brightness(0.75) contrast(1.2)"
+            filter: "hue-rotate(58deg) saturate(1.4) brightness(0.75) contrast(0.7)"
           }}
         />
       </div>
 
       {/* Side Strips - Right - Flush with navbar (no visible gap) */}
-      <div className="absolute right-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 'calc(40vh + 400px)', margin: 0, padding: 0 }}>
+      <div className="absolute right-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 'calc(20vh + 10px)', margin: 0, padding: 0 }}>
         <Image
           src="/assets/side strip.png"
           alt="Side strip decoration"
           width={200}
           height={2000}
-          className="w-full h-full object-cover opacity-90"
+          className="w-full h-full object-cover opacity-90 "
           style={{ 
             objectFit: "cover", 
             height: "100%", 
             display: "block",
             transform: "scaleX(-1)",
-            filter: "hue-rotate(28deg) saturate(1.6) brightness(0.75) contrast(1.2)"
+            filter: "hue-rotate(58deg) saturate(1.4) brightness(0.75) contrast(0.7)"
+
           }}
         />
       </div>
@@ -165,13 +166,13 @@ export default function TermsPage() {
         </div>
 
       {/* Bottom Decorative Elements - Hills */}
-      <div className="relative w-full h-[40vh] overflow-hidden z-10 -mt-2 sm:-mt-3 md:-mt-4">
+      <div className="relative w-full h-[80vh] overflow-hidden z-20 -mt-2 sm:-mt-3 md:-mt-4">
         <Image
           src="/assets/smallalfr.png"
           alt=""
           width={800}
           height={400}
-          className="absolute left-0 bottom-0 w-[65%] h-[40vh] object-cover object-top pointer-events-none"
+          className="absolute left-0 bottom-0 w-[65%] h-[70vh] object-cover object-top pointer-events-none"
           aria-hidden="true"
         />
         <Image
@@ -179,7 +180,7 @@ export default function TermsPage() {
           alt=""
           width={800}
           height={400}
-          className="absolute right-0 bottom-0 w-[65%] h-[35vh] object-cover object-top pointer-events-none"
+          className="absolute right-0 bottom-0 w-[65%] h-[60vh] object-cover object-top pointer-events-none"
           aria-hidden="true"
         />
       </div>
