@@ -7,6 +7,10 @@
   --font-texta: "Texta Alt", sans-serif;
 }
 
+.font-texta {
+  font-family: var(--font-texta-alt), sans-serif;
+}
+
 @font-face {
   font-family: "Texta Alt";
   src: url("/fonts/TextaAlt-Regular.woff2") format("woff2");
@@ -29,7 +33,12 @@ body {
     "Helvetica Neue", Arial;
 }
 
-/* Paper texture now handled by layout.tsx overlay */
+body {
+  background-image: url("/assets/paper.svg");
+  background-repeat: repeat; /* texture tiles naturally */
+  background-size: 400px; /* adjust based on real texture */
+  background-position: center;
+}
 
 /* top nav */
 
@@ -51,26 +60,13 @@ body {
   min-height: 200vh; /* scroll space for pin+scrub */
 }
 
-/* Texture is now applied globally via layout.tsx overlay - no need for duplicate here */
-
 /* sections - only layout */
 .section {
   position: relative;
   width: 100%;
   height: 100vh;
-  min-height: 100vh;
   display: flex;
   align-items: center;
-}
-
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .section {
-    min-height: 100vh;
-    padding: 0;
-    align-items: flex-start !important;
-    justify-content: center !important;
-  }
 }
 
 /* background color only */
@@ -85,38 +81,13 @@ body {
 .dog {
   position: absolute;
   width: 2900px;
-  max-width: 60vw;
+  max-width: 65vw;
   pointer-events: none;
   z-index: 50;
   transform-origin: 50% 90%;
   will-change: transform, left, top;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-}
-
-@media (max-width: 768px) {
-  .dog {
-    max-width: 80vw;
-  }
-}
-
-/* Responsive character image transforms for about page */
-@media (max-width: 767px) {
-  .about-character-img {
-    transform: translateX(0%) translateY(0%) scaleX(-1) scale(5.5) !important;
-  }
-}
-
-@media (min-width: 768px) {
-  .about-character-img {
-    transform: translateX(0%) translateY(0%) scaleX(-1) scale(2.5) !important;
-  }
-}
-
-@media (min-width: 1024px) {
-  .about-character-img {
-    transform: translateX(0%) translateY(0%) scaleX(-1) scale(2.5) !important;
-  }
 }
 
 /* frame look — use frames as-is; no white label */
@@ -163,67 +134,247 @@ div[style*="perspective"] {
   background-position: bottom;
   background-size: 60px 16px; /* adjust to your taste */
   border-bottom: none;
-  padding-bottom: 20px; /* so loops don't overlap content */
+  padding-bottom: 20px; /* so loops don’t overlap content */
 }
 
-/* Meet the Crew - Flip Card Animation */
-.character-flip-card {
-  perspective: 1000px;
-  width: 100%;
-  cursor: pointer;
-}
-
-.character-flip-card-inner {
-  position: relative;
-  width: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-}
-
-.character-flip-card:hover .character-flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-/* Mobile: Flip on scroll using Intersection Observer */
-@media (max-width: 767px) {
-  .character-flip-scroll.flipped .character-flip-card-inner {
-    transform: rotateY(180deg);
-  }
-  
-  .character-flip-card:hover .character-flip-card-inner {
-    transform: rotateY(0deg);
+@media (max-width: 1068px) {
+  .dog {
+    width: 130vw !important; /* SUPER SAFE SIZE (fills screen naturally) */
+    height: auto !important;
+    max-width: none !important;
   }
 }
 
-.character-flip-card-front,
-.character-flip-card-back {
-  position: relative;
-  width: 100%;
-  backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
+@media (max-width: 1068px) {
+  .circle1 {
+    left: -10px !important;
+    bottom: 50px !important;
+  }
 }
 
-.character-flip-card-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transform: rotateY(180deg);
+@media (max-width: 768px) {
+  .circleha {
+    width: 900px !important;
+    left: 70vw !important;
+  }
 }
 
-/* Hide scrollbar but keep scrolling functionality */
-.hide-scrollbar::-webkit-scrollbar {
+@media (max-width: 1068px) {
+  .about .content {
+    padding-left: 20px !important;
+    padding-right: 110px !important;
+    margin-top: 50px !important;
+    max-width: 90% !important;
+  }
+
+  .about-text {
+    font-size: 15px !important;
+    line-height: 22px !important;
+  }
+
+  .about .content h2 {
+    font-size: 28px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .read-more {
+    font-size: 14px !important;
+    margin-top: 10px !important;
+  }
+}
+/* @media (max-width: 1068px) {
+  .frames1 {
+    display: flex !important;
+    flex-direction: row;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 20px;
+    gap: 16px;
+    padding-top: 300px;
+    padding-left: 60;
+  }
+
+  .frames1 > div {
+    scroll-snap-align: center;
+    flex-shrink: 0;
+  }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+} */
+
+@media (max-width: 768px) {
+  img.leaf1 {
+    width: 240vw !important; /* VERY strong override */
+    top: 5vh !important;
+    left: 0vw !important;
+    max-width: none !important; /* removes default image limits */
+  }
+}
+
+@media (max-width: 768px) {
+  img.leaf2 {
+    width: 150vw !important; /* bigger so full shape appears */
+    top: 80vh !important; /* pull up into correct place */
+    right: -40vw !important; /* shift inward from the right */
+    max-width: none !important; /* remove browser max-width */
+  }
+}
+
+/* MOBILE OFFERINGS BOX */
+@media (max-width: 768px) {
+  .offerings-container {
+    top: 40vh !important;
+  }
+
+  .offerings-box {
+    background: #6a9139 !important;
+    padding: 16px !important;
+    border-radius: 8px;
+    width: 70%;
+  }
+
+  .offerings-strip img {
+    height: 100%;
+    max-height: 210px;
+  }
+
+  .offerings-list {
+    font-size: 14px !important;
+    gap: 1rem !important;
+  }
+
+  .offerings-title {
+    font-size: 28px !important;
+    margin-bottom: 20px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .leaf3 {
+    width: 160vw !important;
+    left: -30vw !important;
+    bottom: -5vh !important;
+    opacity: 1 !important;
+  }
+}
+.mobile-slider-wrapper {
+  width: 200px;
+}
+
+.mobile-slider {
+  scroll-behavior: smooth;
+}
+
+.no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* Active dot style */
+.slider-dots .dot.active {
+  opacity: 1;
+  background: white;
+}
+.mobile-slider-wrapper {
+  overflow: hidden;
 }
 
-/* Passes page - Move dog left on tablet view */
-@media (min-width: 768px) and (max-width: 1023px) {
-  .passes-dog-character {
-    transform: translateX(calc(-30% + 15px - 30px - 50px)) !important;
+.slider-dots .dot.active {
+  opacity: 1;
+}
+
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+  /* Only show the <strong> part, hide everything after it */
+  .offerings-list li span,
+  .offerings-list li::after {
+    display: none !important;
+  }
+
+  /* Make each item single-line */
+  .offerings-list li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 1.3;
+  }
+
+  /* Reduce gap so strip aligns vertically */
+  .offerings-list {
+    gap: 0.8rem !important;
+  }
+
+  /* Fix strip alignment */
+  .offerings-strip {
+    margin-top: 6px; /* adjust if needed */
+  }
+
+  /* Make font readable on mobile */
+  .offerings-list li strong {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-hhhh {
+    height: 50vh !important; /* adjust as you need */
+    top: 80vh !important;
+    width: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-movie {
+    left: -12vh !important;
+    height: 80vh !important; /* adjust as you need */
+    top: 100vh !important;
+    width: auto !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .sideleaf {
+    top: -90px !important;
+    width: 130px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .award-item {
+    margin-bottom: 40px;
+  }
+}
+
+/* Desktop size */
+.bcircle {
+  width: 850px !important;
+}
+
+/* Desktop default */
+.bcircle {
+  width: 990px !important;
+  height: auto;
+  max-width: none !important;
+}
+
+/* Mobile fix */
+@media (max-width: 768px) {
+  .bcircle {
+    width: auto !important;
+    width: 190vw !important; /* force large size */
+    height: auto !important;
+
+    left: 80% !important;
+    bottom: -4vh !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobileghost {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
   }
 }

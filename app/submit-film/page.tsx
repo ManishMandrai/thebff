@@ -108,7 +108,6 @@ export default function SubmitFilmPage() {
 
   return (
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
-      <Navbar />
       
       {/* Side Strips - Left - Starting exactly from navbar bottom */}
       <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 'calc(1rem + 2.5rem + 1rem)', bottom: 'calc(40vh + 400px)', margin: '0', padding: '0' }}>
@@ -154,11 +153,11 @@ export default function SubmitFilmPage() {
           {/* Content with padding to avoid side strips - full width */}
           <div className="relative z-20 pl-6 sm:pl-8 md:pl-12 lg:pl-16 xl:pl-20 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 pt-0 w-full">
             {/* Title */}
-            <h1 className="font-bebas text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-[#091529] mb-4 sm:mb-5 md:mb-6 lg:mb-8 uppercase tracking-tight mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+            <h1 className="font-bebas text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl  text-[#091529] mb-4 sm:mb-5 md:mb-6 lg:mb-8 uppercase tracking-tight mt-6 sm:mt-8 md:mt-10 lg:mt-12">
               SUBMISSION GUIDELINES & ENTRY FORM
             </h1>
 
-            <p className="font-texta text-[#091529] text-sm sm:text-base md:text-lg mb-6 sm:mb-8 md:mb-10 lg:mb-12 leading-relaxed">
+            <p className="font-texta text-[#091529] text-md sm:text-xl md:text-lg mb-6 sm:mb-8 md:mb-10 lg:mb-12 leading-relaxed">
               Before submitting, please read the Festival Details & Submission Guidelines carefully.
             </p>
 
@@ -167,7 +166,7 @@ export default function SubmitFilmPage() {
               
               {/* INTRODUCTION & FESTIVAL OVERVIEW */}
               <section className="mb-0 last:mb-0">
-                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">INTRODUCTION & FESTIVAL OVERVIEW</h2>
+                <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-4 sm:mb-5 md:mb-6 uppercase">INTRODUCTION & FESTIVAL OVERVIEW</h2>
                 <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed">
                   The Bhopal Film Festival (TBFF) is a new independent short film competition taking place on <strong>21 February 2026</strong> at <strong>Ravindra Bhawan Auditorium, Bhopal</strong>, with the support of Madhya Pradesh Tourism (MPT). The festival celebrates the unique culture of Central India and provides a platform for <strong>emerging filmmakers</strong> to share local stories with pride and reach a wider audience.
                 </p>
@@ -175,7 +174,7 @@ export default function SubmitFilmPage() {
 
               {/* KEY DETAILS */}
               <section className="mt-6 sm:mt-8 md:mt-10 lg:mt-12">
-                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">KEY DETAILS</h2>
+                <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-4 sm:mb-5 md:mb-6 uppercase">KEY DETAILS</h2>
                 <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                   <strong>No Entry Fee:</strong> Participation is <strong>free</strong> for this first edition to encourage maximum entries.
                 </p>
@@ -186,7 +185,7 @@ export default function SubmitFilmPage() {
 
               {/* CATEGORIES OF ENTRY */}
               <section>
-                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">CATEGORIES OF ENTRY</h2>
+                <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-4 sm:mb-5 md:mb-6 uppercase">CATEGORIES OF ENTRY</h2>
                 <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                   You can submit your short film in one of the following four categories, based on theme and duration:
                 </p>
@@ -209,7 +208,7 @@ export default function SubmitFilmPage() {
 
               {/* ELIGIBILITY CRITERIA FOR FILMS & FILMMAKERS */}
               <section>
-                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">ELIGIBILITY CRITERIA FOR FILMS & FILMMAKERS</h2>
+                <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-4 sm:mb-5 md:mb-6 uppercase">ELIGIBILITY CRITERIA FOR FILMS & FILMMAKERS</h2>
                 <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                   To be eligible, please follow these requirements:
                 </p>
@@ -250,7 +249,7 @@ export default function SubmitFilmPage() {
 
               {/* SUBMISSION PROCESS & REQUIREMENTS */}
               <section>
-                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">SUBMISSION PROCESS & REQUIREMENTS</h2>
+                <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-4 sm:mb-5 md:mb-6 uppercase">SUBMISSION PROCESS & REQUIREMENTS</h2>
                 <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                   <strong>1. Fill Out the Entry Form:</strong> Complete the official "Bhopal Film Festival Submission Form" (attached below). The link will be available on the festival's website and social media pages. All required details about the submitter and film must be filled in. Incomplete forms will not be accepted.
                 </p>
@@ -273,7 +272,7 @@ export default function SubmitFilmPage() {
 
               {/* SELECTION PROCESS & JURY DELIBERATION */}
               <section className="mb-0">
-                <h2 className="font-bebas text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-4 sm:mb-5 md:mb-6 uppercase">SELECTION PROCESS & JURY DELIBERATION</h2>
+                <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-4 sm:mb-5 md:mb-6 uppercase">SELECTION PROCESS & JURY DELIBERATION</h2>
                 <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                   <strong>Jury Panel:</strong> A panel of respected filmmakers and artists from Madhya Pradesh will review all entries. Their names will be announced on the festival website once confirmed.
                 </p>
@@ -324,7 +323,7 @@ export default function SubmitFilmPage() {
         <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
           <div className="relative z-20 pl-6 sm:pl-8 md:pl-12 lg:pl-16 xl:pl-20 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 w-full">
             {/* Form Title */}
-            <h2 className="font-bebas text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-[#091529] mb-6 sm:mb-7 md:mb-8 lg:mb-10 mt-8 sm:mt-10 md:mt-12 lg:mt-16 uppercase tracking-tight text-center md:text-left">
+            <h2 className="font-bebas text-2xl sm:text-3xl md:text-4xl lg:text-5xl   text-[#091529] mb-6 sm:mb-7 md:mb-8 lg:mb-10 mt-8 sm:mt-10 md:mt-12 lg:mt-16 uppercase tracking-tight text-center md:text-left">
               TBFF 2025 SUBMISSION FORM
             </h2>
 
@@ -333,14 +332,14 @@ export default function SubmitFilmPage() {
             {/* Status Messages */}
             {submitStatus === "success" && (
               <div className="mb-6 p-4 bg-green-50 border-2 border-green-400 text-green-800 rounded-lg font-texta">
-                <p className="font-bold">Submission Successful!</p>
+                <p className=" ">Submission Successful!</p>
                 <p className="text-sm mt-1">We've received your film submission. Our team will review it and get back to you via email.</p>
               </div>
             )}
 
             {submitStatus === "error" && (
               <div className="mb-6 p-4 bg-red-50 border-2 border-red-400 text-red-800 rounded-lg font-texta">
-                <p className="font-bold">Submission Failed</p>
+                <p className=" ">Submission Failed</p>
                 <p className="text-sm mt-1">Please check all required fields and try again.</p>
               </div>
             )}
@@ -435,7 +434,7 @@ export default function SubmitFilmPage() {
 
               {/* Film Details Section */}
               <div className="space-y-4 pt-4 border-t border-[#091529]/30">
-                <h3 className="font-bebas text-base md:text-lg font-bold text-[#091529] mb-4">Film Details</h3>
+                <h3 className="font-bebas text-base md:text-lg   text-[#091529] mb-4">Film Details</h3>
                 
                 {/* Description (Optional) */}
                 <div className="space-y-1">
@@ -600,7 +599,7 @@ export default function SubmitFilmPage() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="font-texta w-full md:w-auto px-12 py-3 bg-[#091529] text-white rounded-md font-bold text-base md:text-lg uppercase tracking-wide hover:bg-[#0a1a35] transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="font-texta w-full md:w-auto px-12 py-3 bg-[#091529] text-white rounded-md   text-base md:text-lg uppercase tracking-wide hover:bg-[#0a1a35] transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center gap-2">
@@ -642,10 +641,7 @@ export default function SubmitFilmPage() {
         />
       </div>
 
-      {/* Footer at the end - Moved down with spacing */}
-      <div className="relative z-10 -mt-[50px] sm:mt-12 md:mt-16">
-      <Footer />
-      </div>
+ 
     </main>
   );
 }

@@ -11,7 +11,7 @@ import React from "react";
 
 export default function Awards() {
     return (
-        <main className="relative w-full min-h-[200vh] bg-[#F4921F]">
+        <main className="relative w-full  min-h-[200vh] bg-[#F4921F]">
             {/* Partition line before awards section */}
             <img
                 src="/assets/partition line.png"
@@ -33,7 +33,7 @@ export default function Awards() {
                 src="/assets/hhhh.png"
                 alt=""
                 aria-hidden="true"
-                className="pointer-events-none absolute select-none z-30 hidden md:block"
+                className="pointer-events-none absolute select-none z-30 md:block mobile-hhhh"
                 style={{
                     top: "12vh",
                     height: "160vh",
@@ -46,7 +46,7 @@ export default function Awards() {
                 src="/assets/movie.png"
                 alt="Large movie character holding clapperboard"
                 aria-hidden="true"
-                className="pointer-events-none absolute z-40 select-none hidden md:block"
+                className="pointer-events-none absolute z-40 select-none  md:block mobile-movie"
                 style={{
                     left: "-10vw",
                     top: "8vh",
@@ -57,7 +57,7 @@ export default function Awards() {
             />
 
             {/* ---------- PAGE 1 ---------- */}
-            <section className="relative h-screen w-full flex items-center justify-center">
+            <section className="relative h-screen w-full flex items-center justify-left">
 
                 {/* Content block (awardboard + categories) - centered on mobile */}
                 <aside
@@ -65,18 +65,18 @@ export default function Awards() {
                 >
                     {/* Award board centered inside the block */}
                     <div className="flex justify-center">
-                        <div className="w-full max-w-[240px] sm:max-w-[280px] md:w-[24vw] md:max-w-none mt-8 md:mt-36 mr-0 md:mr-40 relative overflow-hidden">
+                        <div className="w-full max-w-[240px] sm:max-w-[280px] md:w-[24vw] md:max-w-none mt-[-36] md:mt-36 mr-8 md:mr-40 relative overflow-hidden">
                             <img
                                 src="/assets/awardboard.png"
                                 alt="Awards and categories title"
                                 className="w-full h-auto block pointer-events-none relative z-30"
                             />
                             {/* Yellow background inside the box */}
-                            <div className="absolute bg-[#FFCE21] z-20" style={{ 
-                                top: "14%", 
-                                bottom: "14%", 
-                                left: "14%", 
-                                right: "14%"
+                            <div className="absolute bg-[#FFCE21] z-20" style={{
+                                top: "14%",
+                                bottom: "15%",
+                                left: "9%",
+                                right: "9%"
                             }}></div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@ export default function Awards() {
                     <div className="relative flex items-start gap-4 md:gap-6 mt-6 md:mt-12 justify-center md:justify-start pl-0 md:pl-4">
 
                         {/* hhhh.png image on the right - flipped vertically */}
-                        <div className="absolute top-1/2 w-[300px] md:w-[400px] lg:w-[500px] h-[300px] md:h-[400px] lg:h-[500px] z-10 pointer-events-none" style={{ 
+                        <div className="absolute top-1/2 w-[300px] md:w-[400px] lg:w-[500px] h-[300px] md:h-[400px] lg:h-[500px] z-10 pointer-events-none" style={{
                             right: '-300px',
                             transform: 'translateY(-50%)'
                         }}>
@@ -94,33 +94,66 @@ export default function Awards() {
                                 alt=""
                                 aria-hidden="true"
                                 className="w-full h-full object-contain pointer-events-none"
-                                style={{ 
+                                style={{
                                     transform: 'scaleX(-1)'
                                 }}
                             />
                         </div>
 
                         {/* Strip - positioned to align symbols with text */}
-                        <div className="relative hidden md:block flex-shrink-0" style={{ paddingTop: "8px" }}>
+                        <div className="relative right-10 md:right-0 md:block flex-shrink-0" style={{ paddingTop: "8px" }}>
                             <img
                                 src="/assets/strip.png"
                                 alt=""
                                 aria-hidden="true"
                                 className="pointer-events-none w-auto object-contain"
-                                style={{ 
-                                    height: "calc(1.2em + 40px + 1.2em + 40px + 1.2em + 40px + 1.2em)"
+                                style={{
+                                    height: "calc(2em + 60px + 2em + 60px + 2em + 60px + 2em)"
                                 }}
                             />
                         </div>
 
                         {/* Category List */}
-                        <ul className="flex flex-col items-center md:items-start flex-shrink-0 relative z-20" style={{ paddingTop: "8px", gap: "40px" }}>
-                            {["CATEGORY 1", "CATEGORY 2", "CATEGORY 3", "CATEGORY 4"].map((label, index) => (
-                                <li key={label} className="font-bebas text-[#111] font-bold text-sm sm:text-base md:text-lg leading-tight flex items-center" style={{ lineHeight: "1.2", height: "1.2em" }}>
+                        <ul
+                            className="
+    flex flex-col items-center right-12 md:right-0
+    md:items-start flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
+  "
+                        >
+                            {[
+                                "Fiction (Under 10 Minutes)",
+                                "Non-Fiction (Under 10 Minutes)",
+                                "Women’s Voices (Under 5 Minutes)",
+                                "Heart of India (Under 5 Minutes)"
+                            ].map((label) => (
+                                <li
+                                    key={label}
+                                    className="
+        font-bebas text-[#111] font-bold
+        text-lg md:text-xl lg:text-2xl
+        leading-tight flex items-center
+      "
+                                    style={{ lineHeight: "1.2" }}
+                                >
                                     {label}
                                 </li>
                             ))}
                         </ul>
+
+                        {/* Mobile-only side leaf */}
+                        <img
+                            src="/assets/sideleaf.png"
+                            alt=""
+                            className="sideleaf absolute md:hidden"
+                            style={{
+                                right: "-60px",
+                                top: "20px",
+                                width: "140px",
+                                pointerEvents: "none",
+                                zIndex: 5,
+                            }}
+                        />
+
 
                     </div>
                 </aside>
@@ -128,78 +161,89 @@ export default function Awards() {
             </section>
 
             {/* ---------- PAGE 2 ---------- */}
-            <section className="relative h-screen w-full overflow-hidden">
+            <section className="relative h-screen w-full ">
                 {/* small decorative awards on the right of page2 - hidden on mobile */}
-                <div
-                    className="absolute z-30 hidden md:block"
-                    style={{
-                        left: "45vw",
-                        top: "calc(14vh + 8px)",
-                        width: "25vw",
-                        maxWidth: 250,
-                    }}
-                >
-                    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
-                        <img
-                            src="/assets/award.png"
-                            alt=""
-                            aria-hidden="true"
-                            className="pointer-events-none w-full h-full object-contain relative z-30"
-                        />
-                        {/* Yellow background inside the frame - positioned behind the frame image */}
-                        <div className="absolute bg-[#FFCE21] z-20" style={{ 
-                            top: "12%", 
-                            bottom: "12%", 
-                            left: "12%", 
-                            right: "12%",
-                            transform: "translateY(10px)"
-                        }}></div>
+                {/* PAGE 2 AWARDS — DESKTOP HORIZONTAL, MOBILE VERTICAL */}
+                <div className="absolute w-full left-20 md:left-200 flex flex-col md:flex-row top-[-60]
+                items-center md:items-start justify-center md:justify-start 
+                gap-36 md:gap-10 z-30">
+
+                    {/* Award 1 */}
+                    <div
+                        className="award-item md:mt-20 md:m-4 mt-[-80] mr-8"
+                        style={{
+                            width: "230px",
+                            maxWidth: "300px"
+                        }}
+                    >
+                        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
+                            <img
+                                src="/assets/award.png"
+                                className="pointer-events-none w-full h-full object-contain relative z-30"
+                            />
+                            <div className="absolute bg-[#FFCE21] z-20" style={{
+                                top: "13%",
+                                bottom: "12%",
+                                left: "12%",
+                                right: "12%",
+                                transform: "translateY(10px)"
+                            }}></div>
+                        </div>
                     </div>
-                </div>
-                <div
-                    className="absolute z-30 hidden md:block"
-                    style={{
-                        left: "70vw",
-                        top: "calc(14vh + 8px)",
-                        width: "25vw",
-                        maxWidth: 250,
-                    }}
-                >
-                    <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
-                        <img
-                            src="/assets/award.png"
-                            alt=""
-                            aria-hidden="true"
-                            className="pointer-events-none w-full h-full object-contain relative z-30"
-                        />
-                        {/* Yellow background inside the frame - positioned behind the frame image */}
-                        <div className="absolute bg-[#FFCE21] z-20" style={{ 
-                            top: "12%", 
-                            bottom: "12%", 
-                            left: "12%", 
-                            right: "12%",
-                            transform: "translateY(10px)"
-                        }}></div>
+
+                    {/* Award 2 */}
+                    <div
+                        className="award-item md:mt-20 md:m-4 mb-40 mr-8"
+                        style={{
+                            width: "230px",
+                            maxWidth: "300px"
+                        }}
+                    >
+                        <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
+                            <img
+                                src="/assets/award.png"
+                                className="pointer-events-none w-full h-full object-contain relative z-30"
+                            />
+                            <div className="absolute bg-[#FFCE21] z-20" style={{
+                                top: "13%",
+                                bottom: "12%",
+                                left: "12%",
+                                right: "12%",
+                                transform: "translateY(10px)"
+                            }}></div>
+                        </div>
                     </div>
+
                 </div>
 
+
                 {/* Bottom wide small-halves that visually overlap */}
-                <div className="absolute left-0 bottom-0 w-full z-10 hidden md:block">
-                    <div className="relative w-full h-[40vh] overflow-hidden pb-8 sm:pb-12 md:pb-16">
+                <div className="absolute left-0 bottom-0 w-full  z-10 md:block">
+                    <div className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden pb-8 sm:pb-12 md:pb-16">
                         <img
                             src="/assets/smallalfr.png"
                             alt=""
                             aria-hidden="true"
-                            className="absolute left-0 bottom-0 w-[65%] h-[40vh] object-cover object-top pointer-events-none"
+                            className="absolute left-0 bottom-0 
+                 w-[80%] md:w-[75%]
+                 h-[40vh] md:h-[60vh]
+                 object-cover object-top
+                 pointer-events-none"
                         />
+
                         <img
                             src="/assets/smallalfl.png"
                             alt=""
                             aria-hidden="true"
-                            className="absolute right-0 bottom-0 w-[65%] h-[35vh] object-cover object-top pointer-events-none"
+                            className="absolute right-0 bottom-0 
+                 w-[80%] md:w-[75%]
+                 h-[40vh] md:h-[60vh]
+                 object-cover object-top
+                 pointer-events-none"
                         />
                     </div>
                 </div>
+
             </section>
         </main>
     );

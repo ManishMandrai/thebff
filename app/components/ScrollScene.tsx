@@ -24,8 +24,6 @@ export default function DogScroller() {
     const circle3Ref = useRef<HTMLImageElement | null>(null); // ✅ circle3
     const dogWrapRef = useRef<HTMLDivElement | null>(null);
 
-
-
     useEffect(() => {
         if (homeInView) homeControls.start({ y: 0, opacity: 1 });
     }, [homeInView, homeControls]);
@@ -34,27 +32,35 @@ export default function DogScroller() {
         if (aboutInView) aboutControls.start({ y: 0, opacity: 1 });
     }, [aboutInView, aboutControls]);
 
-    function computePositions(wrapperRect: DOMRect, homeRect: DOMRect, aboutRect: DOMRect, dogRect: DOMRect) {
+    function computePositions(
+        wrapperRect: DOMRect,
+        homeRect: DOMRect,
+        aboutRect: DOMRect,
+        dogRect: DOMRect
+    ) {
         const W = wrapperRect.width;
 
         const startLeft = Math.round(W * -0.11);
         const startTop = Math.round(
-            homeRect.top - wrapperRect.top + (homeRect.height - dogRect.height) * 0.55 + 15 // Moved down by 15px from navbar
+            homeRect.top - wrapperRect.top + (homeRect.height - dogRect.height) * 0.55 + 90 // Moved down by 15px from navbar
         );
 
         const finalLeft = Math.round(
             Math.min(W * 0.82 - dogRect.width * 0.5, W * 0.75)
         );
         // Position character so it's half in section 2 (about) and half in section 3 (MeetCrew)
-        // Position moved up
+        // Position moved up a bit for the refined desktop layout
         const finalTop = Math.round(
-            aboutRect.top - wrapperRect.top + aboutRect.height - (dogRect.height * 0.35) - 170 // Moved up by 170px
+            aboutRect.top -
+            wrapperRect.top +
+            aboutRect.height -
+            (dogRect.height * 0.35) -
+            170 // Moved up by 170px to match desktop tweak
         );
 
         const midLeft = Math.round(startLeft + (finalLeft - startLeft) * 0.45);
         const midTop = Math.round(
-            startTop +
-            Math.max(window.innerHeight * 0.1, (finalTop - startTop) * 0.45)
+            startTop + Math.max(window.innerHeight * 0.1, (finalTop - startTop) * 0.45)
         );
 
         return { startLeft, startTop, midLeft, midTop, finalLeft, finalTop };
@@ -119,19 +125,43 @@ export default function DogScroller() {
             const { startLeft, startTop, midLeft, midTop, finalLeft, finalTop } =
                 computePositions(wrapperRect, homeRect, aboutRect, dogRect);
 
-            dog.style.left = `${startLeft}px`;
-            dog.style.top = `${startTop}px`;
+            // detect mobile breakpoint (same as your other code)
+            const isMobile = window.innerWidth <= 1068;
+
+            // mobile overrides for start position (you tuned these already)
+            let mobileStartLeft = -190;
+            let mobileStartTop = homeRect.height * 0.96;
+
+            let sLeft = startLeft;
+            let sTop = startTop;
+            if (isMobile) {
+                sLeft = mobileStartLeft;
+                sTop = mobileStartTop;
+            }
+
+            dog.style.left = `${sLeft}px`;
+            dog.style.top = `${sTop}px`;
             gsap.set(dog, { x: 0, y: 0, rotation: 0, scaleX: 1 });
 
-            const dxFinal = finalLeft - startLeft;
-            const dyFinal = finalTop - startTop;
+            let dxFinal = finalLeft - sLeft;
+            let dyFinal = finalTop - sTop;
+
+            // mobile final offset tweak (trial & error friendly)
+            if (isMobile) {
+                dxFinal += -80;   // nudge left on mobile
+                dyFinal += -180;  // nudge up on mobile
+            }
+            else {
+                dxFinal += -40;     // small left nudge
+                dyFinal += -250;    // lift up on desktop too
+            }
 
             const tl = gsap.timeline({
                 defaults: { ease: "power1.inOut" },
                 scrollTrigger: {
                     trigger: wrapper,
                     start: "top top",
-                    end: "+=120%",
+                    end: "+=145%",
                     scrub: 1.4,
                     anticipatePin: 1,
                 },
@@ -155,44 +185,57 @@ export default function DogScroller() {
                     x: dxFinal,
                     y: dyFinal,
                     scale: 1.0,
+                    rotation: isMobile ? -20 : 0,  // small bend on mobile final pose
                     ease: "power2.inOut",
                     force3D: true,
                 },
                 "moveStart"
             );
 
+            // ⭐ Zoom AFTER dog reaches final position
+            tl.to(
+                dogWrapRef.current,
+                {
+                    duration: 0.4,      // adjust slow/fast zoom
+                    scale: 1.2,        // final zoom size
+                    ease: "power2.out",
+                },
+                `moveStart+=${moveDuration}` // starts AFTER final movement finishes
+            );
+
+
             // ---------- CIRCLE-2: position relative to dog's final box, with Y offset ----------
             const circle2 = circle2Ref.current;
             if (circle2) {
-                // make sure wrapper is the containing block for absolute positioning
-                // (do this once; safe if wrapper already positioned)
+                // ensure wrapper is positioned so absolute coords are relative to it
                 if (wrapper && getComputedStyle(wrapper).position === "static") {
                     wrapper.style.position = "relative";
                 }
 
-                // offset values you can tweak — negative offsetY moves the circle UP
-                const offsetX = 0;      // move right (+) / left (-)
-                const offsetY = -220;   // move down (+) / up (-) — moved up more
+                // THESE values are the desktop-optimized ones from your friend's tuned version.
+                // Visibility: desktop-only (hidden on mobile). We keep this behavior to avoid clutter on small screens.
+                // If you want circle-2 visible on mobile, remove `hidden md:block` from the JSX.
+                const offsetX = 0;
+                const offsetY = -220; // moved up a bit for desktop composition
 
-                // ensure we measure the dog's final size (dogRect was measured earlier)
-                // compute an anchor point relative to dog's final bounding box
-                const anchorX = finalLeft + dogRect.width * 0.55 + offsetX; // tweak 0.55 to move L/R
-                const anchorY = finalTop + dogRect.height * 0.22 + offsetY; // tweak 0.22 to move U/D
+                // compute anchor using final values (same as desktop)
+                let anchorX = finalLeft + dogRect.width * 0.55 + offsetX;
+                let anchorY = finalTop + dogRect.height * 0.22 + offsetY;
 
-                // Position the circle so its CENTER is at the anchor point.
-                // Using translate(-50%,-50%) avoids needing to read circle dimensions.
+                // If you want to nudge the circle differently on mobile, tweak here:
+                if (isMobile) {
+                    // small mobile nudge; change numbers while testing
+                    anchorX -= 40;
+                    anchorY += 200;
+                }
+
                 circle2.style.position = "absolute";
                 circle2.style.left = `${Math.round(anchorX)}px`;
                 circle2.style.top = `${Math.round(anchorY)}px`;
-                circle2.style.transform = "translate(-50%, -50%)";        // center the image at anchor
+                circle2.style.transform = "translate(-50%, -50%)";
                 circle2.style.transformOrigin = "50% 50%";
                 circle2.style.willChange = "transform,opacity";
 
-                // Optional: temporary outline to help debugging visually (remove after tuning)
-                // circle2.style.outline = "2px solid rgba(255,0,0,0.6)";
-                // circle2.style.opacity = 1; // if you want to see it immediately for tuning
-
-                // Animate the circle in (fade + rotate). GSAP will animate transform/rotate but keep translate center.
                 tl.fromTo(
                     circle2,
                     {
@@ -209,40 +252,10 @@ export default function DogScroller() {
                 );
             }
 
-
             // ✅ CIRCLE-3 (bottom-right of circle2)
-            const circle3 = circle3Ref.current;
-            if (circle3) {
-
-                const offsetX = 250;
-                const offsetY = 50; // moved up more
-
-                circle3.style.position = "absolute";
-                circle3.style.left = `${finalLeft + offsetX}px`;
-                circle3.style.top = `${finalTop + offsetY}px`;
-                circle3.style.transform = "translate(0, 0)";
-
-                tl.fromTo(
-                    circle3,
-                    {
-                        opacity: 0,
-                        rotate: 90,                // ⬅️ opposite of circle2 (-90)
-                        scale: 0.9,
-                        transformOrigin: "0% 0%",  // ⬅️ top-left corner pivot (opposite)
-                    },
-                    {
-                        opacity: 1,
-                        rotate: 0,
-                        scale: 1,
-                        duration: 0.7,
-                        ease: "power3.out",
-                    },
-                    `moveStart+=${moveDuration * 0.25}` // ⬅️ starts earlier (adjust as needed)
-                );
-            }
 
 
-            const half = moveDuration / 3;
+            // flip the dog's image horizontally mid-animation for "look" effect
             tl.to(
                 dogRef.current,
                 {
@@ -276,59 +289,89 @@ export default function DogScroller() {
     }, []);
 
     return (
-        <div 
-            ref={wrapperRef} 
-            className="animation-wrapper  loop-border" 
-            style={{ 
+        <div
+            ref={wrapperRef}
+            className="animation-wrapper "
+            style={{
                 backgroundColor: "#FFCE21",
                 overflow: "visible", // Allow character to extend into next section
             }}
         >
-
+            
             {/* 🟡 HOME SECTION */}
-            <section className="section home relative" style={{ alignItems: "flex-start", justifyContent: "center" }}>
+            <section
+                className="section home relative"
+                style={{ alignItems: "flex-start", justifyContent: "start" }}
+            >
                 {/* Content Container - Centered on mobile, right-aligned on desktop */}
                 <motion.div
                     ref={homeRef}
                     initial={{ y: 60, opacity: 0 }}
                     animate={homeControls}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="content flex flex-col gap-4 md:gap-4 text-center md:text-left md:ml-auto px-6 md:pr-[8vw] max-w-full md:max-w-[700px] z-50 relative w-full md:w-auto"
-                    style={{ marginTop: "80px" }}
+                    className="
+    content flex flex-col 
+    gap-3 md:gap-4
+    text-left left-10
+    md:ml-auto 
+    px-6 md:pr-[8vw]
+    max-w-full md:max-w-[700px]
+    z-50 relative 
+    w-full md:w-auto
+    pt-8 md:pt-20
+  "
                 >
-                    {/* Main Headline */}
-                    <h1 className="font-bebas text-[40px] sm:text-[48px] md:text-[60px] lg:text-[80px] leading-[1.1] md:leading-[82px] text-[#091529] font-bold">
+                    <h1 className="
+    font-bebas 
+    text-[34px] sm:text-[40px] md:text-[60px] lg:text-[80px]
+    leading-[1.05] md:leading-[82px]
+    text-[#000] 
+  ">
                         CELEBRATING CINEMA <br />
                         THAT SPEAKS, SINGS, <br />
                         AND REMEMBERS.
                     </h1>
 
-                    {/* Description */}
-                    <p className="font-texta text-base sm:text-base md:text-[20px] text-[#091529] mt-3 md:mt-2 leading-relaxed">
-                        A day of celebrating films, voices, and live experiences -<br />
-                        <strong>1st February 2026, Bhopal</strong>
+                    <p className="
+    font-texta
+    text-[15px] sm:text-[16px] md:text-[20px]
+    text-[#091529] 
+    mt-[-6] md:mt-[-16] 
+    leading-[1.4]
+  ">
+                        A day of celebrating films, voices, and live<br /> experiences
+                        <strong> - 1st February 2026, Bhopal</strong>
                     </p>
 
-                    {/* Buttons - Side by Side, Centered */}
-                    <div className="flex flex-row justify-center md:justify-start gap-3 md:gap-3 mt-6 md:mt-4 w-full md:w-auto">
-                        <SafeLink 
-                            href="/passes" 
-                            className="font-texta px-5 py-2.5 bg-[#091529] text-white rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
-                        >
-                            Book Tickets
-                        </SafeLink>
-                        <SafeLink 
-                            href="/submit-film" 
-                            className="font-texta px-5 py-2.5 border-2 border-[#091529] bg-[#FFCE21] text-[#091529] rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
-                        >
-                            Submit Film
-                        </SafeLink>
+                    <div className="
+    flex flex-row 
+    justify-center md:justify-start 
+    gap-3 
+    mt-4 md:mt-4 
+    w-full md:w-auto
+
+  ">
+                        <div className="flex gap-6 md:gap-8 mr-24 mt-[-10] ">
+                            <SafeLink
+                                href="/passes"
+                                className="font-texta px-6 py-2.5 bg-[#091529] text-white rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
+                            >
+                                Book Tickets
+                            </SafeLink>
+                            <SafeLink
+                                href="/submit-film"
+                                className="font-texta px-6 py-2.5 border-2 border-[#091529] bg-[#FFCE21] text-[#091529] rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
+                            >
+                                Submit Film
+                            </SafeLink>
+                        </div>
                     </div>
                 </motion.div>
 
+                {/* Desktop animated character — hidden on mobile */}
                 <div
                     ref={dogWrapRef}
-                    className="absolute hidden md:block"
+                    className="absolute block md:block"
                     style={{ left: 0, top: 0, zIndex: 30, willChange: "transform" }}
                 >
                     <img
@@ -340,48 +383,51 @@ export default function DogScroller() {
                         style={{ display: "block", willChange: "transform" }}
                     />
                 </div>
-                
-                {/* Mobile Character - Bottom Right Corner */}
-                <div className="absolute bottom-0 right-0 md:hidden pointer-events-none z-10" style={{ width: "50%", height: "70vh" }}>
+
+                {/* Mobile Character — visible on mobile only */}
+                {/* <div
+                    className="absolute bottom-0 right-0 md:hidden pointer-events-none z-10"
+                    style={{
+                        width: "120%",
+                        height: "55vh",
+                        bottom: "-20px",   
+                    }}
+                >
                     <img
                         src="/assets/dog.png"
                         alt="character holding megaphone"
-                        className="absolute bottom-0 right-0 w-auto h-[60vh] max-w-full object-contain object-bottom"
+                        className="mobile-dog absolute bottom-0 right-0 w-auto max-w-full object-contain object-bottom"
                         draggable="false"
                         style={{ zIndex: 20 }}
                     />
-                </div>
 
-                {/* ✅ CIRCLE-2 element (no manual left/top here; GSAP sets it) */}
+                </div> */}
+                {/* circle background (desktop only) */}
+                <img
+                    ref={circleRef}
+                    src="/assets/circle.png"
+                    alt=""
+                    className="circle1 absolute left-0 h-auto z-10 block md:w-[750px] w-[300px]"
+                    style={{ bottom: "-100px" }} // moved up a bit for the refined composition
+                    draggable="false"
+                />
+
+                {/* ✅ CIRCLE-2 element - desktop only (hidden on mobile) */}
                 <img
                     ref={circle2Ref}
                     src="/assets/circlep.png"
-                    className="absolute w-[600px] h-auto pointer-events-none mix-blend-luminosity hidden md:block"
+                    className=" circleha absolute w-[800px] h-auto z-10 pointer-events-none mix-blend-luminosity  md:block"
                     style={{ zIndex: 8, opacity: 0 }}
                     alt="circle behind dog"
                     draggable="false"
                 />
 
-                {/* ✅ circle-3: bottom-right of circle2, same size, starts hidden */}
-                <img
-                    ref={circle3Ref}
-                    src="/assets/circlepq.png"
-                    className="absolute w-[600px] h-auto pointer-events-none hidden md:block"
-                    style={{ zIndex: 1, opacity: 0 }}
-                    alt="circle bottom-right"
-                    draggable="false"
-                />
+                {/* ✅ circle-3 - desktop only */}
 
 
-                <img
-                    ref={circleRef}
-                    src="/assets/circle.png"
-                    alt=""
-                    className="absolute left-0 w-[750px] h-auto z-10 hidden md:block"
-                    style={{ bottom: "-100px" }} // Moved up more
-                    draggable="false"
-                />
+
             </section>
+
 
             {/* 🟡 ABOUT SECTION */}
             <section className="section about justify-start md:justify-start">
@@ -392,14 +438,47 @@ export default function DogScroller() {
                     transition={{ duration: 0.8, ease: "easeOut" }}
                     className="content flex flex-col gap-4 text-left px-4 md:pl-[8vw] max-w-full md:max-w-[700px] z-50 relative"
                 >
-                    <h2 className="font-bebas text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#091529] uppercase tracking-tight">
+                    <h2 className="font-bebas text-3xl sm:text-4xl md:text-5xl  text-[#000] uppercase tracking-tight">
                         WHO WE ARE
                     </h2>
 
-                    <p className="font-texta leading-relaxed text-[#091529] text-sm md:text-base lg:text-lg">
-                        We are a collective of dreamers, doers, and storytellers at the vibrant crossroads of Madhya Pradesh. We champion authentic narratives and connect them to the world—nurturing creative souls, building bridges between cinema, arts, literature, and people. Our festival thrives on real stories, shared laughter, creative ambition, and collective wisdom. <strong>Our heart beats for cinema that digs deep into roots and grows new ideas skyward.</strong>
+                    <p className="about-text font-texta  text-[#091529] text-sm md:text-lg lg:text-xl">
+                        We are a collective of dreamers,<br /> doers, and storytellers at the<br /> vibrant
+                        crossroads of Madhya Pradesh. We champion <br /> authentic narratives and <br /> connect
+                        them to the
+                        <span className="hidden md:inline">
+                            {" "}
+                            world—nurturing<br /> creative souls and building bridges between<br />
+                            cinema, arts, literature, and people.
+                            Our<br /> festival thrives on real stories, shared <br /> laughter, creative ambition,
+                            and <br /> collective wisdom. <strong>Our heart beats <br />for cinema that digs deep
+                                into roots <br />and grows new ideas skyward.</strong>
+                        </span>
                     </p>
+
+                    <SafeLink
+                        href="/about"
+                        className="read-more font-texta flex items-center md:text-lg lg:text-xl  gap-1 text-sm mb-8 mt-0 md:mt-4 text-[#000] font-semibold"
+                    >
+                        <img src="/assets/readmore.svg" className="w-8 h-8" />
+                        Read More
+                    </SafeLink>
+
                 </motion.div>
+
+                <img
+                    ref={circle3Ref}
+                    src="/assets/circlepq.png"
+                    className="bcircle absolute pointer-events-none"
+                    style={{
+                        bottom: "-10vh",
+                        left: "90%",
+                        transform: "translateX(-50%)",
+                        opacity: 1,
+                        zIndex: 1
+                    }}
+                />
+
             </section>
         </div>
     );

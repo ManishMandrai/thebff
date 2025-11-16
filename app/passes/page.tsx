@@ -7,7 +7,6 @@ import SafeLink from "../components/SafeLink";
 export default function PassesPage() {
   return (
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
-      <Navbar />
       
       {/* Decorative Circle Elements */}
       <div className="absolute top-20 left-0 w-[120px] sm:w-[200px] md:w-[250px] lg:w-[400px] h-auto z-0 pointer-events-none opacity-30">

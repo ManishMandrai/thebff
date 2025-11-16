@@ -10,11 +10,9 @@ import Awards from "./components/Awards";
 export default function Page() {
   return (
     <main className="overflow-x-hidden">
-      <Navbar />
       <DogScroller/>
       <MeetCrew/>
       <Awards/>
-      <Footer/>
     </main>
   );
 }

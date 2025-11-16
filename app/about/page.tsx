@@ -41,7 +41,6 @@ export default function AboutPage() {
 
   return (
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden overflow-y-visible relative">
-      <Navbar />
       
       {/* Main Content Section */}
       <div className="relative w-full overflow-x-hidden overflow-y-visible">
@@ -361,7 +360,6 @@ export default function AboutPage() {
       </div>
 
       {/* Footer */}
-      <Footer />
     </main>
   );
 }

@@ -7,7 +7,6 @@ import Image from "next/image";
 export default function TermsPage() {
   return (
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
-      <Navbar />
 
       {/* Side Strips - Left - Starting exactly from navbar bottom */}
       <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 'calc(1rem + 2.5rem + 1rem)', bottom: 'calc(40vh + 400px)', margin: '0', padding: '0' }}>
@@ -186,9 +185,7 @@ export default function TermsPage() {
       </div>
 
       {/* Footer at the end - No gap */}
-      <div className="relative z-30 -mt-[1px]">
-        <Footer />
-      </div>
+   
     </main>
   );
 }

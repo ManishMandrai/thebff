@@ -147,11 +147,11 @@ export default function Footer() {
         <p>
           Built with ❤️ by{" "}
           <SafeLink
-            href="https://www.ETWOT.com/"
+            href="https://www.devmanish.com/"
             target="_blank"
-            className="underline hover:text-white"
+            className=" hover:text-white"
           >
-            ETWOT
+            Manish
           </SafeLink>
         </p>
       </div>
