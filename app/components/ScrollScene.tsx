@@ -354,13 +354,13 @@ export default function DogScroller() {
                         <div className="flex gap-6 md:gap-8 mr-24 mt-[-10] ">
                             <SafeLink
                                 href="/passes"
-                                className="font-texta px-6 py-2.5 bg-[#091529] text-white rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
+                                className="font-texta px-6 py-2.5 bg-[#091529] text-white rounded-md  text-sm md:text-lg text-center hover:opacity-90 transition whitespace-nowrap"
                             >
                                 Book Tickets
                             </SafeLink>
                             <SafeLink
                                 href="/submit-film"
-                                className="font-texta px-6 py-2.5 border-2 border-[#091529] bg-[#FFCE21] text-[#091529] rounded-md font-semibold text-xs md:text-sm text-center hover:opacity-90 transition whitespace-nowrap"
+                                className="font-texta px-6 py-2.5 border-2 border-[#091529] bg-[#FFCE21] text-[#091529] rounded-md  text-sm md:text-lg text-center hover:opacity-90 transition whitespace-nowrap"
                             >
                                 Submit Film
                             </SafeLink>

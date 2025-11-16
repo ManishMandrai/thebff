@@ -175,7 +175,7 @@ export default function Awards() {
 
                     {/* Award 1 */}
                     <div
-                        className="award-item md:mt-20 md:m-4 mt-[-80] mr-8"
+                        className="award-item md:mt-20 md:m-4 mt-[-160] mr-8"
                         style={{
                             width: "230px",
                             maxWidth: "300px"

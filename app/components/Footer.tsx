@@ -128,7 +128,7 @@ export default function Footer() {
             <a href="#" aria-label="Facebook" className="hover:text-gray-300 transition">
               <FaFacebookF size={20} />
             </a>
-            <a href="#" aria-label="Instagram" className="hover:text-gray-300 transition">
+            <a href="https://www.instagram.com/thebhopalfilmfestival?igsh=cWF0MTh6b2VhaGR1" aria-label="Instagram" className="hover:text-gray-300 transition">
               <FaInstagram size={20} />
             </a>
             <a href="#" aria-label="Twitter" className="hover:text-gray-300 transition">
