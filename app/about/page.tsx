@@ -135,7 +135,8 @@ export default function AboutPage() {
             
             {/* Left Side - Character with Spotlight Illustration */}
             <div className="relative flex flex-col items-start justify-start w-[35%] sm:w-[40%] md:w-[38%] lg:w-[45%] xl:w-[48%] h-full z-30 overflow-visible -ml-8 sm:-ml-12 md:-ml-12 lg:-ml-32 xl:-ml-48 2xl:-ml-60">
-              <div className="relative w-full max-w-[200px] sm:max-w-[300px] md:max-w-[350px] lg:max-w-[2400px] xl:max-w-[3300px] 2xl:max-w-[3900px] z-40">
+              {/* Desktop character size reduced further (≈3x smaller on large screens) */}
+              <div className="relative w-full max-w-[200px] sm:max-w-[300px] md:max-w-[350px] lg:max-w-[150px] xl:max-w-[175px] 2xl:max-w-[200px] z-40">
                 <Image
                   src="/assets/Copy of 5-01.png"
                   alt="Film spotlight character"
@@ -144,7 +145,7 @@ export default function AboutPage() {
                   className="w-full h-auto object-contain about-character-img"
                   priority
                   style={{
-                    transform: "translateX(0%) translateY(0%) scaleX(-1) scale(15)",
+                    transform: "translateX(50px) translateY(0%) scaleX(-1) scale(15)",
                     transformOrigin: "center top",
                     position: 'relative',
                     zIndex: 40

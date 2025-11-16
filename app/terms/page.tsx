@@ -8,8 +8,8 @@ export default function TermsPage() {
   return (
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
 
-      {/* Side Strips - Left - Starting exactly from navbar bottom */}
-      <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 'calc(1rem + 2.5rem + 1rem)', bottom: 'calc(40vh + 400px)', margin: '0', padding: '0' }}>
+      {/* Side Strips - Left - Flush with navbar (no visible gap) */}
+      <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 'calc(40vh + 400px)', margin: 0, padding: 0 }}>
         <Image
           src="/assets/side strip.png"
           alt="Side strip decoration"
@@ -25,8 +25,8 @@ export default function TermsPage() {
         />
       </div>
 
-      {/* Side Strips - Right - Starting exactly from navbar bottom */}
-      <div className="absolute right-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 'calc(1rem + 2.5rem + 1rem)', bottom: 'calc(40vh + 400px)', margin: '0', padding: '0' }}>
+      {/* Side Strips - Right - Flush with navbar (no visible gap) */}
+      <div className="absolute right-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 'calc(40vh + 400px)', margin: 0, padding: 0 }}>
         <Image
           src="/assets/side strip.png"
           alt="Side strip decoration"

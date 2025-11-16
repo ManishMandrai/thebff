@@ -148,7 +148,7 @@ export default function DogScroller() {
 
             // mobile final offset tweak (trial & error friendly)
             if (isMobile) {
-                dxFinal += -80;   // nudge left on mobile
+                dxFinal += -180;   // nudge left on mobile (extra 100px)
                 dyFinal += -180;  // nudge up on mobile
             }
             else {

@@ -29,11 +29,12 @@ export default function Awards() {
             {/* BIG CHARACTER: placed in root so it can overlap both viewports */}
 
             {/* BG CIRCLE behind the movie character */}
+            {/* Semi-circle background: behind character but in front of page background */}
             <img
                 src="/assets/hhhh.png"
                 alt=""
                 aria-hidden="true"
-                className="pointer-events-none absolute select-none z-30 md:block mobile-hhhh"
+                className="pointer-events-none absolute select-none z-10 md:block mobile-hhhh"
                 style={{
                     top: "12vh",
                     height: "160vh",
@@ -42,11 +43,12 @@ export default function Awards() {
                 }}
             />
 
+            {/* Main character: above semi-circle, below award frames */}
             <img
                 src="/assets/movie.png"
                 alt="Large movie character holding clapperboard"
                 aria-hidden="true"
-                className="pointer-events-none absolute z-40 select-none  md:block mobile-movie"
+                className="pointer-events-none absolute z-20 md:z-40 select-none  md:block mobile-movie"
                 style={{
                     left: "-10vw",
                     top: "8vh",
@@ -164,9 +166,12 @@ export default function Awards() {
             <section className="relative h-screen w-full ">
                 {/* small decorative awards on the right of page2 - hidden on mobile */}
                 {/* PAGE 2 AWARDS — DESKTOP HORIZONTAL, MOBILE VERTICAL */}
-                <div className="absolute w-full left-20 md:left-200 flex flex-col md:flex-row top-[-60]
+                <div
+                    className="absolute w-full left-20 md:left-200 flex flex-col md:flex-row
                 items-center md:items-start justify-center md:justify-start 
-                gap-36 md:gap-10 z-30">
+                gap-20 md:gap-10 z-30"
+                    style={{ top: "40px" }} // moved down by 40px
+                >
 
                     {/* Award 1 */}
                     <div
