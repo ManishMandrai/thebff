@@ -148,8 +148,8 @@ export default function DogScroller() {
 
             // mobile final offset tweak (trial & error friendly)
             if (isMobile) {
-                dxFinal += -180;   // nudge left on mobile (extra 100px)
-                dyFinal += -180;  // nudge up on mobile
+                dxFinal += -160;   // nudge left on mobile (extra 100px)
+                dyFinal += -220;  // nudge up on mobile
             }
             else {
                 dxFinal += -40;     // small left nudge
@@ -185,7 +185,7 @@ export default function DogScroller() {
                     x: dxFinal,
                     y: dyFinal,
                     scale: 1.0,
-                    rotation: isMobile ? -20 : 0,  // small bend on mobile final pose
+                    rotation: isMobile ? -30 : 0,  // small bend on mobile final pose
                     ease: "power2.inOut",
                     force3D: true,
                 },
@@ -416,7 +416,7 @@ export default function DogScroller() {
                 <img
                     ref={circle2Ref}
                     src="/assets/circlep.png"
-                    className=" circleha absolute w-[800px] h-auto z-10 pointer-events-none mix-blend-luminosity  md:block"
+                    className=" circleha absolute w-[800px] h-auto z-20 pointer-events-none mix-blend-luminosity  md:block"
                     style={{ zIndex: 8, opacity: 0 }}
                     alt="circle behind dog"
                     draggable="false"
@@ -475,7 +475,7 @@ export default function DogScroller() {
                         left: "90%",
                         transform: "translateX(-50%)",
                         opacity: 1,
-                        zIndex: 1
+                        zIndex: 10
                     }}
                 />
 

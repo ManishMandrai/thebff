@@ -65,7 +65,7 @@ export default function Awards() {
 
                 {/* Content block (awardboard + categories) - centered on mobile */}
                 <aside
-                    className="relative md:absolute md:right-4 md:right-[6vw] md:top-1/2 md:-translate-y-1/2 z-50 w-[calc(100%-2rem)] md:w-[48vw] max-w-[500px] px-4 md:px-0"
+                    className="relative md:absolute md:right-4 md:right-[6vw] md:top-1/2 mb-12  md:-translate-y-1/2 z-50 w-[calc(100%-2rem)] md:w-[48vw] max-w-[500px] px-4 md:px-0"
                 >
                     {/* Award board centered inside the block */}
                     <div className="flex justify-center">
@@ -86,9 +86,8 @@ export default function Awards() {
                     </div>
 
                     {/* Categories + vertical strip */}
-                    <div className="relative flex items-start gap-4 md:right-25 md:gap-6 mt-6 md:mt-12 justify-center md:justify-start pl-0 md:pl-4">
+                    <div className="relative flex items-start ml-10 sm:ml-0 gap-4 md:right-25 md:gap-6 mt-6 md:mt-12 justify-center md:justify-start pl-0 md:pl-4">
 
-                        {/* hhhh.png image on the right - flipped vertically */}
                         <div className="absolute top-1/2 w-[300px] md:w-[600px] lg:w-[500px] h-[300px] md:h-[800px] lg:h-[500px] z-10 pointer-events-none" style={{
                             right: '-350px',
                             transform: 'translateY(-50%)'
@@ -121,11 +120,11 @@ export default function Awards() {
                         <ul
                             className="
     flex flex-col items-center right-12 md:right-0
-    md:items-start flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
+items-start pl-2 flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
   "
                         >
                             {[
-                                "Fiction (Under 10 Minutes)",
+                                "Fiction (Under 10 Minutes",
                                 "Non-Fiction (Under 10 Minutes)",
                                 "Women’s Voices (Under 5 Minutes)",
                                 "Heart of India (Under 5 Minutes)"
@@ -177,7 +176,7 @@ export default function Awards() {
 
                     {/* Award 1 */}
                     <div
-                        className="award-item md:mt-20 md:m-4 mt-[-120] mr-8"
+                        className="award-item md:mt-20 md:m-4 mt-[-40] mr-8"
                         style={{
                             width: "230px",
                             maxWidth: "300px"
@@ -225,7 +224,7 @@ export default function Awards() {
 
 
                 {/* Bottom wide small-halves that visually overlap */}
-                <div className="absolute left-0 bottom-[-300] md:bottom-[-170] w-full  z-10 md:block">
+                <div className="absolute left-0 bottom-[-350] md:bottom-[-170] w-full  z-10 md:block">
                     <div className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden">
                         <img
                             src="/assets/smallalfr.png"

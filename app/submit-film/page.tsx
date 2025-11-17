@@ -166,20 +166,20 @@ export default function SubmitFilmPage() {
                         {/* Content with padding to avoid side strips - full width */}
                         <div className="relative z-20 pl-6 sm:pl-8 md:pl-12 lg:pl-16 xl:pl-20 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 pt-0 w-full">
                             {/* Title */}
-                            <h1 className="font-bebas text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl  text-[#091529] mb-2 uppercase tracking-tight mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+                            <h1 className="font-bebas text-2xl sm:text-3xl md:text-5xl lg:text-6xl xl:text-7xl   text-[#000]  uppercase tracking-tight mt-6 sm:mt-8 md:mt-10 lg:mt-12">
                                 SUBMISSION GUIDELINES & ENTRY FORM
                             </h1>
 
-                            <p className="font-texta text-[#091529] text-md sm:text-xl md:text-lg mb-6 sm:mb-8 md:mb-10 lg:mb-12 leading-relaxed">
+                            <p className="font-texta text-[#000] text-md sm:text-xl md:text-lg mb-6 sm:mb-8 md:mb-10 lg:mb-12 leading-relaxed">
                                 Before submitting, please read the Festival Details & Submission Guidelines carefully.
                             </p>
 
                             {/* Content Sections */}
-                            <div className="font-texta space-y-6 sm:space-y-7 md:space-y-8 lg:space-y-10 text-[#091529] pb-0 mb-0">
+                            <div className="font-texta space-y-6 sm:space-y-7 md:space-y-8 lg:space-y-10 text-[#000] pb-0 mb-0">
 
                                 {/* INTRODUCTION & FESTIVAL OVERVIEW */}
                                 <section className="mb-0 last:mb-0">
-                                    <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-2 uppercase">INTRODUCTION & FESTIVAL OVERVIEW</h2>
+                                    <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-4 sm:mb-5 md:mb-6 uppercase">INTRODUCTION & FESTIVAL OVERVIEW</h2>
                                     <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed">
                                         The Bhopal Film Festival (TBFF) is a new independent short film competition taking place on <strong>21 February 2026</strong> at <strong>Ravindra Bhawan Auditorium, Bhopal</strong>, with the support of Madhya Pradesh Tourism (MPT). The festival celebrates the unique culture of Central India and provides a platform for <strong>emerging filmmakers</strong> to share local stories with pride and reach a wider audience.
                                     </p>
@@ -187,7 +187,7 @@ export default function SubmitFilmPage() {
 
                                 {/* KEY DETAILS */}
                                 <section className="mt-6 sm:mt-8 md:mt-10 lg:mt-12">
-                                    <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-2 uppercase">KEY DETAILS</h2>
+                                    <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-4 sm:mb-5 md:mb-6 uppercase">KEY DETAILS</h2>
                                     <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                                         <strong>No Entry Fee:</strong> Participation is <strong>free</strong> for this first edition to encourage maximum entries.
                                     </p>
@@ -198,7 +198,7 @@ export default function SubmitFilmPage() {
 
                                 {/* CATEGORIES OF ENTRY */}
                                 <section>
-                                    <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-2 uppercase">CATEGORIES OF ENTRY</h2>
+                                    <h2 className="font-bebas  text-xl sm:text-2xl md:text-3xl lg:text-4xl   mb-4 sm:mb-5 md:mb-6 uppercase">CATEGORIES OF ENTRY</h2>
                                     <p className="font-texta text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                                         You can submit your short film in one of the following four categories, based on theme and duration:
                                     </p>
@@ -336,7 +336,7 @@ export default function SubmitFilmPage() {
                     <div className="relative px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
                         <div className="relative z-20 pl-6 sm:pl-8 md:pl-12 lg:pl-16 xl:pl-20 pr-6 sm:pr-8 md:pr-12 lg:pr-16 xl:pr-20 w-full">
                             {/* Form Title */}
-                            <h2 className="font-bebas text-2xl sm:text-3xl md:text-4xl lg:text-5xl   text-[#091529] mb-6 sm:mb-7 md:mb-8 lg:mb-10 mt-8 sm:mt-10 md:mt-12 lg:mt-16 uppercase tracking-tight text-center md:text-left">
+                            <h2 className="font-bebas text-2xl sm:text-3xl md:text-4xl lg:text-5xl   text-[#000] mb-6 sm:mb-7 md:mb-8 lg:mb-10 mt-8 sm:mt-10 md:mt-12 lg:mt-16 uppercase tracking-tight text-center md:text-left">
                                 TBFF 2025 SUBMISSION FORM
                             </h2>
 
@@ -363,7 +363,7 @@ export default function SubmitFilmPage() {
                                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                                             {/* Full Name */}
                                             <div className="space-y-1">
-                                                <label htmlFor="fullName" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                                                <label htmlFor="fullName" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
                                                     Full Name<span className="text-red-500">*</span>
                                                 </label>
                                                 <input
@@ -373,13 +373,13 @@ export default function SubmitFilmPage() {
                                                     value={formData.fullName}
                                                     onChange={handleChange}
                                                     required
-                                                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
+                                                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none text-sm md:text-base"
                                                 />
                                             </div>
 
                                             {/* Age */}
                                             <div className="space-y-1">
-                                                <label htmlFor="age" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                                                <label htmlFor="age" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
                                                     Age<span className="text-red-500">*</span>
                                                 </label>
                                                 <input
@@ -391,13 +391,13 @@ export default function SubmitFilmPage() {
                                                     required
                                                     min="16"
                                                     max="35"
-                                                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
+                                                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none text-sm md:text-base"
                                                 />
                                             </div>
 
                                             {/* City */}
                                             <div className="space-y-1">
-                                                <label htmlFor="city" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                                                <label htmlFor="city" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
                                                     City<span className="text-red-500">*</span>
                                                 </label>
                                                 <input
@@ -407,13 +407,13 @@ export default function SubmitFilmPage() {
                                                     value={formData.city}
                                                     onChange={handleChange}
                                                     required
-                                                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
+                                                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none text-sm md:text-base"
                                                 />
                                             </div>
 
                                             {/* Phone Number */}
                                             <div className="space-y-1">
-                                                <label htmlFor="phoneNumber" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                                                <label htmlFor="phoneNumber" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
                                                     Phone Number<span className="text-red-500">*</span>
                                                 </label>
                                                 <input
@@ -423,14 +423,14 @@ export default function SubmitFilmPage() {
                                                     value={formData.phoneNumber}
                                                     onChange={handleChange}
                                                     required
-                                                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
+                                                    className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none text-sm md:text-base"
                                                 />
                                             </div>
                                         </div>
 
                                         {/* Email Address */}
                                         <div className="space-y-1">
-                                            <label htmlFor="emailAddress" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                                            <label htmlFor="emailAddress" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
                                                 Email Address<span className="text-red-500">*</span>
                                             </label>
                                             <input
@@ -440,19 +440,19 @@ export default function SubmitFilmPage() {
                                                 value={formData.emailAddress}
                                                 onChange={handleChange}
                                                 required
-                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
+                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none text-sm md:text-base"
                                             />
                                         </div>
                                     </div>
 
                                     {/* Film Details Section */}
-                                    <div className="space-y-4 pt-4 border-t border-[#091529]/30">
-                                        <h3 className="font-bebas text-base md:text-lg   text-[#091529] mb-4">Film Details</h3>
+                                    <div className="space-y-4 pt-4 border-t border-[#000]/30">
+                                        <h3 className="font-bebas text-base md:text-lg   text-[#000] mb-4">Film Details</h3>
 
                                         {/* Description (Optional) */}
                                         <div className="space-y-1">
-                                            <label htmlFor="description" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
-                                                Description <span className="text-[#091529]/60 text-xs font-normal">(Optional)</span>
+                                            <label htmlFor="description" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
+                                                Description <span className="text-[#000]/60 text-xs font-normal">(Optional)</span>
                                             </label>
                                             <textarea
                                                 id="description"
@@ -460,13 +460,13 @@ export default function SubmitFilmPage() {
                                                 value={formData.description}
                                                 onChange={handleChange}
                                                 rows={3}
-                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none resize-none text-sm md:text-base"
+                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none resize-none text-sm md:text-base"
                                             />
                                         </div>
 
                                         {/* Title of the Film */}
                                         <div className="space-y-1">
-                                            <label htmlFor="filmTitle" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                                            <label htmlFor="filmTitle" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
                                                 Title of the Film<span className="text-red-500">*</span>
                                             </label>
                                             <input
@@ -476,16 +476,16 @@ export default function SubmitFilmPage() {
                                                 value={formData.filmTitle}
                                                 onChange={handleChange}
                                                 required
-                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
+                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none text-sm md:text-base"
                                             />
                                         </div>
 
                                         {/* Synopsis */}
                                         <div className="space-y-1">
-                                            <label htmlFor="synopsis" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                                            <label htmlFor="synopsis" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
                                                 Synopsis of the Film (max 200 words)<span className="text-red-500">*</span>
                                             </label>
-                                            <p className="font-texta text-xs md:text-sm text-[#091529]/70 mb-1.5">Briefly describe your story, theme, and key message.</p>
+                                            <p className="font-texta text-xs md:text-sm text-[#000]/70 mb-1.5">Briefly describe your story, theme, and key message.</p>
                                             <textarea
                                                 id="synopsis"
                                                 name="synopsis"
@@ -494,19 +494,19 @@ export default function SubmitFilmPage() {
                                                 required
                                                 rows={4}
                                                 maxLength={1500}
-                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none resize-none text-sm md:text-base"
+                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none resize-none text-sm md:text-base"
                                             />
-                                            <p className="font-texta text-xs text-[#091529]/60">
+                                            <p className="font-texta text-xs text-[#000]/60">
                                                 {formData.synopsis.split(/\s+/).filter(word => word.length > 0).length} / 200 words
                                             </p>
                                         </div>
 
                                         {/* Crew Details */}
                                         <div className="space-y-1">
-                                            <label htmlFor="crewDetails" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                                            <label htmlFor="crewDetails" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
                                                 Crew Details<span className="text-red-500">*</span>
                                             </label>
-                                            <p className="font-texta text-xs md:text-sm text-[#091529]/70 mb-1.5">List key members like Director, Writes, DOP, etc.</p>
+                                            <p className="font-texta text-xs md:text-sm text-[#000]/70 mb-1.5">List key members like Director, Writes, DOP, etc.</p>
                                             <textarea
                                                 id="crewDetails"
                                                 name="crewDetails"
@@ -514,18 +514,18 @@ export default function SubmitFilmPage() {
                                                 onChange={handleChange}
                                                 required
                                                 rows={3}
-                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none resize-none text-sm md:text-base"
+                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none resize-none text-sm md:text-base"
                                             />
                                         </div>
                                     </div>
 
                                     {/* Film Link Section */}
-                                    <div className="space-y-4 pt-4 border-t border-[#091529]/30">
+                                    <div className="space-y-4 pt-4 border-t border-[#000]/30">
                                         <div className="space-y-1">
-                                            <label htmlFor="filmLink" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
+                                            <label htmlFor="filmLink" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
                                                 Link to the Film<span className="text-red-500">*</span>
                                             </label>
-                                            <p className="font-texta text-xs md:text-sm text-[#091529]/70 mb-1.5">Submit a Google Drive/ Vimeo/ YouTube link with proper viewing access.</p>
+                                            <p className="font-texta text-xs md:text-sm text-[#000]/70 mb-1.5">Submit a Google Drive/ Vimeo/ YouTube link with proper viewing access.</p>
                                             <input
                                                 type="url"
                                                 id="filmLink"
@@ -533,14 +533,14 @@ export default function SubmitFilmPage() {
                                                 value={formData.filmLink}
                                                 onChange={handleChange}
                                                 required
-                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none text-sm md:text-base"
+                                                className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none text-sm md:text-base"
                                             />
                                         </div>
                                     </div>
 
                                     {/* CBFC Certification */}
-                                    <div className="space-y-4 pt-4 border-t border-[#091529]/30">
-                                        <label className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-2">
+                                    <div className="space-y-4 pt-4 border-t border-[#000]/30">
+                                        <label className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-2">
                                             Do you have CBFC certification for your film?
                                         </label>
                                         <div className="flex gap-4">
@@ -551,9 +551,9 @@ export default function SubmitFilmPage() {
                                                     value="yes"
                                                     checked={formData.cbfcCertification === "yes"}
                                                     onChange={() => handleRadioChange("yes")}
-                                                    className="w-4 h-4 text-[#091529] focus:ring-[#091529] border-2 border-[#091529]/40"
+                                                    className="w-4 h-4 text-[#000] focus:ring-[#000] border-2 border-[#000]/40"
                                                 />
-                                                <span className="text-[#091529] text-sm md:text-base">Yes</span>
+                                                <span className="text-[#000] text-sm md:text-base">Yes</span>
                                             </label>
                                             <label className="font-texta flex items-center gap-2 cursor-pointer">
                                                 <input
@@ -562,17 +562,17 @@ export default function SubmitFilmPage() {
                                                     value="no"
                                                     checked={formData.cbfcCertification === "no"}
                                                     onChange={() => handleRadioChange("no")}
-                                                    className="w-4 h-4 text-[#091529] focus:ring-[#091529] border-2 border-[#091529]/40"
+                                                    className="w-4 h-4 text-[#000] focus:ring-[#000] border-2 border-[#000]/40"
                                                 />
-                                                <span className="text-[#091529] text-sm md:text-base">No</span>
+                                                <span className="text-[#000] text-sm md:text-base">No</span>
                                             </label>
                                         </div>
                                     </div>
 
                                     {/* Declaration */}
-                                    <div className="space-y-4 pt-4 border-t border-[#091529]/30">
-                                        <label htmlFor="declaration" className="font-texta block text-[#091529] font-semibold text-sm md:text-base mb-1">
-                                            Declaration <span className="text-[#091529]/60 text-xs font-normal">(Optional)</span>
+                                    <div className="space-y-4 pt-4 border-t border-[#000]/30">
+                                        <label htmlFor="declaration" className="font-texta block text-[#000] font-semibold text-sm md:text-base mb-1">
+                                            Declaration <span className="text-[#000]/60 text-xs font-normal">(Optional)</span>
                                         </label>
                                         <textarea
                                             id="declaration"
@@ -580,12 +580,12 @@ export default function SubmitFilmPage() {
                                             value={formData.declaration}
                                             onChange={handleChange}
                                             rows={3}
-                                            className="font-texta w-full px-3 py-2.5 rounded-md border border-[#091529]/40 bg-[#FFFEF0] text-[#091529] placeholder:text-[#091529]/50 focus:border-[#091529] focus:outline-none resize-none text-sm md:text-base"
+                                            className="font-texta w-full px-3 py-2.5 rounded-md border border-[#000]/40 bg-[#FFFEF0] text-[#000] placeholder:text-[#000]/50 focus:border-[#000] focus:outline-none resize-none text-sm md:text-base"
                                         />
                                     </div>
 
                                     {/* Terms and Conditions */}
-                                    <div className="space-y-4 pt-4 border-t border-[#091529]/30">
+                                    <div className="space-y-4 pt-4 border-t border-[#000]/30">
                                         <label className="font-texta flex items-start gap-2 cursor-pointer">
                                             <input
                                                 type="checkbox"
@@ -593,16 +593,16 @@ export default function SubmitFilmPage() {
                                                 checked={formData.termsAccepted}
                                                 onChange={handleChange}
                                                 required
-                                                className="mt-0.5 w-4 h-4 text-[#091529] focus:ring-[#091529] rounded border-2 border-[#091529]/40 flex-shrink-0"
+                                                className="mt-0.5 w-4 h-4 text-[#000] focus:ring-[#000] rounded border-2 border-[#000]/40 flex-shrink-0"
                                             />
-                                            <span className="text-sm md:text-base text-[#091529] leading-relaxed">
+                                            <span className="text-sm md:text-base text-[#000] leading-relaxed">
                                                 I confirm that I have read and understood the TBFF Festival Details & Submission Guidelines and agree to all the terms and conditions<span className="text-red-500">*</span>
                                             </span>
                                         </label>
                                     </div>
 
                                     {/* Submission Instructions */}
-                                    <div className="font-texta pt-4 space-y-1 text-sm md:text-base text-[#091529]/80 leading-relaxed">
+                                    <div className="font-texta pt-4 space-y-1 text-sm md:text-base text-[#000]/80 leading-relaxed">
                                         <p>Please review your response before submitting, no edits will be allowed post submission.</p>
                                         <p>When ready, click the button below to officially submit your film to TBFF 2025</p>
                                     </div>
@@ -612,7 +612,7 @@ export default function SubmitFilmPage() {
                                         <button
                                             type="submit"
                                             disabled={isSubmitting}
-                                            className="font-texta w-full md:w-auto px-12 py-3 bg-[#091529] text-white rounded-md   text-base md:text-lg uppercase tracking-wide hover:bg-[#0a1a35] transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
+                                            className="font-texta w-full md:w-auto px-12 py-3 bg-[#000] text-white rounded-md   text-base md:text-lg uppercase tracking-wide hover:bg-[#0a1a35] transition-all duration-200 shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
                                         >
                                             {isSubmitting ? (
                                                 <span className="flex items-center justify-center gap-2">
