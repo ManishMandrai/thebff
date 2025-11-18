@@ -9,37 +9,34 @@ export default function TermsPage() {
     <main className="min-h-screen bg-[#FFCE21] overflow-x-hidden relative">
 
       {/* Side Strips - Left - Flush with navbar (no visible gap) */}
-      <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 'calc(20vh + 10px)', margin: 0, padding: 0 }}>
+      <div className="absolute left-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 0, margin: 0, padding: 0 }}>
         <Image
-          src="/assets/green.svg"
+          src="/assets/Terms side strip.svg"
           alt="Side strip decoration"
           width={200}
           height={2000}
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-90"
           style={{ 
             objectFit: "cover", 
             height: "100%",
-            display: "block",
-            filter: "hue-rotate(58deg) saturate(1.4) brightness(0.75) contrast(0.7)"
+            display: "block"
           }}
         />
       </div>
 
       {/* Side Strips - Right - Flush with navbar (no visible gap) */}
-      <div className="absolute right-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 'calc(20vh + 10px)', margin: 0, padding: 0 }}>
+      <div className="absolute right-0 w-2 sm:w-3 md:w-6 lg:w-10 z-20 pointer-events-none" style={{ top: 0, bottom: 0, margin: 0, padding: 0 }}>
         <Image
-          src="/assets/side strip.png"
+          src="/assets/Terms side strip.svg"
           alt="Side strip decoration"
           width={200}
           height={2000}
-          className="w-full h-full object-cover opacity-90 "
+          className="w-full h-full object-cover opacity-90"
           style={{ 
             objectFit: "cover", 
             height: "100%", 
             display: "block",
-            transform: "scaleX(-1)",
-            filter: "hue-rotate(58deg) saturate(1.4) brightness(0.75) contrast(0.7)"
-
+            transform: "scaleX(-1)"
           }}
         />
       </div>
@@ -64,7 +61,7 @@ export default function TermsPage() {
               
               {/* AUTHORITY & RIGHTS */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">AUTHORITY & RIGHTS</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">AUTHORITY & RIGHTS</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   You confirm that you are the <strong>rightful owner</strong> of the film or have the necessary authority/permission to submit it. If you are submitting on behalf of a team, you must have consent from all producers/rights-holders. You must also have permission from any third-party rights holders (e.g., music composers, stock footage providers). You warrant that <strong>no other party's rights are infringed</strong> and that you will <strong>indemnify the festival</strong> for any losses or damages arising from claims regarding rights or disputes.
                 </p>
@@ -72,7 +69,7 @@ export default function TermsPage() {
 
               {/* ORIGINAL CONTENT */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">ORIGINAL CONTENT</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">ORIGINAL CONTENT</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   Your film <strong>must not contain</strong> any content that <strong>violates copyright</strong> or intellectual property rights. All music, footage, images, or graphics must be original or properly licensed. The festival will <strong>NOT BE liable</strong> for copyright infringements, with responsibility lying solely with the applicant/filmmaker.
                 </p>
@@ -80,7 +77,7 @@ export default function TermsPage() {
 
               {/* PROHIBITED CONTENT */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">PROHIBITED CONTENT</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">PROHIBITED CONTENT</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   The festival <strong>will not accept films that contain hateful or malicious content</strong>. Specifically, we disallow content that <strong>promotes racism, hate speech, communal or religious disharmony, gender discrimination, extreme violence towards animals, or serves as propaganda</strong> for any extremist ideology. Pornography or material illegal under Indian laws will also not be screened. Films violating these guidelines will be disqualified.
                 </p>
@@ -88,7 +85,7 @@ export default function TermsPage() {
 
               {/* CERTIFICATION & GOVERNMENT CLEARANCE */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">CERTIFICATION & GOVERNMENT CLEARANCE</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">CERTIFICATION & GOVERNMENT CLEARANCE</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   While Indian law generally requires censorship clearance for public screenings, the festival will obtain an <strong>exemption from the Central Board of Film Certification (CBFC)</strong> for festival screenings. Therefore, a <strong>CBFC certificate is NOT required</strong> for submission or selection. If a film is already CBFC certified, only that version will be screened. Otherwise, the festival will apply for a <strong>one-time screening exemption from the Ministry of Information & Broadcasting (Govt. of India)</strong> on behalf of all selected films. Submitting implies agreement to cooperate with this process. It notes that the exemption process is usually routine for recognized festivals, and filmmakers typically don't need to do anything, but may be asked for an undertaking or information in rare cases. All screened films will have either a CBFC certificate or an official exemption letter.
                 </p>
@@ -96,7 +93,7 @@ export default function TermsPage() {
 
               {/* LEGAL CLEARANCES */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">LEGAL CLEARANCES</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">LEGAL CLEARANCES</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   Films should not be under any pending <strong>legal disputes or litigation</strong> that could affect their screening. Any court injunctions or disputes must be resolved or disclosed before submission. Misrepresentation can lead to disqualification.
                 </p>
@@ -104,7 +101,7 @@ export default function TermsPage() {
 
               {/* INSTITUTIONAL FILMS */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">INSTITUTIONAL FILMS</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">INSTITUTIONAL FILMS</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   For films produced by a film institute, university, government agency, or organization, an <strong>NOC (No Objection Certificate)</strong> or written permission from the relevant authority is required for submission and screening. Examples: a student diploma film needs the institute's nod; a funded film needs organizational permission. Proof of such permission may be requested if the film is selected.
                 </p>
@@ -112,7 +109,7 @@ export default function TermsPage() {
 
               {/* USAGE OF SUBMITTED MATERIALS */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">USAGE OF SUBMITTED MATERIALS</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">USAGE OF SUBMITTED MATERIALS</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                   By entering, the filmmaker grants The Bhopal Film Festival <strong>the rights to screen your film</strong> (if selected) <strong>without any screening fee</strong>. Permission is also granted to use <strong>promotional materials</strong> (stills, trailers, clips, film title, synopsis) in the festival catalogue, website, social media, and press releases for marketing.
                 </p>
@@ -126,7 +123,7 @@ export default function TermsPage() {
 
               {/* NO SCREENING FEE & NO RETURN OF MATERIALS */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">NO SCREENING FEE & NO RETURN OF MATERIALS</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">NO SCREENING FEE & NO RETURN OF MATERIALS</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed">
                   The festival will not pay any screening fee, licensing fee, or shipping cost. We assume submitters understand this for an indie festival with free submission and non-commercial intent. Physical media or materials submitted will not be returned. Since the process is primarily online, this likely doesn't apply. The festival also cannot provide insurance for any tapes/drives sent, preferring online submission to avoid this.
                 </p>
@@ -134,7 +131,7 @@ export default function TermsPage() {
 
               {/* FINAL DECISION */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">FINAL DECISION</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">FINAL DECISION</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                   Decisions by the festival selection committee and jury regarding film selection, categorization, awards, or any other competition aspect are <strong>final and binding</strong>. The festival organizers reserve the right to <strong>disqualify</strong> any entry that violates rules or to resolve unaddressed cases at their discretion, aligning with principles of fairness and integrity.
                 </p>
@@ -148,7 +145,7 @@ export default function TermsPage() {
 
               {/* PARTICIPATION & CONDUCT */}
               <section>
-                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-3 sm:mb-4 uppercase">PARTICIPATION & CONDUCT</h2>
+                <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl font-bold mb-0 uppercase">PARTICIPATION & CONDUCT</h2>
                 <p className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4">
                   If selected, the filmmaker/representative should maintain professional conduct.
                 </p>
@@ -165,22 +162,14 @@ export default function TermsPage() {
           </div>
         </div>
 
-      {/* Bottom Decorative Elements - Hills */}
-      <div className="relative w-full h-[80vh] overflow-hidden z-20 -mt-2 sm:-mt-3 md:-mt-4">
+      {/* Element above footer */}
+      <div className="relative w-full overflow-hidden z-30 -mt-2 sm:-mt-3 md:-mt-4">
         <Image
-          src="/assets/smallalfr.png"
+          src="/assets/element above footer .png"
           alt=""
-          width={800}
+          width={1200}
           height={400}
-          className="absolute left-0 bottom-0 w-[65%] h-[70vh] object-cover object-top pointer-events-none"
-          aria-hidden="true"
-        />
-        <Image
-          src="/assets/smallalfl.png"
-          alt=""
-          width={800}
-          height={400}
-          className="absolute right-0 bottom-0 w-[65%] h-[60vh] object-cover object-top pointer-events-none"
+          className="w-full h-auto object-cover object-top pointer-events-none"
           aria-hidden="true"
         />
       </div>

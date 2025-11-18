@@ -60,7 +60,7 @@ export default function DogScroller() {
 
         const midLeft = Math.round(startLeft + (finalLeft - startLeft) * 0.45);
         const midTop = Math.round(
-            startTop + Math.max(window.innerHeight * 0.1, (finalTop - startTop) * 0.45)
+            startTop + Math.max(typeof window !== 'undefined' ? window.innerHeight * 0.1 : 0, (finalTop - startTop) * 0.45)
         );
 
         return { startLeft, startTop, midLeft, midTop, finalLeft, finalTop };
@@ -105,8 +105,14 @@ export default function DogScroller() {
                 }
                 resizeRaf.current = requestAnimationFrame(() => buildTimeline());
             }
-            window.addEventListener("resize", onResize);
-            return () => window.removeEventListener("resize", onResize);
+            if (typeof window !== 'undefined') {
+                window.addEventListener("resize", onResize);
+            }
+            return () => {
+                if (typeof window !== 'undefined') {
+                    window.removeEventListener("resize", onResize);
+                }
+            };
         }
 
         function buildTimeline() {
@@ -126,7 +132,7 @@ export default function DogScroller() {
                 computePositions(wrapperRect, homeRect, aboutRect, dogRect);
 
             // detect mobile breakpoint (same as your other code)
-            const isMobile = window.innerWidth <= 1068;
+            const isMobile = typeof window !== 'undefined' && window.innerWidth <= 1068;
 
             // mobile overrides for start position (you tuned these already)
             let mobileStartLeft = -190;
@@ -436,9 +442,9 @@ export default function DogScroller() {
                     initial={{ y: 60, opacity: 0 }}
                     animate={aboutControls}
                     transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="content flex flex-col gap-4 text-left px-4 md:pl-[8vw] max-w-full md:max-w-[700px] z-50 relative"
+                    className="content flex flex-col gap-0 text-left px-4 md:pl-[8vw] max-w-full md:max-w-[700px] z-50 relative"
                 >
-                    <h2 className="font-bebas text-3xl sm:text-4xl md:text-5xl  text-[#000] uppercase tracking-tight">
+                    <h2 className="font-bebas text-3xl sm:text-4xl md:text-5xl  text-[#000] uppercase tracking-tight mb-0 pb-0">
                         WHO WE ARE
                     </h2>
 
@@ -458,7 +464,7 @@ export default function DogScroller() {
 
                     <SafeLink
                         href="/about"
-                        className="read-more font-texta flex items-center md:text-lg lg:text-xl  gap-1 text-sm mb-8 mt-0 md:mt-4 text-[#000] font-semibold"
+                        className="read-more font-texta flex items-center md:text-lg lg:text-xl gap-0 text-sm mb-8 mt-0 pt-0 text-[#000] font-semibold"
                     >
                         <img src="/assets/readmore.svg" className="w-8 h-8" />
                         Read More
@@ -471,7 +477,7 @@ export default function DogScroller() {
                     src="/assets/circlepq.png"
                     className="bcircle absolute pointer-events-none"
                     style={{
-                        bottom: "-10vh",
+                        bottom: "calc(-10vh - 15px)",
                         left: "90%",
                         transform: "translateX(-50%)",
                         opacity: 1,

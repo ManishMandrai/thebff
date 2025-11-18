@@ -11,23 +11,21 @@ import React from "react";
 
 export default function Awards() {
     return (
-        <main className="relative w-full  min-h-[240vh] bg-[#F4921F]">
+        <main className="relative w-full  min-h-[200vh] bg-[#F4921F]">
             {/* Partition line before awards section */}
             <img
                 src="/assets/partition line.png"
                 alt=""
                 aria-hidden="true"
-                className="absolute pointer-events-none z-0"
+                className="absolute pointer-events-none z-[5]"
                 style={{
                     top: "0",
                     left: "50%",
                     transform: "translateX(-50%)",
                     width: "100%",
                     height: "auto",
-                    filter: "brightness(0)" // 👈 turns white/colored PNG into black
                 }}
             />
-
             {/* BIG CHARACTER: placed in root so it can overlap both viewports */}
 
             {/* BG CIRCLE behind the movie character */}
@@ -38,7 +36,7 @@ export default function Awards() {
                 aria-hidden="true"
                 className="pointer-events-none absolute select-none z-10 md:block mobile-hhhh"
                 style={{
-                    top: "12vh",
+                    top: "calc(12vh + 50px)",
                     height: "160vh",
                     width: "auto",
                     objectFit: "contain",
@@ -53,7 +51,7 @@ export default function Awards() {
                 className="pointer-events-none absolute z-20 md:z-40 select-none  md:block mobile-movie"
                 style={{
                     left: "-10vw",
-                    top: "8vh",
+                    top: "calc(8vh + 70px)",
                     height: "150vh",
                     width: "auto",
                     objectFit: "contain",
@@ -65,15 +63,16 @@ export default function Awards() {
 
                 {/* Content block (awardboard + categories) - centered on mobile */}
                 <aside
-                    className="relative md:absolute md:right-4 md:right-[6vw] md:top-1/2 mb-12  md:-translate-y-1/2 z-50 w-[calc(100%-2rem)] md:w-[48vw] max-w-[500px] px-4 md:px-0"
+                    className="relative md:absolute md:left-1/2 md:right-auto md:top-1/2 md:-translate-x-1/2 md:-translate-y-1/2 z-50 w-[calc(100%-2rem)] md:w-[48vw] max-w-[500px] px-4 md:px-0 desktop-awards-center"
                 >
                     {/* Award board centered inside the block */}
                     <div className="flex justify-center">
-                        <div className="w-full max-w-[240px] md:right-25 sm:max-w-[280px] md:w-[24vw] md:max-w-none mt-[-24] md:mt-36 mr-8 md:mr-40 relative overflow-hidden">
+                        <div className="w-full max-w-[240px] sm:max-w-[280px] md:w-[24vw] md:max-w-none mt-[-24] md:mt-0 md:mx-auto relative overflow-hidden">
                             <img
                                 src="/assets/awardboard.png"
                                 alt="Awards and categories title"
                                 className="w-full h-auto block pointer-events-none relative z-30"
+                                style={{ filter: 'brightness(0)' }}
                             />
                             {/* Yellow background inside the box */}
                             <div className="absolute bg-[#FFCE21] z-20" style={{
@@ -86,10 +85,11 @@ export default function Awards() {
                     </div>
 
                     {/* Categories + vertical strip */}
-                    <div className="relative flex items-start ml-10 sm:ml-0 gap-4 md:right-25 md:gap-6 mt-6 md:mt-12 justify-center md:justify-start pl-0 md:pl-4">
+                    <div className="relative flex items-start gap-4 md:gap-6 mt-6 md:mt-12 justify-center md:justify-center pl-0 md:pl-0">
 
-                        <div className="absolute top-1/2 w-[300px] md:w-[600px] lg:w-[500px] h-[300px] md:h-[800px] lg:h-[500px] z-10 pointer-events-none" style={{
-                            right: '-350px',
+                        {/* hhhh.png image on the right - flipped vertically */}
+                        <div className="absolute top-1/2 w-[300px] md:w-[400px] lg:w-[500px] h-[300px] md:h-[400px] lg:h-[500px] z-10 pointer-events-none md:hidden" style={{
+                            right: '-300px',
                             transform: 'translateY(-50%)'
                         }}>
                             <img
@@ -98,7 +98,8 @@ export default function Awards() {
                                 aria-hidden="true"
                                 className="w-full h-full object-contain pointer-events-none"
                                 style={{
-                                    transform: 'scaleX(-1)'
+                                    transform: 'scaleX(-1)',
+                                    filter: 'hue-rotate(100deg) saturate(1.5) brightness(0.9)'
                                 }}
                             />
                         </div>
@@ -119,12 +120,12 @@ export default function Awards() {
                         {/* Category List */}
                         <ul
                             className="
-    flex flex-col items-center right-12 md:right-0
-items-start pl-2 flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
+    flex flex-col items-start right-0 md:right-0
+    md:items-start flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4 pl-0 mobile-category-list
   "
                         >
                             {[
-                                "Fiction (Under 10 Minutes",
+                                "Fiction (Under 10 Minutes)",
                                 "Non-Fiction (Under 10 Minutes)",
                                 "Women’s Voices (Under 5 Minutes)",
                                 "Heart of India (Under 5 Minutes)"
@@ -132,11 +133,11 @@ items-start pl-2 flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
                                 <li
                                     key={label}
                                     className="
-        font-bebas text-[#111] font-bold
+        text-[#111] font-bold
         text-lg md:text-xl lg:text-2xl
-        leading-tight flex items-center
+        leading-tight flex items-start mobile-category-text
       "
-                                    style={{ lineHeight: "1.2" }}
+                                    style={{ lineHeight: "1.2", fontFamily: '"Texta Alt Heavy", sans-serif', marginLeft: '-40px', paddingLeft: 0, marginTop: '9px' }}
                                 >
                                     {label}
                                 </li>
@@ -170,13 +171,13 @@ items-start pl-2 flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
                 <div
                     className="absolute w-full left-20 md:left-200 flex flex-col md:flex-row
                 items-center md:items-start justify-center md:justify-start 
-                gap-20 md:gap-10 z-30"
+                gap-20 md:gap-10 z-30 mobile-award-container"
                     style={{ top: "40px" }} // moved down by 40px
                 >
 
                     {/* Award 1 */}
                     <div
-                        className="award-item md:mt-20 md:m-4 mt-[-40] mr-8"
+                        className="award-item mobile-award md:mt-20 md:m-4 mt-[-160] mr-8"
                         style={{
                             width: "230px",
                             maxWidth: "300px"
@@ -184,7 +185,7 @@ items-start pl-2 flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
                     >
                         <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
                             <img
-                                src="/assets/snn.png"
+                                src="/assets/awardFrame1.png"
                                 className="pointer-events-none w-full h-full object-contain relative z-30"
                             />
                             <div className="absolute bg-[#FFCE21] z-20" style={{
@@ -199,7 +200,7 @@ items-start pl-2 flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
 
                     {/* Award 2 */}
                     <div
-                        className="award-item md:mt-20 md:m-4 mt-26 mr-8"
+                        className="award-item mobile-award md:mt-20 md:m-4 mb-40 mr-8"
                         style={{
                             width: "230px",
                             maxWidth: "300px"
@@ -207,7 +208,7 @@ items-start pl-2 flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
                     >
                         <div className="relative w-full overflow-hidden" style={{ aspectRatio: "1/1.2" }}>
                             <img
-                                src="/assets/runner.png"
+                                src="/assets/awardframe2.png"
                                 className="pointer-events-none w-full h-full object-contain relative z-30"
                             />
                             <div className="absolute bg-[#FFCE21] z-20" style={{
@@ -224,8 +225,8 @@ items-start pl-2 flex-shrink-0 relative z-20 gap-18 md:gap-15 pt-4
 
 
                 {/* Bottom wide small-halves that visually overlap */}
-                <div className="absolute left-0 bottom-[-350] md:bottom-[-170] w-full  z-10 md:block">
-                    <div className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden">
+                <div className="absolute left-0 bottom-0 w-full  z-10 md:block">
+                    <div className="relative w-full h-[55vh] md:h-[75vh] overflow-hidden pb-8 sm:pb-12 md:pb-16">
                         <img
                             src="/assets/smallalfr.png"
                             alt=""

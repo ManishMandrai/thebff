@@ -90,6 +90,13 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
+/* Reduce dog size on mobile in second frame */
+@media (max-width: 1068px) {
+  .dog {
+    max-width: 50vw;
+  }
+}
+
 /* frame look — use frames as-is; no white label */
 .frame-card {
   border-radius: 8px;
@@ -139,7 +146,7 @@ div[style*="perspective"] {
 
 @media (max-width: 1068px) {
   .dog {
-    width: 150vw !important; /* SUPER SAFE SIZE (fills screen naturally) */
+    width: 130vw !important; /* SUPER SAFE SIZE (fills screen naturally) */
     height: auto !important;
     max-width: none !important;
   }
@@ -154,10 +161,7 @@ div[style*="perspective"] {
 
 @media (max-width: 768px) {
   .circleha {
-    height: 760px;
-    width: auto;
-    /* bottom: -20px; */
-    /* width:500px !important; */
+    width: 900px !important;
     left: 70vw !important;
   }
 }
@@ -171,13 +175,13 @@ div[style*="perspective"] {
   }
 
   .about-text {
-    font-size: 15px !important;
-    line-height: 22px !important;
+    font-size: 22px !important;
+    line-height: 1.6 !important;
   }
 
   .about .content h2 {
     font-size: 28px !important;
-    margin-bottom: 10px !important;
+    margin-bottom: 20px !important;
   }
 
   .read-more {
@@ -218,36 +222,34 @@ div[style*="perspective"] {
 
 @media (max-width: 768px) {
   img.leaf2 {
-    width: 160vw !important; /* bigger so full shape appears */
-    top: 85vh !important; /* pull up into correct place */
+    width: 150vw !important; /* bigger so full shape appears */
+    top: 80vh !important; /* pull up into correct place */
     right: -40vw !important; /* shift inward from the right */
     max-width: none !important; /* remove browser max-width */
   }
 }
 
-
-
 /* MOBILE OFFERINGS BOX */
 @media (max-width: 768px) {
   .offerings-container {
-    top: -20vh !important;
-    z-index: 25;
+    top: 40vh !important;
   }
 
   .offerings-box {
     background: #6a9139 !important;
     padding: 16px !important;
     border-radius: 8px;
-    width: 95%;
+    width: 70%;
   }
 
   .offerings-strip img {
-    height: 50px;
+    height: 100%;
+    max-height: 210px;
   }
 
   .offerings-list {
-    font-size: 16px !important;
-    gap: 1.8rem !important;
+    font-size: 14px !important;
+    gap: 1rem !important;
   }
 
   .offerings-title {
@@ -289,13 +291,52 @@ div[style*="perspective"] {
   opacity: 1;
 }
 
+/* MOBILE ONLY */
+@media (max-width: 768px) {
+  /* Only show the <strong> part, hide everything after it */
+  .offerings-list li span,
+  .offerings-list li::after {
+    display: none !important;
+  }
 
+  /* Make each item single-line */
+  .offerings-list li {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    line-height: 1.3;
+  }
+
+  /* Reduce gap so strip aligns vertically */
+  .offerings-list {
+    gap: 0.8rem !important;
+  }
+
+  /* Fix strip alignment */
+  .offerings-strip {
+    margin-top: 6px; /* adjust if needed */
+  }
+
+  /* Make font readable on mobile */
+  .offerings-list li strong {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-hhhh {
+    height: 50vh !important; /* adjust as you need */
+    top: calc(80vh + 60px) !important;
+    width: auto !important;
+  }
+}
 
 @media (max-width: 768px) {
   .mobile-movie {
     left: -17vh !important;
-    height: 90vh !important; /* adjust as you need */
-    top:  120vh !important;
+    height: 80vh !important; /* adjust as you need */
+    top: calc(100vh + 80px) !important;
+    width: auto !important;
   }
 }
 
@@ -304,14 +345,31 @@ div[style*="perspective"] {
     top: -90px !important;
     width: 130px !important;
   }
-}
-@media (max-width: 768px) {
-  .mobile-hhhh {
-    width: 170px !important;
-margin-top: 70px
+  
+  .mobile-award {
+    width: 180px !important;
+    max-width: 180px !important;
+  }
+  
+  .mobile-award-container {
+    top: calc(40px + 100px) !important;
+  }
+  
+  .mobile-category-list {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none !important;
+  }
+  
+  .mobile-category-text {
+    font-size: 14px !important;
+    margin-left: -40px !important;
+    padding-left: 0 !important;
+    margin-top: 9px !important;
+    text-align: left !important;
+    list-style: none !important;
   }
 }
-
 
 @media (max-width: 768px) {
   .award-item {
@@ -338,10 +396,33 @@ margin-top: 70px
     width: 190vw !important; /* force large size */
     height: auto !important;
 
-    left: calc(80% + 80px) !important; /* shifted a total of 80px to the right on mobile */
-    bottom: calc(-8vh + 60px) !important; /* moved a total of 60px up on mobile */
+    left: calc(80% + 120px) !important; /* shifted a total of 120px to the right on mobile (100px + 20px) */
+    bottom: calc(-8vh + 45px) !important; /* moved down by 15px (was 60px, now 45px) */
     transform: translateX(-50%) !important;
+    z-index: 10 !important; /* Ensure it's in front of green circles (z-[-10]) */
   }
+}
+
+@media (max-width: 1068px) {
+  .mobile-offerings-top {
+    top: calc(20vh - 280px) !important;
+  }
+  
+  .mobile-leaf1-up {
+    top: calc(25vh - 50px) !important;
+  }
+  
+  .mobile-elephant-z {
+    z-index: 999 !important;
+  }
+  
+  .mobile-elephant-wrapper {
+    overflow: visible !important;
+  }
+}
+
+.leaf1 {
+  top: 25vh;
 }
 
 @media (max-width: 768px) {
@@ -349,5 +430,78 @@ margin-top: 70px
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
+  }
+  
+  .about-text {
+    font-size: 12px !important;
+    line-height: 1.1 !important;
+  }
+}
+
+@media (min-width: 1069px) {
+  .mobile-offerings-top {
+    top: 42vh !important;
+  }
+}
+
+/* About character mobile positioning */
+@media (max-width: 767px) {
+  .about-character-img {
+    transform: translateX(-30px) translateY(0%) scaleX(-1) scale(8) !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-character-img {
+    transform: translateX(50px) translateY(0%) scaleX(-1) scale(8) !important;
+  }
+  
+  .about-text {
+    font-size: 22px !important;
+    line-height: 1.6 !important;
+  }
+  
+  .about .content h2 {
+    margin-bottom: 30px !important;
+  }
+}
+
+@media (min-width: 1069px) {
+  .about-text {
+    font-size: 22px !important;
+    line-height: 1.6 !important;
+  }
+  
+  .about .content h2 {
+    margin-bottom: 30px !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .meet2 {
+    margin-top: 250px !important;
+  }
+  
+  .mobile-elephant-z {
+    margin-top: 40px !important;
+    z-index: 1000 !important;
+  }
+  
+  .leaf1 {
+    transform: translateY(-150px) !important;
+    z-index: 0 !important;
+  }
+  
+  .frames1 {
+    z-index: 999 !important;
+  }
+  
+  .desktop-awards-center {
+    transform: translateX(calc(-50% + 290px)) translateY(calc(-50% + 390px)) !important;
+  }
+  
+  .mobile-category-text {
+    margin-left: -15px !important;
+    margin-top: -3px !important;
   }
 }

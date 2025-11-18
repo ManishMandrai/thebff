@@ -75,7 +75,7 @@ export default function AboutPage() {
         </div>
 
         {/* Side Semicircles - Left (hhhh.png duplicated) - Top - Green - Top Left Corner */}
-        <div className="absolute left-0 top-[108px] pointer-events-none z-[2] hidden lg:block" style={{ overflow: 'visible' }}>
+        <div className="absolute left-0 top-[158px] pointer-events-none z-[-10] hidden lg:block" style={{ overflow: 'visible' }}>
           <img
             src="/assets/hhhh.png"
             alt=""
@@ -93,7 +93,7 @@ export default function AboutPage() {
         </div>
 
         {/* Side Semicircles - Right (hhhh.png duplicated) - Top - Green - Top Right Corner */}
-        <div className="absolute right-0 top-[108px] pointer-events-none z-[2] hidden lg:block" style={{ overflow: 'visible' }}>
+        <div className="absolute right-0 top-[158px] pointer-events-none z-[-10] hidden lg:block" style={{ overflow: 'visible' }}>
           <img
             src="/assets/hhhh.png"
             alt=""
@@ -136,7 +136,7 @@ export default function AboutPage() {
             {/* Left Side - Character with Spotlight Illustration */}
             <div className="relative flex flex-col items-start justify-start w-[35%] sm:w-[40%] md:w-[38%] lg:w-[45%] xl:w-[48%] h-full z-30 overflow-visible -ml-8 sm:-ml-12 md:-ml-12 lg:-ml-32 xl:-ml-48 2xl:-ml-60">
               {/* Desktop character size reduced further (≈3x smaller on large screens) */}
-              <div className="relative w-full max-w-[200px] sm:max-w-[300px] md:max-w-[350px] lg:max-w-[150px] xl:max-w-[175px] 2xl:max-w-[200px] z-40">
+              <div className="relative w-full max-w-[150px] sm:max-w-[250px] md:max-w-[300px] lg:max-w-[150px] xl:max-w-[175px] 2xl:max-w-[200px] z-40">
                 <Image
                   src="/assets/Copy of 5-01.png"
                   alt="Film spotlight character"
@@ -145,7 +145,6 @@ export default function AboutPage() {
                   className="w-full h-auto object-contain about-character-img"
                   priority
                   style={{
-                    transform: "translateX(50px) translateY(0%) scaleX(-1) scale(15)",
                     transformOrigin: "center top",
                     position: 'relative',
                     zIndex: 40

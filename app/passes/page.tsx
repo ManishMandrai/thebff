@@ -30,40 +30,6 @@ export default function PassesPage() {
       </div>
 
       
-      {/* Large Character - Dog on Left Side (Upper Area) */}
-      {/* Mobile and Tablet version - hidden */}
-      {/* Desktop version only */}
-      <div className="absolute left-[-170] top-[40] z-20 pointer-events-none opacity-85 hidden lg:block passes-dog-character" style={{ transform: 'translateX(calc(-30% + 15px - 30px))' }}>
-        <Image
-          src="/assets/dog.png"
-          alt="Dog character"
-          width={600}
-          height={900}
-          className="w-auto h-[60vh] md:h-[65vh] lg:h-[80vh] max-h-[600px] md:max-h-[700px] lg:max-h-[900px] object-contain"
-          style={{ 
-            filter: "drop-shadow(6px 6px 12px rgba(0,0,0,0.15))",
-            transform: 'translateX(25%)'
-          }}
-        />
-      </div>
-
-      {/* Large Character - Copy of 7-01 on Right Side (Upper Area) */}
-      {/* Mobile and Tablet version - hidden */}
-      {/* Desktop version only */}
-      <div className="absolute right-0 top-[10%] z-20 pointer-events-none opacity-85 hidden lg:block" style={{ transform: 'translate(20%, 0)' }}>
-        <Image
-          src="/assets/Copy of 7-01.png"
-          alt="Character"
-          width={600}
-          height={900}
-          className="w-auto h-[55vh] md:h-[60vh] lg:h-[75vh] max-h-[550px] md:max-h-[650px] lg:max-h-[850px] object-contain"
-          style={{ 
-            filter: "drop-shadow(6px 6px 12px rgba(0,0,0,0.15))",
-            transform: 'translate(-5%, 0)'
-          }}
-        />
-      </div>
-
 
       {/* Small Decorative Elements - Leaves */}
       <div className="absolute top-[25%] right-[8%] z-15 pointer-events-none opacity-40 hidden md:block">
@@ -163,6 +129,39 @@ export default function PassesPage() {
             transform: "rotate(-30deg)",
             filter: "drop-shadow(2px 2px 4px rgba(0,0,0,0.1))"
           }}
+        />
+      </div>
+
+      {/* Dog - Half on Top Left Corner */}
+      <div className="absolute left-0 top-0 z-30 pointer-events-none overflow-hidden" style={{ transform: 'translateX(-50%) translateY(0)' }}>
+        <Image
+          src="/assets/dog.png"
+          alt=""
+          width={200}
+          height={300}
+          className="w-[200px] sm:w-[240px] md:w-[280px] lg:w-[320px] xl:w-[360px] h-auto object-contain"
+        />
+      </div>
+
+      {/* Bottom Characters - Left and Right Corners, Just Above Footer - 70% Visible */}
+      <div className="absolute bottom-[80px] left-0 z-30 pointer-events-none overflow-hidden">
+        <Image
+          src="/assets/Copy of 6-01.png"
+          alt=""
+          width={100}
+          height={200}
+          className="w-[320px] sm:w-[360px] md:w-[420px] lg:w-[480px] xl:w-[540px] h-auto object-contain"
+          style={{ transform: 'translateX(-40%)' }}
+        />
+      </div>
+      <div className="absolute bottom-[80px] right-0 z-30 pointer-events-none overflow-hidden">
+        <Image
+          src="/assets/Copy of 7-01.png"
+          alt=""
+          width={100}
+          height={200}
+          className="w-[320px] sm:w-[360px] md:w-[420px] lg:w-[480px] xl:w-[540px] h-auto object-contain"
+          style={{ transform: 'translateX(40%)' }}
         />
       </div>
 
